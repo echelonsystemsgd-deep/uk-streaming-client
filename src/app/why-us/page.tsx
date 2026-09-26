@@ -6,6 +6,7 @@ import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ShieldCheck, Clock, Zap, Tv, Heart, Globe, Award, MapPin, ChevronRight, Lock, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 
 const DIASPORA_CITIES = [
   { city: "Greater London", areas: "Southall, Wembley, Harrow, Hounslow, Ilford, East Ham", desc: "Low-latency streaming from our London Docklands data relay." },
@@ -212,6 +213,9 @@ export default function WhyUsPage() {
           ))}
         </div>
       </section>
+
+      {/* Verified UK Diaspora Testimonials */}
+      <TestimonialsSection />
 
       {/* Engineering Credibility by Mercian Wealth */}
       <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">

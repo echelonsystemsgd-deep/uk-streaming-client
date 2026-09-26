@@ -127,10 +127,15 @@ export function Footer() {
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <span className="hover:text-white cursor-pointer py-1">Terms &amp; Conditions</span>
-            <span className="hover:text-white cursor-pointer py-1">Privacy Policy</span>
-            <span className="hover:text-white cursor-pointer py-1">Refund Policy (7 Days)</span>
-            <span className="hover:text-white cursor-pointer py-1">Cookie Preferences</span>
+            <Link href="/terms" className="hover:text-white transition-colors py-1">
+              Terms &amp; Conditions
+            </Link>
+            <Link href="/privacy" className="hover:text-white transition-colors py-1">
+              Privacy Policy
+            </Link>
+            <Link href="/refund-policy" className="hover:text-white transition-colors py-1 text-primary hover:text-red-400 font-medium">
+              Refund Policy (7 Days)
+            </Link>
           </div>
         </div>
 

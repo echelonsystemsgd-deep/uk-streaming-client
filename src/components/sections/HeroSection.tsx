@@ -24,10 +24,12 @@ export function HeroSection({ onExplorePlans, onBrowseChannels }: HeroSectionPro
           {/* Left Column: Value Proposition & Clear CTAs */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             
-            {/* Clean Trust Badge (Replaced vibecoded edge/buffer pill) */}
+            {/* Clean Trust Badge with Live Sports Notice */}
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background-elevated px-4 py-1.5 text-xs font-medium text-zinc-300">
-              <span className="flex h-2 w-2 rounded-full bg-primary" />
-              <span>UK #1 Dedicated Indian Television &amp; Catch-Up Service</span>
+              <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+              <span>UK #1 Dedicated Indian Television &amp; Catch-Up</span>
+              <span className="text-zinc-600 hidden sm:inline">•</span>
+              <span className="text-red-400 font-semibold hidden sm:inline">4K UHD Live Cricket</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] sm:leading-[1.1]">

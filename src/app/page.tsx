@@ -11,6 +11,7 @@ import { PricingSection } from "@/components/sections/PricingSection";
 import { ChannelShowcaseSection } from "@/components/sections/ChannelShowcaseSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { FaqSection } from "@/components/sections/FaqSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CtaBannerSection } from "@/components/sections/CtaBannerSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { PayPalModal } from "@/components/checkout/PayPalModal";
@@ -65,6 +66,9 @@ export default function HomePage() {
 
         {/* 3-Step Setup Teaser */}
         <HowItWorksSection />
+
+        {/* UK Customer Testimonials & Reviews */}
+        <TestimonialsSection />
 
         {/* CTA Banner */}
         <CtaBannerSection onSubscribeClick={handleQuickSubscribe} />

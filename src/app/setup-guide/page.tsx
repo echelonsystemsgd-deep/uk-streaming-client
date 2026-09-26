@@ -6,6 +6,7 @@ import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Tv, Smartphone, Monitor, CheckCircle2, ChevronRight, MessageSquare, Phone, Download, Wifi, ShieldAlert, Laptop } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SpeedTestWidget } from "@/components/tools/SpeedTestWidget";
 
 const DEVICES = [
   { id: "firestick", name: "Amazon Firestick", icon: Tv },
@@ -333,6 +334,11 @@ export default function SetupGuidePage() {
             </div>
           )}
         </div>
+      </section>
+
+      {/* Interactive UK Speed & Buffer Test Widget */}
+      <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
+        <SpeedTestWidget />
       </section>
 
       {/* UK ISP Compatibility Matrix */}
