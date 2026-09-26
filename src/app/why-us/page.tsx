@@ -225,10 +225,10 @@ export default function WhyUsPage() {
             <span>ENTERPRISE-GRADE UK INFRASTRUCTURE</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white">
-            Engineered &amp; Maintained by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">mercianwealth.com</a>
+            Engineered &amp; Maintained by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">mercianwealth</a>
           </h3>
           <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            Our streaming distribution backbone and payment infrastructure are engineered with high-redundancy failovers, zero-log data privacy, and 256-bit TLS encryption by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-semibold">mercianwealth.com</a>.
+            Our streaming distribution backbone and payment infrastructure are engineered with high-redundancy failovers, zero-log data privacy, and 256-bit TLS encryption by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-semibold">mercianwealth</a>.
           </p>
           <div className="pt-2">
             <Button

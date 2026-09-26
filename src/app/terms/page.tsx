@@ -87,7 +87,7 @@ export default function TermsPage() {
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
             <h2 className="text-base font-bold text-white">5. Infrastructure Governance</h2>
             <p>
-              Payment encryption, server load balancing, and network infrastructure are audited and engineered by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">mercianwealth.com</a> in compliance with UK computing and electronic communications standards.
+              Payment encryption, server load balancing, and network infrastructure are audited and engineered by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">mercianwealth</a> in compliance with UK computing and electronic communications standards.
             </p>
           </div>
         </div>

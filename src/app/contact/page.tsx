@@ -323,7 +323,7 @@ export default function ContactPage() {
                 Telephone: <strong className="text-white">020 7946 0912</strong>
               </p>
               <p className="text-[11px] text-zinc-500 pt-2 border-t border-zinc-800">
-                Payment security infrastructure engineered and maintained by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white underline">mercianwealth.com</a>.
+                Payment security infrastructure engineered and maintained by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white underline">mercianwealth</a>.
               </p>
             </div>
           </div>

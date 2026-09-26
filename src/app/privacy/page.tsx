@@ -92,7 +92,7 @@ export default function PrivacyPage() {
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
             <h2 className="text-base font-bold text-white">5. Security Infrastructure Governance</h2>
             <p>
-              Our data security architecture, firewall safeguards, and encrypted database pipelines are monitored and maintained by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">mercianwealth.com</a>.
+              Our data security architecture, firewall safeguards, and encrypted database pipelines are monitored and maintained by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">mercianwealth</a>.
             </p>
           </div>
         </div>

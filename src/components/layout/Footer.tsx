@@ -122,7 +122,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-zinc-400 hover:text-white underline underline-offset-4 font-semibold transition-colors"
               >
-                mercianwealth.com
+                mercianwealth
               </a>
             </p>
           </div>

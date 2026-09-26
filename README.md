@@ -2,7 +2,7 @@
 
 High-performance, multi-page Next.js 14 streaming portal engineered for British Indian households. Delivers 350+ live Indian television channels, live cricket in 4K UHD 60fps, and automatic 7-day catch-up TV tailored for the UK timezone.
 
-Engineered and built with enterprise-grade infrastructure by [mercianwealth.com](https://mercianwealth.com).
+Engineered and built with enterprise-grade infrastructure by [mercianwealth](https://mercianwealth.com).
 
 ---
 
@@ -130,6 +130,6 @@ npm run start
 
 ## 🔒 Security & Credibility
 
-- Engineered and audited by [mercianwealth.com](https://mercianwealth.com).
+- Engineered and audited by [mercianwealth](https://mercianwealth.com).
 - 256-Bit TLS SSL encryption on all routes and order pipelines.
 - 100% PayPal Buyer Protection enabled across all GBP passes.
