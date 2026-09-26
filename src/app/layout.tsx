@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DesiStream UK — Premium Live Indian TV Channels & Movies in Ultra HD",
+  title: "ChitramTV UK — Premium Live Indian TV Channels & Movies in Ultra HD",
   description:
-    "Stream 350+ live Indian TV channels, live cricket, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK. 7-day catch-up with zero buffer.",
+    "Stream 350+ live Indian TV channels, live cricket, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK. 7-day catch-up with zero buffer on ChitramTV.",
   icons: {
     icon: "/assets/client/favicon.svg",
   },

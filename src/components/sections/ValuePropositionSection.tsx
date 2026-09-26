@@ -52,7 +52,7 @@ export function ValuePropositionSection() {
             ENGINEERED FOR THE UK INDIAN COMMUNITY
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Why UK Households Choose DesiStream
+            Why UK Households Choose ChitramTV
           </h2>
           <p className="text-base sm:text-lg text-zinc-400 leading-relaxed">
             Designed specifically for viewers in London, Leicester, Birmingham, Manchester, and across the UK who want dependable, high-definition Indian television.

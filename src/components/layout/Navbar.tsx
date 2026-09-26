@@ -45,7 +45,7 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-200 ${
+        className={`w-full transition-all duration-200 ${
           isScrolled
             ? "bg-background/95 backdrop-blur-md border-b border-border shadow-md"
             : "bg-background/80 backdrop-blur-sm border-b border-border/60"
@@ -60,14 +60,14 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
                 <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-white leading-none">
-                  DesiStream
+                  ChitramTV
                 </span>
                 <span className="rounded bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 text-[10px] font-bold text-zinc-300 tracking-wider leading-none">
                   UK
                 </span>
               </div>
               <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase mt-1 leading-none">
-                Indian TV & 4K Streaming
+                Indian TV &amp; 4K Streaming
               </span>
             </div>
           </Link>
@@ -143,7 +143,7 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
                   <div className="h-8 w-8 rounded bg-primary flex items-center justify-center text-white font-bold">
                     <Play className="h-4 w-4 fill-current ml-0.5" />
                   </div>
-                  <span className="font-extrabold text-white text-lg">DesiStream UK</span>
+                  <span className="font-extrabold text-white text-lg">ChitramTV UK</span>
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}

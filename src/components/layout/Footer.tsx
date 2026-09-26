@@ -16,7 +16,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-xl font-extrabold tracking-tight text-white">
-                  DesiStream
+                  ChitramTV
                 </span>
                 <span className="rounded bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 text-[10px] font-bold text-zinc-300 tracking-wider">
                   UK
@@ -49,7 +49,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="#features" className="block py-1.5 hover:text-white transition-colors">
-                  Why DesiStream
+                  Why ChitramTV
                 </a>
               </li>
               <li>
@@ -103,13 +103,26 @@ export function Footer() {
 
         </div>
 
-        {/* Bottom Strip */}
+        {/* Bottom Strip with Mercian Wealth Credibility */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-center sm:text-left">
-          <p>
-            © {new Date().getFullYear()} DesiStream UK. All Rights Reserved. Not affiliated with third-party broadcasters.
-          </p>
+          <div className="space-y-1">
+            <p>
+              © {new Date().getFullYear()} ChitramTV UK. All Rights Reserved. Not affiliated with third-party broadcasters.
+            </p>
+            <p className="text-[11px] text-zinc-500">
+              Engineered &amp; Built by{" "}
+              <a
+                href="https://mercianwealth.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 hover:text-white underline underline-offset-4 font-semibold transition-colors"
+              >
+                mercianwealth.com
+              </a>
+            </p>
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <span className="hover:text-white cursor-pointer py-1">Terms & Conditions</span>
+            <span className="hover:text-white cursor-pointer py-1">Terms &amp; Conditions</span>
             <span className="hover:text-white cursor-pointer py-1">Privacy Policy</span>
             <span className="hover:text-white cursor-pointer py-1">Refund Policy (7 Days)</span>
             <span className="hover:text-white cursor-pointer py-1">Cookie Preferences</span>

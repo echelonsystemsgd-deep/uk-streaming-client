@@ -252,7 +252,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
             <div className="my-5 rounded-lg border border-border bg-background-elevated p-3.5 sm:p-4 text-left text-xs space-y-2">
               <div className="flex justify-between text-muted-foreground">
                 <span>Reference ID</span>
-                <span className="font-mono text-white">UK-DESI-94821</span>
+                <span className="font-mono text-white">UK-CHITRAM-94821</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
                 <span>Plan</span>

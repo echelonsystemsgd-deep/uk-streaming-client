@@ -8,12 +8,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: "faq-1",
     question: "How does the 7-Day Catch-up TV work for the UK time difference?",
-    answer: "Because India is 4.5 or 5.5 hours ahead of GMT/BST, Indian primetime serials air around 3:00 PM UK time when you are working. With DesiStream UK's automatic 7-day catch-up, every show is recorded on our secure UK edge servers. You can pause, rewind, and watch your favourite dramas, news, or cricket matches whenever you sit down in the evening with zero commercials.",
+    answer: "Because India is 4.5 or 5.5 hours ahead of GMT/BST, Indian primetime serials air around 3:00 PM UK time when you are working. With ChitramTV UK's automatic 7-day catch-up, every show is recorded on our secure UK edge servers. You can pause, rewind, and watch your favourite dramas, news, or cricket matches whenever you sit down in the evening with zero commercials.",
   },
   {
     id: "faq-2",
     question: "Which devices and Smart TVs are supported?",
-    answer: "DesiStream UK works seamlessly on Amazon Fire TV Stick (all generations, 4K & Lite), Android TVs (Sony, Philips, TCL, Panasonic), Google TV, Apple TV 4K, Samsung Smart TVs (Tizen OS), LG Smart TVs (webOS), plus iOS (iPhone/iPad), Android smartphones, tablets, Windows PC, and Mac laptops.",
+    answer: "ChitramTV UK works seamlessly on Amazon Fire TV Stick (all generations, 4K & Lite), Android TVs (Sony, Philips, TCL, Panasonic), Google TV, Apple TV 4K, Samsung Smart TVs (Tizen OS), LG Smart TVs (webOS), plus iOS (iPhone/iPad), Android smartphones, tablets, Windows PC, and Mac laptops.",
   },
   {
     id: "faq-3",

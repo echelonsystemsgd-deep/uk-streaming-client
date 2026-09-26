@@ -91,7 +91,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     devices: 4,
     features: [
       "High-Performance 4K Quad-Core IPTV Box",
-      "Pre-installed DesiStream App (Zero setup required)",
+      "Pre-installed ChitramTV App (Zero setup required)",
       "Ergonomic Backlit Bluetooth Remote Control",
       "High-Speed HDMI Cable & UK Power Adapter Included",
       "Includes 14 Months Full Subscription (12 + 2 Free)",

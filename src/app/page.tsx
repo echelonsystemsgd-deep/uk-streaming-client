@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { TopBanner } from "@/components/layout/TopBanner";
 import { Navbar } from "@/components/layout/Navbar";
+import { StickyFooterBar } from "@/components/layout/StickyFooterBar";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ValuePropositionSection } from "@/components/sections/ValuePropositionSection";
@@ -47,14 +48,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      {/* Top UK Customer Notice Banner */}
-      <TopBanner />
-
-      {/* Main Navigation */}
-      <Navbar onSubscribeClick={handleQuickSubscribe} />
+      {/* Sticky Top Header Container */}
+      <div className="sticky top-0 z-40 w-full shadow-md">
+        <TopBanner />
+        <Navbar onSubscribeClick={handleQuickSubscribe} />
+      </div>
 
       {/* Main Page Flow Matching Reference Competitor Structure */}
-      <main className="flex-1">
+      <main className="flex-1 pb-16 sm:pb-20">
         {/* 1. Hero Section */}
         <HeroSection
           onExplorePlans={handleExplorePlans}
@@ -85,6 +86,9 @@ export default function HomePage() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Sticky Conversion and Support Footer Bar */}
+      <StickyFooterBar onSubscribeClick={handleQuickSubscribe} />
 
       {/* PayPal Hosted Checkout Modal */}
       <PayPalModal
