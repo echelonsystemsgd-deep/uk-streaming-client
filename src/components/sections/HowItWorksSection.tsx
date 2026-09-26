@@ -45,31 +45,29 @@ export function HowItWorksSection() {
         </div>
 
         {/* 3 Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative">
           {steps.map((item, idx) => {
             const Icon = item.icon;
             return (
               <Card
                 key={idx}
-                className="relative flex flex-col justify-between p-2 bg-card border-border/70"
+                className="relative flex flex-col justify-between p-6 bg-card border-border"
               >
                 <div>
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-3xl font-black text-primary/40 font-mono">
-                        {item.step}
-                      </span>
-                      <div className="h-10 w-10 rounded-lg bg-background-subtle border border-border flex items-center justify-center text-accent">
-                        <Icon className="h-5 w-5" />
-                      </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-3xl font-black text-primary/30 font-mono">
+                      {item.step}
+                    </span>
+                    <div className="h-10 w-10 rounded-lg bg-zinc-800 border border-zinc-700/60 flex items-center justify-center text-zinc-200">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <CardTitle className="text-xl font-bold text-white">
-                      {item.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed">
                     {item.description}
-                  </CardContent>
+                  </p>
                 </div>
               </Card>
             );

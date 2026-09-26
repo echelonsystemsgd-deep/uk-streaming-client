@@ -98,18 +98,18 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
             </p>
 
             {/* Plan Summary Card */}
-            <div className="my-5 sm:my-6 rounded-lg border border-border bg-background-elevated p-3.5 sm:p-4">
+            <div className="my-5 sm:my-6 rounded-lg border border-border bg-background-elevated p-4">
               <div className="flex justify-between items-start pb-3 border-b border-border/60 gap-2">
                 <div>
-                  <div className="text-base sm:text-lg font-bold text-white flex flex-wrap items-center gap-1.5">
+                  <div className="text-base sm:text-lg font-bold text-white flex flex-wrap items-center gap-2">
                     <span>{plan.name}</span>
                     {plan.badge && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-accent text-accent-foreground whitespace-nowrap">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-200 whitespace-nowrap">
                         {plan.badge}
                       </span>
                     )}
                   </div>
-                  <div className="text-xs text-muted-foreground mt-0.5">
+                  <div className="text-xs text-zinc-400 mt-1">
                     {plan.devices} Devices • 7-Day Catch-up • 350+ Channels
                   </div>
                 </div>
@@ -117,22 +117,22 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                   <div className="text-xl sm:text-2xl font-extrabold text-white">
                     £{plan.price.toFixed(2)}
                   </div>
-                  <div className="text-[10px] text-muted-foreground">{plan.period}</div>
+                  <div className="text-[10px] text-zinc-400">{plan.period}</div>
                 </div>
               </div>
 
-              <div className="pt-2.5 space-y-1.5 text-xs text-muted-foreground">
+              <div className="pt-3 space-y-1.5 text-xs text-zinc-400">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>£{plan.price.toFixed(2)}</span>
+                  <span className="text-zinc-300">£{plan.price.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>UK VAT (Included)</span>
-                  <span>£{(plan.price * 0.2 / 1.2).toFixed(2)}</span>
+                  <span className="text-zinc-300">£{(plan.price * 0.2 / 1.2).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Digital Setup & Activation</span>
-                  <span className="text-emerald-400 font-semibold">FREE</span>
+                  <span>Digital Setup &amp; Activation</span>
+                  <span className="text-zinc-200 font-semibold">FREE</span>
                 </div>
                 <div className="flex justify-between pt-2 border-t border-border/40 font-bold text-white text-sm">
                   <span>Total Due Today</span>
@@ -212,13 +212,13 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
               </div>
 
               {/* Security Trust Marks */}
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2 text-[11px] text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+              <div className="flex flex-wrap items-center justify-center gap-4 pt-2 text-[11px] text-zinc-400">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="h-3.5 w-3.5 text-zinc-400" />
                   PayPal Buyer Protection
                 </span>
-                <span className="flex items-center gap-1">
-                  <Lock className="h-3.5 w-3.5 text-sky-400" />
+                <span className="flex items-center gap-1.5">
+                  <Lock className="h-3.5 w-3.5 text-zinc-400" />
                   256-Bit SSL Encrypted
                 </span>
               </div>

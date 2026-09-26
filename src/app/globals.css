@@ -4,40 +4,40 @@
 
 @layer base {
   :root {
-    /* Mini Design System: Dark Cinematic Streaming Palette (HSL) */
-    --background: 222 47% 4%;            /* #05080F Deep obsidian cinema */
-    --background-elevated: 222 40% 8%;   /* #0C121E Elevated card/container */
-    --background-subtle: 222 35% 12%;    /* #141D2E Hover states */
-    --foreground: 210 40% 98%;           /* #F8FAFC High-contrast text */
+    /* Cohesive shadcn/ui Streaming Palette: Dark Zinc + Cinema Crimson Red */
+    --background: 240 10% 4%;            /* #09090b Neutral Dark Slate/Zinc */
+    --background-elevated: 240 6% 8%;    /* #141417 Elevated Container */
+    --background-subtle: 240 5% 12%;     /* #1e1e23 Hover states */
+    --foreground: 0 0% 98%;              /* #FAFAFA High-contrast white */
 
-    --card: 222 40% 7%;                  /* #0B101A Card background */
-    --card-foreground: 210 40% 98%;
-    --card-border: 222 30% 16%;          /* #1B2436 Card border */
+    --card: 240 7% 7%;                   /* #111114 Card Background */
+    --card-foreground: 0 0% 98%;
+    --card-border: 240 5% 16%;           /* #27272a Subtle Zinc Border */
 
-    --popover: 222 40% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 7% 7%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 357 88% 50%;              /* #E50914 Streaming Red */
+    --primary: 357 88% 50%;              /* #E50914 Signature Streaming Red */
     --primary-hover: 357 88% 44%;        /* #CC0812 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 222 30% 14%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 240 5% 14%;             /* #232328 Secondary button / tab */
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 222 30% 14%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 240 5% 13%;
+    --muted-foreground: 240 5% 65%;      /* #A1A1AA Readable secondary text */
 
-    --accent: 38 92% 50%;               /* #F59E0B Indian Amber / Gold Accent */
-    --accent-foreground: 222 47% 6%;
+    --accent: 38 92% 50%;                /* #F59E0B Warm Amber (Strictly for Best Value & Trust marks) */
+    --accent-foreground: 240 10% 4%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 222 30% 15%;
-    --input: 222 30% 16%;
+    --border: 240 5% 15%;                /* #26262b */
+    --input: 240 5% 16%;
     --ring: 357 88% 50%;
 
-    --radius: 0.5rem;                   /* 8px grid matching */
+    --radius: 0.5rem;                    /* 8px base unit */
   }
 
   * {

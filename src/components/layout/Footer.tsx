@@ -11,27 +11,27 @@ export function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-white font-bold">
+              <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-white font-bold shadow-sm">
                 <Play className="h-4 w-4 fill-current ml-0.5" />
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-2">
                 <span className="text-xl font-extrabold tracking-tight text-white">
                   DesiStream
                 </span>
-                <span className="rounded bg-accent px-1.5 py-0.5 text-[10px] font-extrabold text-accent-foreground">
+                <span className="rounded bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 text-[10px] font-bold text-zinc-300 tracking-wider">
                   UK
                 </span>
               </div>
             </Link>
-            <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
+            <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
               The premier streaming television provider for the British Indian community. Over 350+ live Hindi, Punjabi, Tamil, Telugu, and Malayalam channels with 7-day catch-up and 4K live sports.
             </p>
-            <div className="flex items-center gap-4 text-xs text-slate-300">
-              <span className="flex items-center gap-1 text-emerald-400">
-                <ShieldCheck className="h-4 w-4" /> PayPal Verified Merchant
+            <div className="flex items-center gap-4 text-xs text-zinc-400">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-zinc-400" /> PayPal Verified Merchant
               </span>
-              <span className="flex items-center gap-1 text-sky-400">
-                <Lock className="h-4 w-4" /> 256-Bit Encryption
+              <span className="flex items-center gap-1.5">
+                <Lock className="h-4 w-4 text-zinc-400" /> 256-Bit SSL Protection
               </span>
             </div>
           </div>

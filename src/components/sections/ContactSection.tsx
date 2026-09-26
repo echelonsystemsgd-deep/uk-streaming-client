@@ -38,82 +38,70 @@ export function ContactSection() {
           {/* Contact Methods Cards */}
           <div className="lg:col-span-5 space-y-4">
             
-            <Card className="p-2 border-border/80">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
-                    <MessageSquare className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-base font-bold text-white">
-                      WhatsApp Live Chat
-                    </CardTitle>
-                    <span className="text-xs text-emerald-400 font-semibold">
-                      Fastest Response (&lt;5 Minutes)
-                    </span>
-                  </div>
+            <Card className="p-6 bg-card border-border">
+              <div className="flex items-center gap-3.5 mb-3">
+                <div className="h-10 w-10 rounded-lg bg-zinc-800 border border-zinc-700/60 flex items-center justify-center text-zinc-200 shrink-0">
+                  <MessageSquare className="h-5 w-5" />
                 </div>
-              </CardHeader>
-              <CardContent className="text-xs text-muted-foreground pt-1 pb-3">
-                <p className="mb-3">
-                  Message our technical agents directly on WhatsApp for real-time setup guidance on Firestick, Samsung TV, or Android.
-                </p>
-                <a
-                  href="https://wa.me/442079460912"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs px-4 py-2.5 min-h-[44px] transition-colors"
-                >
-                  <MessageSquare className="h-4 w-4" />
-                  <span>Start WhatsApp Chat</span>
-                </a>
-              </CardContent>
+                <div>
+                  <h4 className="text-base font-bold text-white">
+                    WhatsApp Live Chat
+                  </h4>
+                  <span className="text-xs text-zinc-400 font-medium">
+                    Fastest Response (&lt;5 Minutes)
+                  </span>
+                </div>
+              </div>
+              <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
+                Message our technical specialists directly on WhatsApp for real-time setup guidance on Firestick, Samsung TV, or Android.
+              </p>
+              <a
+                href="https://wa.me/442079460912"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-semibold text-xs px-4 py-2.5 h-10 w-full transition-colors"
+              >
+                <MessageSquare className="h-4 w-4 text-emerald-400" />
+                <span>Start WhatsApp Chat</span>
+              </a>
             </Card>
 
-            <Card className="p-2 border-border/80">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                    <Phone className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-base font-bold text-white">
-                      UK Telephone Helpline
-                    </CardTitle>
-                    <span className="text-xs text-muted-foreground">
-                      020 7946 0912
-                    </span>
-                  </div>
+            <Card className="p-6 bg-card border-border">
+              <div className="flex items-center gap-3.5 mb-3">
+                <div className="h-10 w-10 rounded-lg bg-zinc-800 border border-zinc-700/60 flex items-center justify-center text-zinc-200 shrink-0">
+                  <Phone className="h-5 w-5" />
                 </div>
-              </CardHeader>
-              <CardContent className="text-xs text-muted-foreground pt-1 pb-3">
-                <p>
-                  Speak with an advisor directly. Available Monday to Sunday from 8:00 AM to 11:00 PM London time.
-                </p>
-              </CardContent>
+                <div>
+                  <h4 className="text-base font-bold text-white">
+                    UK Telephone Helpline
+                  </h4>
+                  <span className="text-xs text-zinc-400">
+                    020 7946 0912
+                  </span>
+                </div>
+              </div>
+              <p className="text-xs text-zinc-400 leading-relaxed">
+                Speak with an advisor directly. Available Monday to Sunday from 8:00 AM to 11:00 PM London time.
+              </p>
             </Card>
 
-            <Card className="p-2 border-border/80">
-              <CardHeader className="pb-2">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shrink-0">
-                    <Clock className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-base font-bold text-white">
-                      UK Operating Hours
-                    </CardTitle>
-                    <span className="text-xs text-muted-foreground">
-                      8:00 AM – 11:00 PM GMT
-                    </span>
-                  </div>
+            <Card className="p-6 bg-card border-border">
+              <div className="flex items-center gap-3.5 mb-3">
+                <div className="h-10 w-10 rounded-lg bg-zinc-800 border border-zinc-700/60 flex items-center justify-center text-zinc-200 shrink-0">
+                  <Clock className="h-5 w-5" />
                 </div>
-              </CardHeader>
-              <CardContent className="text-xs text-muted-foreground pt-1 pb-3">
-                <p>
-                  7 Days a week including bank holidays. Automated credentials dispatch 24/7 without interruption.
-                </p>
-              </CardContent>
+                <div>
+                  <h4 className="text-base font-bold text-white">
+                    UK Operating Hours
+                  </h4>
+                  <span className="text-xs text-zinc-400">
+                    8:00 AM – 11:00 PM GMT
+                  </span>
+                </div>
+              </div>
+              <p className="text-xs text-zinc-400 leading-relaxed">
+                7 Days a week including bank holidays. Automated credentials dispatch runs 24/7 without interruption.
+              </p>
             </Card>
 
           </div>

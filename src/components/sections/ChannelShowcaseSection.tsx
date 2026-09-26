@@ -93,39 +93,35 @@ export function ChannelShowcaseSection() {
             filteredChannels.map((channel) => (
               <Card
                 key={channel.id}
-                className="flex flex-col justify-between p-1 bg-card hover:border-border transition-all"
+                className="flex flex-col justify-between p-5 bg-card border-border hover:border-zinc-700 transition-colors"
               >
                 <div>
-                  <CardHeader className="p-4 pb-2">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <span className="text-[11px] font-bold text-accent uppercase tracking-wider block">
-                          {channel.language}
-                        </span>
-                        <CardTitle className="text-base font-bold text-white mt-0.5">
-                          {channel.name}
-                        </CardTitle>
-                      </div>
-                      <Badge variant="quality" className="shrink-0 text-[10px]">
-                        {channel.quality}
-                      </Badge>
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div>
+                      <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block">
+                        {channel.language}
+                      </span>
+                      <h4 className="text-base font-bold text-white mt-0.5">
+                        {channel.name}
+                      </h4>
                     </div>
-                  </CardHeader>
+                    <span className="shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-300">
+                      {channel.quality}
+                    </span>
+                  </div>
 
-                  <CardContent className="p-4 pt-1">
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-                      {channel.description}
-                    </p>
-                  </CardContent>
+                  <p className="text-xs text-zinc-400 leading-relaxed line-clamp-3 mb-4">
+                    {channel.description}
+                  </p>
                 </div>
 
                 {/* Card Footer Info Tags */}
-                <div className="p-4 pt-2.5 border-t border-border/40 flex items-center justify-between text-[11px] text-muted-foreground">
-                  <span className="flex items-center gap-1 text-emerald-400 font-medium">
-                    <Clock className="h-3 w-3" />
+                <div className="pt-3 border-t border-border flex items-center justify-between text-[11px] text-zinc-400">
+                  <span className="flex items-center gap-1.5 font-medium text-zinc-300">
+                    <Clock className="h-3 w-3 text-zinc-400" />
                     7-Day Catch-up
                   </span>
-                  <span className="font-semibold text-slate-300">
+                  <span className="font-medium text-zinc-400">
                     {channel.tag}
                   </span>
                 </div>
