@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Check, ShieldCheck, Sparkles, HelpCircle, Lock, Tv, Package } from "lucide-react";
+import Link from "next/link";
+import { Check, ShieldCheck, Sparkles, HelpCircle, Lock, Tv, Package, ChevronRight } from "lucide-react";
 import { PRICING_PLANS, PricingPlan } from "@/data/plans";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -139,6 +140,17 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
             <Tv className="h-4 w-4 text-zinc-400" />
             Instant Digital Dispatch (&lt;2 Minutes)
           </span>
+        </div>
+
+        {/* Link to dedicated /plans page */}
+        <div className="mt-8 text-center">
+          <Link
+            href="/plans"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-200 hover:text-white bg-zinc-900 border border-zinc-700 hover:border-zinc-600 px-5 py-2.5 rounded-lg transition-colors min-h-[44px]"
+          >
+            <span>Compare Full Plan Features &amp; 4K Box Bundle</span>
+            <ChevronRight className="h-4 w-4 text-primary" />
+          </Link>
         </div>
 
       </div>

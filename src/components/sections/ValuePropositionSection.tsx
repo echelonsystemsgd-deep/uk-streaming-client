@@ -1,5 +1,6 @@
 import React from "react";
-import { Clock, Zap, Tv, Smartphone, Server, Headphones, Film, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { Clock, Zap, Tv, Smartphone, Server, Headphones, Film, ShieldCheck, ChevronRight } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 export function ValuePropositionSection() {
@@ -101,6 +102,17 @@ export function ValuePropositionSection() {
           <span className="shrink-0 text-xs font-bold uppercase tracking-wider text-zinc-300 border border-zinc-700 rounded-md px-3.5 py-1.5 bg-zinc-800/80">
             100% Risk Free
           </span>
+        </div>
+
+        {/* Link to dedicated Why Us page */}
+        <div className="mt-8 text-center">
+          <Link
+            href="/why-us"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 hover:border-zinc-700 px-4 py-2 rounded-lg transition-colors min-h-[40px]"
+          >
+            <span>Learn More About Our UK Low-Latency Network &amp; Diaspora Story</span>
+            <ChevronRight className="h-3.5 w-3.5 text-primary" />
+          </Link>
         </div>
 
       </div>

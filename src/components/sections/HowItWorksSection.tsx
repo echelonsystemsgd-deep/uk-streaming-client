@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { CreditCard, Key, Tv, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
@@ -72,6 +73,17 @@ export function HowItWorksSection() {
               </Card>
             );
           })}
+        </div>
+
+        {/* Link to dedicated Setup Guide page */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/setup-guide"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-200 hover:text-white bg-zinc-900 border border-zinc-700 hover:border-zinc-600 px-5 py-2.5 rounded-lg transition-colors min-h-[44px]"
+          >
+            <span>Read Step-by-Step Guides for Firestick, Smart TVs &amp; Virgin/BT Routers</span>
+            <ArrowRight className="h-4 w-4 text-primary" />
+          </Link>
         </div>
 
       </div>

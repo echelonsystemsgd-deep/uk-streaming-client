@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import Link from "next/link";
 import { Search, X, Clock, Play, Pause, ChevronLeft, ChevronRight, Tv, Radio } from "lucide-react";
 import { CHANNEL_CATEGORIES, FEATURED_CHANNELS, Channel } from "@/data/channels";
 import { Card } from "@/components/ui/card";
@@ -261,11 +262,20 @@ export function ChannelShowcaseSection() {
         )}
       </div>
 
-      {/* Footer Info Line */}
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8 text-center">
+      {/* Footer Info Line & CTA */}
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8 text-center space-y-4">
         <p className="text-xs text-muted-foreground">
           Showing <strong>{filteredChannels.length} featured streams</strong> of 350+ live channels included in every UK subscription pass.
         </p>
+        <div>
+          <Link
+            href="/channels"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-200 hover:text-white bg-zinc-900 border border-zinc-700 hover:border-zinc-600 px-5 py-2.5 rounded-lg transition-colors min-h-[44px]"
+          >
+            <span>Explore All 350+ Channels &amp; 7-Day Catch-Up Guide</span>
+            <ChevronRight className="h-4 w-4 text-primary" />
+          </Link>
+        </div>
       </div>
     </section>
   );

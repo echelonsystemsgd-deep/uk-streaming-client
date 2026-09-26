@@ -1,0 +1,287 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { PRICING_PLANS, PricingPlan } from "@/data/plans";
+import { Check, ShieldCheck, Zap, Sparkles, ChevronRight, HelpCircle, Lock, Tv, RefreshCcw } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export default function PlansPage() {
+  const { openPlan, quickSubscribe } = useSiteShell();
+
+  const jsonLdData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "ChitramTV UK 12+2 Free Months Pass",
+      "image": "https://chitramtv.eu/assets/client/logo.svg",
+      "description": "14 full months of 350+ live Indian TV channels, 4K cricket, and 7-day catch-up TV for UK households.",
+      "brand": { "@type": "Brand", "name": "ChitramTV" },
+      "offers": {
+        "@type": "Offer",
+        "price": "99.99",
+        "priceCurrency": "GBP",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2027-12-31",
+        "url": "https://chitramtv.eu/plans",
+        "seller": { "@type": "Organization", "name": "ChitramTV UK" }
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "ChitramTV 4K Android Box + 12M Bundle",
+      "description": "Plug & play 4K Android TV set-top box delivered to your UK address + 14 months subscription.",
+      "brand": { "@type": "Brand", "name": "ChitramTV" },
+      "offers": {
+        "@type": "Offer",
+        "price": "139.99",
+        "priceCurrency": "GBP",
+        "availability": "https://schema.org/InStock",
+        "url": "https://chitramtv.eu/plans",
+        "seller": { "@type": "Organization", "name": "ChitramTV UK" }
+      }
+    }
+  ];
+
+  return (
+    <SiteShell>
+      <JsonLd data={jsonLdData} />
+
+      {/* Breadcrumb Strip */}
+      <div className="border-b border-border/60 bg-zinc-950/60 py-2.5 px-4 text-xs text-zinc-400">
+        <div className="container mx-auto max-w-7xl flex items-center gap-2">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-white font-medium">Subscription Plans &amp; Pricing</span>
+        </div>
+      </div>
+
+      {/* Hero Header */}
+      <section className="relative overflow-hidden pt-8 pb-12 sm:pt-14 sm:pb-16 bg-gradient-to-b from-zinc-900/40 to-background border-b border-border/60">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background-elevated px-3.5 py-1 text-xs font-semibold text-primary mb-4">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            <span>100% PAYPAL BUYER PROTECTION ON ALL PASSES</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Transparent Pricing in <span className="text-primary">British Pounds (£)</span>
+          </h1>
+          <p className="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed">
+            No contracts, no hidden satellite dish fees, no broadband lock-in. Pay securely via PayPal with instant WhatsApp &amp; Email credential dispatch in under 2 minutes.
+          </p>
+        </div>
+      </section>
+
+      {/* Main Pricing Grid */}
+      <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {PRICING_PLANS.map((plan) => {
+            const isBestValue = plan.isPopular;
+            const isBox = plan.isBoxBundle;
+
+            return (
+              <div
+                key={plan.id}
+                className={`relative rounded-2xl flex flex-col justify-between transition-all duration-300 p-6 sm:p-7 ${
+                  isBestValue
+                    ? "bg-card border-2 border-primary shadow-2xl scale-[1.02] z-10"
+                    : isBox
+                    ? "bg-card border-2 border-amber-500/60 shadow-xl"
+                    : "bg-card border border-zinc-800 hover:border-zinc-700 shadow-card"
+                }`}
+              >
+                {/* Popular / Hardware Tag */}
+                {isBestValue && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white text-[11px] font-extrabold uppercase tracking-wider py-1 px-3.5 rounded-full shadow-md whitespace-nowrap">
+                    Best Value — 2 Free Months
+                  </div>
+                )}
+                {isBox && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-zinc-950 text-[11px] font-extrabold uppercase tracking-wider py-1 px-3.5 rounded-full shadow-md whitespace-nowrap">
+                    Plug &amp; Play 4K Box Included
+                  </div>
+                )}
+
+                <div>
+                  <h3 className="text-lg font-bold text-white tracking-tight">
+                    {plan.name}
+                  </h3>
+                  <p className="text-xs text-zinc-400 mt-1 min-h-[32px] leading-relaxed">
+                    {plan.description}
+                  </p>
+
+                  {/* Price Block */}
+                  <div className="pt-4 pb-4 border-b border-zinc-800">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl sm:text-4xl font-black text-white">
+                        £{plan.price.toFixed(2)}
+                      </span>
+                      <span className="text-xs text-zinc-400 font-medium">
+                        /{plan.period}
+                      </span>
+                    </div>
+                    <div className="text-xs text-zinc-400 mt-1.5 flex items-center justify-between">
+                      <span>Effective: <strong className="text-white">{plan.effectiveMonthly}</strong>/mo</span>
+                      {plan.savings && (
+                        <span className="text-emerald-400 font-semibold text-[11px]">
+                          {plan.savings}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Device Limit Badge */}
+                  <div className="py-3 flex items-center gap-2 text-xs text-zinc-300">
+                    <Tv className="h-4 w-4 text-primary" />
+                    <span>Watch on <strong>{plan.devices} devices</strong> simultaneously</span>
+                  </div>
+
+                  {/* Features List */}
+                  <ul className="space-y-2.5 pt-2 pb-6 text-xs text-zinc-300">
+                    {plan.features.map((feat, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                        <span className="leading-snug">{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Conversion Button */}
+                <div className="pt-4 border-t border-zinc-800">
+                  <Button
+                    variant={isBestValue ? "default" : "outline"}
+                    size="lg"
+                    onClick={() => openPlan(plan)}
+                    className="w-full font-bold h-12 flex items-center justify-center gap-2 text-sm"
+                  >
+                    <span>Subscribe with PayPal</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                  <p className="text-[10px] text-center text-zinc-500 mt-2">
+                    Instant activation via WhatsApp &amp; Email
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Feature Comparison Matrix Table */}
+      <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            Detailed Feature Comparison
+          </h2>
+          <p className="text-xs sm:text-sm text-zinc-400 mt-2">
+            Every pass includes full access to our 350+ live channels and 7-day catch-up archive.
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-zinc-800 bg-card overflow-hidden shadow-card">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs">
+              <thead className="bg-zinc-900/80 border-b border-zinc-800 text-zinc-300">
+                <tr>
+                  <th className="p-4 sm:p-5 font-bold uppercase tracking-wider text-[11px]">Feature</th>
+                  <th className="p-4 sm:p-5 font-bold text-center">1 Month (£14.99)</th>
+                  <th className="p-4 sm:p-5 font-bold text-center">6 Months (£59.99)</th>
+                  <th className="p-4 sm:p-5 font-bold text-center text-primary bg-primary/5">12+2 Free (£99.99)</th>
+                  <th className="p-4 sm:p-5 font-bold text-center text-amber-400">4K Box (£139.99)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-800 text-zinc-300">
+                <tr>
+                  <td className="p-4 sm:p-5 font-medium text-white">Live Indian Channels</td>
+                  <td className="p-4 sm:p-5 text-center">350+ Channels</td>
+                  <td className="p-4 sm:p-5 text-center">350+ Channels</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-semibold text-white">350+ Channels</td>
+                  <td className="p-4 sm:p-5 text-center font-semibold text-white">350+ Channels</td>
+                </tr>
+                <tr>
+                  <td className="p-4 sm:p-5 font-medium text-white">Catch-Up TV Duration</td>
+                  <td className="p-4 sm:p-5 text-center">7 Days</td>
+                  <td className="p-4 sm:p-5 text-center">7 Days</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-semibold text-white">7 Days</td>
+                  <td className="p-4 sm:p-5 text-center font-semibold text-white">7 Days</td>
+                </tr>
+                <tr>
+                  <td className="p-4 sm:p-5 font-medium text-white">Simultaneous Devices</td>
+                  <td className="p-4 sm:p-5 text-center">2 Screens</td>
+                  <td className="p-4 sm:p-5 text-center">3 Screens</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-bold text-primary">4 Screens</td>
+                  <td className="p-4 sm:p-5 text-center font-bold text-amber-400">4 Screens</td>
+                </tr>
+                <tr>
+                  <td className="p-4 sm:p-5 font-medium text-white">4K 60fps Live Cricket</td>
+                  <td className="p-4 sm:p-5 text-center">Full HD 1080p</td>
+                  <td className="p-4 sm:p-5 text-center">Yes (4K Ultra HD)</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-bold text-white">Yes (4K Ultra HD)</td>
+                  <td className="p-4 sm:p-5 text-center font-bold text-white">Yes (4K Ultra HD)</td>
+                </tr>
+                <tr>
+                  <td className="p-4 sm:p-5 font-medium text-white">Dedicated 4K Android Box</td>
+                  <td className="p-4 sm:p-5 text-center text-zinc-500">—</td>
+                  <td className="p-4 sm:p-5 text-center text-zinc-500">—</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 text-zinc-500">—</td>
+                  <td className="p-4 sm:p-5 text-center text-amber-400 font-bold">Included (Free Royal Mail 24)</td>
+                </tr>
+                <tr>
+                  <td className="p-4 sm:p-5 font-medium text-white">Support SLA</td>
+                  <td className="p-4 sm:p-5 text-center">Standard Help</td>
+                  <td className="p-4 sm:p-5 text-center">Priority WhatsApp</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-bold text-primary">VIP Fast-Track</td>
+                  <td className="p-4 sm:p-5 text-center font-bold text-amber-400">VIP Phone &amp; WhatsApp</td>
+                </tr>
+                <tr>
+                  <td className="p-4 sm:p-5 font-medium text-white">Money-Back Guarantee</td>
+                  <td className="p-4 sm:p-5 text-center">7 Days</td>
+                  <td className="p-4 sm:p-5 text-center">7 Days</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-bold text-white">7 Days Full Refund</td>
+                  <td className="p-4 sm:p-5 text-center font-bold text-white">1-Year Hardware Warranty</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust & Guarantee Strip */}
+      <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-2.5">
+            <div className="h-9 w-9 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+              <ShieldCheck className="h-5 w-5" />
+            </div>
+            <h3 className="text-base font-bold text-white">100% PayPal Buyer Protection</h3>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              Every checkout is executed securely through PayPal in British Pounds. You are backed by PayPal&apos;s dispute resolution guarantee.
+            </p>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-2.5">
+            <div className="h-9 w-9 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+              <RefreshCcw className="h-5 w-5" />
+            </div>
+            <h3 className="text-base font-bold text-white">7-Day Money-Back Guarantee</h3>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              If your stream experiences persistent buffering that our UK desk cannot solve, we will refund your fee without hassle.
+            </p>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-2.5">
+            <div className="h-9 w-9 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+              <Zap className="h-5 w-5" />
+            </div>
+            <h3 className="text-base font-bold text-white">Instant Automated Dispatch</h3>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              Credentials, playlist links, and step-by-step setup instructions are delivered to WhatsApp &amp; Email within 60 to 120 seconds.
+            </p>
+          </div>
+        </div>
+      </section>
+    </SiteShell>
+  );
+}

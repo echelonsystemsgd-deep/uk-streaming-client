@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Play, ChevronRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -12,6 +13,7 @@ interface NavbarProps {
 export function Navbar({ onSubscribeClick }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,12 +36,12 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: "Channels (350+)", href: "#channels" },
-    { name: "Why Us", href: "#features" },
-    { name: "Plans & Pricing", href: "#plans" },
-    { name: "Setup Guide", href: "#how-it-works" },
-    { name: "FAQ", href: "#faq" },
-    { name: "UK Support", href: "#contact" },
+    { name: "Channels (350+)", href: "/channels" },
+    { name: "Plans & Pricing", href: "/plans" },
+    { name: "Setup Guide", href: "/setup-guide" },
+    { name: "Why Us", href: "/why-us" },
+    { name: "FAQ", href: "/faq" },
+    { name: "UK Support", href: "/contact" },
   ];
 
   return (
@@ -67,16 +69,23 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-white transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
+          <nav className="hidden lg:flex items-center gap-7">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`text-xs font-semibold tracking-wide transition-colors py-1 ${
+                    isActive
+                      ? "text-white border-b-2 border-primary"
+                      : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right Actions Desktop */}

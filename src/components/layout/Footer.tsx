@@ -43,29 +43,34 @@ export function Footer() {
             </div>
             <ul className="space-y-1">
               <li>
-                <a href="#channels" className="block py-1.5 hover:text-white transition-colors">
+                <Link href="/channels" className="block py-1.5 hover:text-white transition-colors">
                   Channels (350+)
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#features" className="block py-1.5 hover:text-white transition-colors">
-                  Why ChitramTV
-                </a>
-              </li>
-              <li>
-                <a href="#plans" className="block py-1.5 hover:text-white transition-colors">
+                <Link href="/plans" className="block py-1.5 hover:text-white transition-colors">
                   Subscription Plans
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#how-it-works" className="block py-1.5 hover:text-white transition-colors">
-                  3-Step Setup Guide
-                </a>
+                <Link href="/setup-guide" className="block py-1.5 hover:text-white transition-colors">
+                  Device Setup Guide
+                </Link>
               </li>
               <li>
-                <a href="#faq" className="block py-1.5 hover:text-white transition-colors">
-                  FAQ & Catch-up
-                </a>
+                <Link href="/why-us" className="block py-1.5 hover:text-white transition-colors">
+                  Why ChitramTV
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="block py-1.5 hover:text-white transition-colors">
+                  Help Center &amp; FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="block py-1.5 hover:text-white transition-colors">
+                  UK Support Desk
+                </Link>
               </li>
             </ul>
           </div>

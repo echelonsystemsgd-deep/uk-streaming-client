@@ -26,74 +26,59 @@ export default function HomePage() {
   };
 
   const handleQuickSubscribe = () => {
-    // Default to the most popular 12 Months + 2 Free plan
     const popularPlan = PRICING_PLANS.find((p) => p.isPopular) || PRICING_PLANS[2];
     setSelectedPlan(popularPlan);
     setIsModalOpen(true);
   };
 
   const handleBrowseChannels = () => {
-    const el = document.getElementById("channels");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    window.location.href = "/channels";
   };
 
   const handleExplorePlans = () => {
-    const el = document.getElementById("plans");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    window.location.href = "/plans";
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      {/* Persistent Fixed Top Header (Pinned across all scroll depths) */}
+      {/* Persistent Fixed Top Header */}
       <header className="fixed top-0 left-0 right-0 z-50 w-full bg-zinc-950/95 backdrop-blur-md border-b border-border/80 shadow-md">
         <TopBanner />
         <Navbar onSubscribeClick={handleQuickSubscribe} />
       </header>
 
-      {/* Header spacer to guarantee zero hero clipping */}
+      {/* Header spacer */}
       <div className="h-[100px] sm:h-[114px]" aria-hidden="true" />
 
-      {/* Main Page Flow Matching Reference Competitor Structure */}
-      <main className="flex-1 pb-16 sm:pb-20">
-        {/* 1. Hero Section */}
+      <main className="flex-1 pb-20 sm:pb-24">
         <HeroSection
           onExplorePlans={handleExplorePlans}
           onBrowseChannels={handleBrowseChannels}
         />
-
-        {/* 2. Value Proposition (6 Core UK Diaspora Pillars) */}
         <ValuePropositionSection />
 
-        {/* 3. Plans & Pricing (4 GBP Subscription Passes) */}
+        {/* Compact Pricing Teaser */}
         <PricingSection onSelectPlan={handleOpenPlan} />
 
-        {/* 4. Channels & Content Showcase (350+ Multilingual Streams) */}
+        {/* Compact Channel Carousel */}
         <ChannelShowcaseSection />
 
-        {/* 5. 3-Step Setup Guide (Firestick / Smart TV) */}
+        {/* 3-Step Setup Teaser */}
         <HowItWorksSection />
 
-        {/* 6. Subscribe Call to Action Banner */}
+        {/* CTA Banner */}
         <CtaBannerSection onSubscribeClick={handleQuickSubscribe} />
 
-        {/* 7. Frequently Asked Questions (Accordion) */}
+        {/* FAQ Teaser */}
         <FaqSection />
 
-        {/* 8. UK Support & Contact Desk */}
+        {/* Contact Teaser */}
         <ContactSection />
       </main>
 
-      {/* Footer */}
       <Footer />
-
-      {/* Floating Sticky Conversion and Support Footer Bar */}
       <StickyFooterBar onSubscribeClick={handleQuickSubscribe} />
 
-      {/* PayPal Hosted Checkout Modal */}
       <PayPalModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
