@@ -157,19 +157,26 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
                 </button>
               </div>
 
-              {/* Navigation Links with large 44px+ touch targets */}
+              {/* Navigation Links with large 48px+ touch targets and active route styling */}
               <nav className="py-4 space-y-1">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between min-h-[48px] px-3 rounded-md text-base font-semibold text-slate-200 hover:text-white hover:bg-background-subtle transition-colors"
-                  >
-                    <span>{link.name}</span>
-                    <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                  </a>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center justify-between min-h-[48px] px-3.5 rounded-lg text-base font-semibold transition-colors select-none ${
+                        isActive
+                          ? "bg-primary text-white"
+                          : "text-zinc-300 hover:text-white hover:bg-background-subtle"
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      <ChevronRight className={`h-4 w-4 ${isActive ? "text-white" : "text-zinc-500"}`} />
+                    </Link>
+                  );
+                })}
               </nav>
             </div>
 

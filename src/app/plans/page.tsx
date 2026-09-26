@@ -180,6 +180,9 @@ export default function PlansPage() {
           <p className="text-xs sm:text-sm text-zinc-400 mt-2">
             Every pass includes full access to our 350+ live channels and 7-day catch-up archive.
           </p>
+          <p className="text-[11px] text-zinc-500 sm:hidden block mt-2">
+            Swipe table horizontally to compare all 4 passes &rarr;
+          </p>
         </div>
 
         <div className="rounded-xl border border-zinc-800 bg-card overflow-hidden shadow-card">
