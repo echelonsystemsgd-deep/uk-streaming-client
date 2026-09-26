@@ -48,11 +48,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      {/* Sticky Top Header Container */}
-      <div className="sticky top-0 z-40 w-full shadow-md">
+      {/* Persistent Fixed Top Header (Pinned across all scroll depths) */}
+      <header className="fixed top-0 left-0 right-0 z-50 w-full bg-zinc-950/95 backdrop-blur-md border-b border-border/80 shadow-md">
         <TopBanner />
         <Navbar onSubscribeClick={handleQuickSubscribe} />
-      </div>
+      </header>
+
+      {/* Header spacer to guarantee zero hero clipping */}
+      <div className="h-[100px] sm:h-[114px]" aria-hidden="true" />
 
       {/* Main Page Flow Matching Reference Competitor Structure */}
       <main className="flex-1 pb-16 sm:pb-20">

@@ -4,7 +4,7 @@ import { Play, ShieldCheck, Lock, Tv, Heart } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t border-border/80 text-muted-foreground text-xs select-none">
+    <footer id="site-footer" className="bg-background border-t border-border/80 text-muted-foreground text-xs select-none">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-border/60">
           

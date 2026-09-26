@@ -44,13 +44,7 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
 
   return (
     <>
-      <header
-        className={`w-full transition-all duration-200 ${
-          isScrolled
-            ? "bg-background/95 backdrop-blur-md border-b border-border shadow-md"
-            : "bg-background/80 backdrop-blur-sm border-b border-border/60"
-        }`}
-      >
+      <div className="w-full">
         <div className="container mx-auto max-w-7xl flex h-16 sm:h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group select-none">
@@ -122,9 +116,9 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
             >
               {mobileMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
             </button>
-          </div>
         </div>
-      </header>
+      </div>
+    </div>
 
       {/* Mobile Drawer Backdrop & Drawer */}
       {mobileMenuOpen && (

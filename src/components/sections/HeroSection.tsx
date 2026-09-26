@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onExplorePlans, onBrowseChannels }: HeroSectionProps) {
   return (
-    <section className="relative overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-24 border-b border-border">
+    <section className="relative overflow-hidden pt-8 pb-16 lg:pt-12 lg:pb-20">
       {/* Subtle, restrained cinematic glow */}
       <div 
         aria-hidden="true" 
@@ -124,12 +124,12 @@ export function HeroSection({ onExplorePlans, onBrowseChannels }: HeroSectionPro
                 
                 {/* Top Streaming Bar */}
                 <div className="relative z-10 flex items-center justify-between">
-                  <div className="flex items-center gap-2 rounded bg-black/70 backdrop-blur-md px-3 py-1.5 border border-white/10">
+                  <div className="flex items-center gap-2 rounded bg-black/70 backdrop-blur-md px-3 py-1.5 border border-zinc-800">
                     <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
                     <span className="text-xs font-bold text-white tracking-wide">Star Sports 1 HD</span>
-                    <span className="text-[10px] font-semibold bg-white/10 text-zinc-300 px-1.5 py-0.5 rounded ml-1">4K</span>
+                    <span className="text-[10px] font-semibold bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded ml-1">4K</span>
                   </div>
-                  <span className="text-xs font-medium text-zinc-300 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-white/10">
+                  <span className="text-xs font-medium text-zinc-300 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-zinc-800">
                     Live UK Broadcast
                   </span>
                 </div>
@@ -149,7 +149,7 @@ export function HeroSection({ onExplorePlans, onBrowseChannels }: HeroSectionPro
                   </div>
 
                   {/* Scrubber Bar */}
-                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-3">
+                  <div className="mt-4 pt-3 border-t border-zinc-800 flex items-center gap-3">
                     <div className="h-7 w-7 rounded-full bg-primary flex items-center justify-center text-white shrink-0 shadow-sm">
                       <Play className="h-3.5 w-3.5 fill-current ml-0.5" />
                     </div>

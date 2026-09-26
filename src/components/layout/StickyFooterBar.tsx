@@ -9,24 +9,51 @@ interface StickyFooterBarProps {
 }
 
 export function StickyFooterBar({ onSubscribeClick }: StickyFooterBarProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky footer after scrolling past initial hero (300px)
-      setIsVisible(window.scrollY > 300);
+      setIsScrolledPastHero(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll();
+
+    // Observe when the actual page footer enters or exits the viewport
+    const footerEl = document.getElementById("site-footer");
+    let observer: IntersectionObserver | null = null;
+
+    if (footerEl) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          setIsFooterVisible(entry.isIntersecting);
+        },
+        {
+          root: null,
+          threshold: 0.05,
+        }
+      );
+      observer.observe(footerEl);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (observer) observer.disconnect();
+    };
   }, []);
 
-  if (!isVisible) return null;
+  const shouldShow = isScrolledPastHero && !isFooterVisible;
 
   return (
     <aside
       aria-label="Quick subscription and support bar"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 backdrop-blur-md border-t border-border py-2.5 px-4 sm:px-6 shadow-2xl transition-all duration-300 animate-in slide-in-from-bottom-4"
+      className={`fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 backdrop-blur-md border-t border-border py-2.5 px-4 sm:px-6 shadow-2xl transition-all duration-300 ease-in-out ${
+        shouldShow
+          ? "translate-y-0 opacity-100 pointer-events-auto"
+          : "translate-y-full opacity-0 pointer-events-none"
+      }`}
     >
       <div className="container mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-3">
         {/* Deal Tag / Value Proposition */}
