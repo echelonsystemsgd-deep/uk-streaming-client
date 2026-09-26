@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+**/node_modules/
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Analysis tools / reference files
+[Pp]ublic/website-duplicator/
+
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment files
+.env*
+!.env.example
+
+# Vercel & Turbo
+.vercel
+.turbo
+
+# OS & Editor junk
+.DS_Store
+*.pem
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+
+# TypeScript temporary cache
+*.tsbuildinfo
+next-env.d.ts
