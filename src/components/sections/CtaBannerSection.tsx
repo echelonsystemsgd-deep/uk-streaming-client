@@ -49,13 +49,13 @@ export function CtaBannerSection({ onSubscribeClick }: CtaBannerSectionProps) {
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <a
-                href="https://wa.me/442079460912"
+                href="https://wa.me/31620897414"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-md border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs px-6 py-3 h-12 w-full sm:w-auto transition-colors"
               >
                 <MessageSquare className="h-4 w-4 text-emerald-400" />
-                <span>Talk to UK Support</span>
+                <span>Talk to WhatsApp Support</span>
               </a>
             </div>
           </div>

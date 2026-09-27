@@ -14,7 +14,7 @@ export default function TermsPage() {
     "description": "Terms of service and subscription agreement for ChitramTV UK streaming clients.",
     "publisher": {
       "@type": "Organization",
-      "name": "ChitramTV UK",
+      "name": "Linus Media",
       "url": "https://chitramtv.eu"
     }
   };
@@ -73,7 +73,7 @@ export default function TermsPage() {
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
             <h2 className="text-base font-bold text-white">3. Payments, Billing &amp; No Automatic Traps</h2>
             <p>
-              All fees are displayed and charged in British Pounds (£ GBP). We do not lock customers into hidden rolling contracts or unapproved bank direct debits. You retain full control through PayPal, with zero surprise renewals.
+              All fees are displayed and charged in Euros (€ EUR). We do not lock customers into hidden rolling contracts or unapproved bank direct debits. You retain full control through PayPal, with zero surprise renewals.
             </p>
           </div>
 

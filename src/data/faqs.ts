@@ -28,7 +28,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: "faq-5",
     question: "How does the PayPal payment work?",
-    answer: "We support instant, secure checkout via PayPal in British Pounds (£ GBP). You can pay using your PayPal balance, linked bank account, or any debit/credit card (Visa, Mastercard, Amex) through PayPal's buyer protection system without exposing financial details.",
+    answer: "We support instant, secure checkout via PayPal in Euros (€ EUR). You can pay using your PayPal balance, linked bank account, or any debit/credit card (Visa, Mastercard, Amex) through PayPal's buyer protection system without exposing financial details.",
   },
   {
     id: "faq-6",

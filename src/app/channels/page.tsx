@@ -310,7 +310,7 @@ export default function ChannelsPage() {
               onClick={quickSubscribe}
               className="w-full sm:w-auto font-bold h-12 px-6"
             >
-              Subscribe via PayPal (£7.14/mo)
+              Subscribe via PayPal (€7.78/mo)
             </Button>
             <Link href="/plans">
               <Button

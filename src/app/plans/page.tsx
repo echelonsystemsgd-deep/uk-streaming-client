@@ -5,43 +5,43 @@ import Link from "next/link";
 import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PRICING_PLANS, PricingPlan } from "@/data/plans";
-import { Check, ShieldCheck, Zap, Sparkles, ChevronRight, HelpCircle, Lock, Tv, RefreshCcw } from "lucide-react";
+import { Check, ShieldCheck, Zap, ChevronRight, Tv, RefreshCcw, Package, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function PlansPage() {
-  const { openPlan, quickSubscribe } = useSiteShell();
+  const { openPlan } = useSiteShell();
 
   const jsonLdData = [
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "ChitramTV UK 12+2 Free Months Pass",
+      "name": "ChitramTV 14 Months Service Pass",
       "image": "https://chitramtv.eu/assets/client/logo.svg",
-      "description": "14 full months of 350+ live Indian TV channels, 4K cricket, and 7-day catch-up TV for UK households.",
+      "description": "14 full months of 350+ live Indian TV channels, 4K cricket, and 7-day catch-up TV.",
       "brand": { "@type": "Brand", "name": "ChitramTV" },
       "offers": {
         "@type": "Offer",
-        "price": "99.99",
-        "priceCurrency": "GBP",
+        "price": "109.00",
+        "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
         "priceValidUntil": "2027-12-31",
         "url": "https://chitramtv.eu/plans",
-        "seller": { "@type": "Organization", "name": "ChitramTV UK" }
+        "seller": { "@type": "Organization", "name": "Linus Media" }
       }
     },
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "ChitramTV 4K Android Box + 12M Bundle",
-      "description": "Plug & play 4K Android TV set-top box delivered to your UK address + 14 months subscription.",
+      "name": "ChitramTV Dune HD Classic Box + 1 Year Bundle",
+      "description": "Dune HD Classic set-top box delivered to your address + 12 months full subscription.",
       "brand": { "@type": "Brand", "name": "ChitramTV" },
       "offers": {
         "@type": "Offer",
-        "price": "139.99",
-        "priceCurrency": "GBP",
+        "price": "129.00",
+        "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
         "url": "https://chitramtv.eu/plans",
-        "seller": { "@type": "Organization", "name": "ChitramTV UK" }
+        "seller": { "@type": "Organization", "name": "Linus Media" }
       }
     }
   ];
@@ -55,7 +55,7 @@ export default function PlansPage() {
         <div className="container mx-auto max-w-7xl flex items-center gap-2">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-white font-medium">Subscription Plans &amp; Pricing</span>
+          <span className="text-white font-medium">Subscription Plans &amp; Hardware</span>
         </div>
       </div>
 
@@ -67,83 +67,123 @@ export default function PlansPage() {
             <span>100% PAYPAL BUYER PROTECTION ON ALL PASSES</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Transparent Pricing in <span className="text-primary">British Pounds (£)</span>
+            Transparent Pricing in <span className="text-primary">Euros (€)</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed">
-            No contracts, no hidden satellite dish fees, no broadband lock-in. Pay securely via PayPal with instant WhatsApp &amp; Email credential dispatch in under 2 minutes.
+            Verified rates directly from the official Linus Media / Chitram catalogue. No contracts, instant WhatsApp &amp; Email credential dispatch, and official Dune HD hardware.
           </p>
         </div>
       </section>
 
       {/* Main Pricing Grid */}
       <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PRICING_PLANS.map((plan) => {
             const isBestValue = plan.isPopular;
             const isBox = plan.isBoxBundle;
+            const isHardware = plan.isHardwareOnly;
+            const isPending = plan.isPendingCatalogue;
+            const currency = plan.currencySymbol || "€";
 
             return (
               <div
                 key={plan.id}
                 className={`relative rounded-2xl flex flex-col justify-between transition-all duration-300 p-6 sm:p-7 ${
                   isBestValue
-                    ? "bg-card border-2 border-primary shadow-2xl scale-[1.02] z-10"
+                    ? "bg-card border-2 border-primary shadow-2xl scale-[1.01] z-10"
+                    : isPending
+                    ? "bg-card border-2 border-emerald-500/40 shadow-xl"
                     : isBox
                     ? "bg-card border-2 border-amber-500/60 shadow-xl"
                     : "bg-card border border-zinc-800 hover:border-zinc-700 shadow-card"
                 }`}
               >
                 {/* Popular / Hardware Tag */}
-                {isBestValue && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white text-[11px] font-extrabold uppercase tracking-wider py-1 px-3.5 rounded-full shadow-md whitespace-nowrap">
-                    Best Value — 2 Free Months
-                  </div>
-                )}
-                {isBox && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-zinc-950 text-[11px] font-extrabold uppercase tracking-wider py-1 px-3.5 rounded-full shadow-md whitespace-nowrap">
-                    Plug &amp; Play 4K Box Included
+                {plan.badge && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+                    <span
+                      className={`text-[11px] font-extrabold uppercase tracking-wider py-1 px-3.5 rounded-full shadow-md whitespace-nowrap ${
+                        isBestValue
+                          ? "bg-primary text-white"
+                          : isPending
+                          ? "bg-emerald-600 text-white"
+                          : isBox
+                          ? "bg-amber-500 text-zinc-950"
+                          : "bg-zinc-800 text-zinc-200 border border-zinc-700"
+                      }`}
+                    >
+                      {plan.badge}
+                    </span>
                   </div>
                 )}
 
                 <div>
-                  <h3 className="text-lg font-bold text-white tracking-tight">
-                    {plan.name}
-                  </h3>
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-lg font-bold text-white tracking-tight">
+                      {plan.name}
+                    </h3>
+                    {isBox || isHardware ? (
+                      <Package className="h-5 w-5 text-zinc-400 shrink-0" />
+                    ) : isPending ? (
+                      <MessageSquare className="h-5 w-5 text-emerald-400 shrink-0" />
+                    ) : (
+                      <Tv className="h-5 w-5 text-primary shrink-0" />
+                    )}
+                  </div>
                   <p className="text-xs text-zinc-400 mt-1 min-h-[32px] leading-relaxed">
                     {plan.description}
                   </p>
 
                   {/* Price Block */}
                   <div className="pt-4 pb-4 border-b border-zinc-800">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-3xl sm:text-4xl font-black text-white">
-                        £{plan.price.toFixed(2)}
-                      </span>
-                      <span className="text-xs text-zinc-400 font-medium">
-                        /{plan.period}
-                      </span>
-                    </div>
-                    <div className="text-xs text-zinc-400 mt-1.5 flex items-center justify-between">
-                      <span>Effective: <strong className="text-white">{plan.effectiveMonthly}</strong>/mo</span>
-                      {plan.savings && (
-                        <span className="text-emerald-400 font-semibold text-[11px]">
-                          {plan.savings}
-                        </span>
-                      )}
-                    </div>
+                    {isPending ? (
+                      <div>
+                        <div className="text-2xl font-extrabold text-emerald-400">
+                          6 More Items Available
+                        </div>
+                        <div className="text-xs text-zinc-400 mt-1">
+                          Inquire directly with Linus Media
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-3xl sm:text-4xl font-black text-white">
+                            {currency}{plan.price.toFixed(2)}
+                          </span>
+                          <span className="text-xs text-zinc-400 font-medium">
+                            /{plan.period}
+                          </span>
+                        </div>
+                        <div className="text-xs text-zinc-400 mt-1.5 flex items-center justify-between">
+                          <span>Rate: <strong className="text-white">{plan.effectiveMonthly}</strong></span>
+                          {plan.savings && (
+                            <span className="text-emerald-400 font-semibold text-[11px]">
+                              {plan.savings}
+                            </span>
+                          )}
+                        </div>
+                      </>
+                    )}
                   </div>
 
                   {/* Device Limit Badge */}
-                  <div className="py-3 flex items-center gap-2 text-xs text-zinc-300">
-                    <Tv className="h-4 w-4 text-primary" />
-                    <span>Watch on <strong>{plan.devices} devices</strong> simultaneously</span>
-                  </div>
+                  {!isPending && (
+                    <div className="py-3 flex items-center gap-2 text-xs text-zinc-300">
+                      <Tv className="h-4 w-4 text-primary shrink-0" />
+                      <span>
+                        {isHardware
+                          ? "Official media receiver with Chitram firmware"
+                          : `Watch on ${plan.devices} devices simultaneously`}
+                      </span>
+                    </div>
+                  )}
 
                   {/* Features List */}
                   <ul className="space-y-2.5 pt-2 pb-6 text-xs text-zinc-300">
                     {plan.features.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                        <Check className={`h-4 w-4 shrink-0 mt-0.5 ${isPending ? "text-emerald-400" : "text-primary"}`} />
                         <span className="leading-snug">{feat}</span>
                       </li>
                     ))}
@@ -152,15 +192,29 @@ export default function PlansPage() {
 
                 {/* Conversion Button */}
                 <div className="pt-4 border-t border-zinc-800">
-                  <Button
-                    variant={isBestValue ? "default" : "outline"}
-                    size="lg"
-                    onClick={() => openPlan(plan)}
-                    className="w-full font-bold h-12 flex items-center justify-center gap-2 text-sm"
-                  >
-                    <span>Subscribe with PayPal</span>
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
+                  {isPending ? (
+                    <a
+                      href={plan.whatsappUrl || "https://wa.me/31620897414"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold h-12 rounded-lg text-sm transition-colors select-none"
+                    >
+                      <MessageSquare className="h-4 w-4" />
+                      <span>Chat on WhatsApp (+31 6 20897414)</span>
+                    </a>
+                  ) : (
+                    <Button
+                      variant={isBestValue ? "default" : "outline"}
+                      size="lg"
+                      onClick={() => openPlan(plan)}
+                      className="w-full font-bold h-12 flex items-center justify-center gap-2 text-sm"
+                    >
+                      <span>
+                        {isHardware ? "Order Box via PayPal" : "Subscribe via PayPal"}
+                      </span>
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  )}
                   <p className="text-[10px] text-center text-zinc-500 mt-2">
                     Instant activation via WhatsApp &amp; Email
                   </p>
@@ -180,9 +234,6 @@ export default function PlansPage() {
           <p className="text-xs sm:text-sm text-zinc-400 mt-2">
             Every pass includes full access to our 350+ live channels and 7-day catch-up archive.
           </p>
-          <p className="text-[11px] text-zinc-500 sm:hidden block mt-2">
-            Swipe table horizontally to compare all 4 passes &rarr;
-          </p>
         </div>
 
         <div className="rounded-xl border border-zinc-800 bg-card overflow-hidden shadow-card">
@@ -191,10 +242,10 @@ export default function PlansPage() {
               <thead className="bg-zinc-900/80 border-b border-zinc-800 text-zinc-300">
                 <tr>
                   <th className="p-4 sm:p-5 font-bold uppercase tracking-wider text-[11px]">Feature</th>
-                  <th className="p-4 sm:p-5 font-bold text-center">1 Month (£14.99)</th>
-                  <th className="p-4 sm:p-5 font-bold text-center">6 Months (£59.99)</th>
-                  <th className="p-4 sm:p-5 font-bold text-center text-primary bg-primary/5">12+2 Free (£99.99)</th>
-                  <th className="p-4 sm:p-5 font-bold text-center text-amber-400">4K Box (£139.99)</th>
+                  <th className="p-4 sm:p-5 font-bold text-center">1 Month (€15.00)</th>
+                  <th className="p-4 sm:p-5 font-bold text-center">6 Months (€69.00)</th>
+                  <th className="p-4 sm:p-5 font-bold text-center text-primary bg-primary/5">14 Months (€109.00)</th>
+                  <th className="p-4 sm:p-5 font-bold text-center text-amber-400">Dune Box + 1Yr (€129.00)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800 text-zinc-300">
@@ -227,18 +278,18 @@ export default function PlansPage() {
                   <td className="p-4 sm:p-5 text-center font-bold text-white">Yes (4K Ultra HD)</td>
                 </tr>
                 <tr>
-                  <td className="p-4 sm:p-5 font-medium text-white">Dedicated 4K Android Box</td>
+                  <td className="p-4 sm:p-5 font-medium text-white">Dedicated Set-Top Box</td>
                   <td className="p-4 sm:p-5 text-center text-zinc-500">—</td>
                   <td className="p-4 sm:p-5 text-center text-zinc-500">—</td>
                   <td className="p-4 sm:p-5 text-center bg-primary/5 text-zinc-500">—</td>
-                  <td className="p-4 sm:p-5 text-center text-amber-400 font-bold">Included (Free Royal Mail 24)</td>
+                  <td className="p-4 sm:p-5 text-center text-amber-400 font-bold">Dune HD Classic Receiver</td>
                 </tr>
                 <tr>
-                  <td className="p-4 sm:p-5 font-medium text-white">Support SLA</td>
-                  <td className="p-4 sm:p-5 text-center">Standard Help</td>
+                  <td className="p-4 sm:p-5 font-medium text-white">Support Desk</td>
+                  <td className="p-4 sm:p-5 text-center">WhatsApp Desk</td>
                   <td className="p-4 sm:p-5 text-center">Priority WhatsApp</td>
                   <td className="p-4 sm:p-5 text-center bg-primary/5 font-bold text-primary">VIP Fast-Track</td>
-                  <td className="p-4 sm:p-5 text-center font-bold text-amber-400">VIP Phone &amp; WhatsApp</td>
+                  <td className="p-4 sm:p-5 text-center font-bold text-amber-400">Priority WhatsApp &amp; Phone</td>
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-medium text-white">Money-Back Guarantee</td>
@@ -262,7 +313,7 @@ export default function PlansPage() {
             </div>
             <h3 className="text-base font-bold text-white">100% PayPal Buyer Protection</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Every checkout is executed securely through PayPal in British Pounds. You are backed by PayPal&apos;s dispute resolution guarantee.
+              Every checkout is executed securely through PayPal in Euros (€). You are backed by PayPal&apos;s dispute resolution guarantee.
             </p>
           </div>
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-2.5">
@@ -271,7 +322,7 @@ export default function PlansPage() {
             </div>
             <h3 className="text-base font-bold text-white">7-Day Money-Back Guarantee</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              If your stream experiences persistent buffering that our UK desk cannot solve, we will refund your fee without hassle.
+              If your stream experiences persistent buffering that our desk cannot solve, we will refund your fee without hassle.
             </p>
           </div>
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-2.5">

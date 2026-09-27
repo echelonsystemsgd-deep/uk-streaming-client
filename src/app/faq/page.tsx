@@ -35,7 +35,7 @@ const EXTENDED_FAQS: ExtendedFaqItem[] = [
     category: "billing",
     categoryLabel: "Payments & PayPal",
     question: "How does PayPal payment and Buyer Protection work?",
-    answer: "All subscription passes are billed securely in British Pounds (£ GBP) through PayPal. You can pay using your PayPal balance, connected UK bank account, or any major credit/debit card (Visa, Mastercard, Amex). Every transaction is covered by PayPal's 100% Buyer Protection guarantee, meaning your funds are secure and you are never locked into automatic rolling contracts."
+    answer: "All subscription passes and hardware orders are billed securely in Euros (€ EUR) through PayPal. You can pay using your PayPal balance, linked bank account, or any major credit/debit card (Visa, Mastercard, Amex). Every transaction is covered by PayPal's 100% Buyer Protection guarantee, meaning your funds are secure and you are never locked into automatic rolling contracts."
   },
   {
     id: "faq-4",
@@ -265,25 +265,25 @@ export default function FaqPage() {
           <div className="space-y-1.5 text-center md:text-left">
             <h3 className="text-lg font-bold text-white">Still have questions?</h3>
             <p className="text-xs text-zinc-400 max-w-md">
-              Our UK support team is online 7 days a week on WhatsApp and telephone. We respond in under 5 minutes.
+              Our support team is online 24/7 on WhatsApp and telephone. We respond in under 5 minutes.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
             <a
-              href="https://wa.me/442079460912"
+              href="https://wa.me/31620897414"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs h-11 px-5 rounded-lg transition-colors w-full sm:w-auto"
             >
               <MessageSquare className="h-4 w-4" />
-              <span>WhatsApp UK Desk</span>
+              <span>WhatsApp Live Help</span>
             </a>
             <a
-              href="tel:+442079460912"
+              href="tel:+31620897414"
               className="inline-flex items-center justify-center gap-2 bg-card border border-zinc-700 hover:text-white text-zinc-300 font-bold text-xs h-11 px-5 rounded-lg transition-colors w-full sm:w-auto"
             >
               <Phone className="h-4 w-4 text-primary" />
-              <span>020 7946 0912</span>
+              <span>+31 6 20897414</span>
             </a>
           </div>
         </div>

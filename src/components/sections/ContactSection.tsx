@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Phone, MessageSquare, Mail, Clock, MapPin, Send, CheckCircle2, ChevronRight } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Phone, MessageSquare, Mail, Clock, Send, CheckCircle2, ChevronRight } from "lucide-react";
+import { Card, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export function ContactSection() {
@@ -27,10 +27,10 @@ export function ContactSection() {
             WE ARE HERE TO HELP
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            UK Customer Care & Support
+            Customer Care &amp; Support
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Need device setup assistance, channel advice, or payment confirmation? Reach out to our dedicated British support desk.
+            Need device setup assistance, channel advice, or activation status? Connect directly with Linus Media&apos;s support desk.
           </p>
         </div>
 
@@ -54,16 +54,16 @@ export function ContactSection() {
                 </div>
               </div>
               <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
-                Message our technical specialists directly on WhatsApp for real-time setup guidance on Firestick, Samsung TV, or Android.
+                Message our technical team directly on WhatsApp for real-time setup guidance on Firestick, Samsung TV, Dune HD box, or Android.
               </p>
               <a
-                href="https://wa.me/442079460912"
+                href="https://wa.me/31620897414"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-semibold text-xs px-4 py-2.5 h-10 w-full transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-4 py-2.5 h-10 w-full transition-colors"
               >
-                <MessageSquare className="h-4 w-4 text-emerald-400" />
-                <span>Start WhatsApp Chat</span>
+                <MessageSquare className="h-4 w-4" />
+                <span>Start WhatsApp Chat (+31 6 20897414)</span>
               </a>
             </Card>
 
@@ -74,47 +74,47 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="text-base font-bold text-white">
-                    UK Telephone Helpline
+                    Telephone Helpline
                   </h4>
                   <span className="text-xs text-zinc-400">
-                    020 7946 0912
+                    +31 6 20897414
                   </span>
                 </div>
               </div>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                Speak with an advisor directly. Available Monday to Sunday from 8:00 AM to 11:00 PM London time.
+                Direct phone helpline for subscription inquiries, hardware orders, and customer service.
               </p>
             </Card>
 
             <Card className="p-6 bg-card border-border">
               <div className="flex items-center gap-3.5 mb-3">
                 <div className="h-10 w-10 rounded-lg bg-zinc-800 border border-zinc-700/60 flex items-center justify-center text-zinc-200 shrink-0">
-                  <Clock className="h-5 w-5" />
+                  <Mail className="h-5 w-5" />
                 </div>
                 <div>
                   <h4 className="text-base font-bold text-white">
-                    UK Operating Hours
+                    Email Desk
                   </h4>
                   <span className="text-xs text-zinc-400">
-                    8:00 AM – 11:00 PM GMT
+                    info@linusmedia.nl
                   </span>
                 </div>
               </div>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                7 Days a week including bank holidays. Automated credentials dispatch runs 24/7 without interruption.
+                Open 24 hours. Automated credentials dispatch runs 24/7 without interruption.
               </p>
             </Card>
 
           </div>
 
-          {/* Contact Ticket Form (Card with exclusive shadow) */}
+          {/* Contact Ticket Form */}
           <div className="lg:col-span-7">
             <Card className="p-5 sm:p-8 border-border/80">
               <CardTitle className="text-xl sm:text-2xl font-bold text-white mb-1">
-                Send an Enquiry to Our UK Team
+                Send an Enquiry to Our Team
               </CardTitle>
               <p className="text-xs text-muted-foreground mb-6">
-                Fill in your details and we will reply to your email within 1 hour during operating times.
+                Fill in your details and we will reply to your email or WhatsApp promptly.
               </p>
 
               {!submitted ? (
@@ -140,7 +140,7 @@ export function ContactSection() {
                       <input
                         type="email"
                         required
-                        placeholder="name@example.co.uk"
+                        placeholder="name@example.com"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[46px]"
@@ -157,13 +157,13 @@ export function ContactSection() {
                       onChange={(e) => setForm({ ...form, device: e.target.value })}
                       className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[46px]"
                     >
+                      <option value="DuneHD">Dune HD Classic Box</option>
                       <option value="Firestick">Amazon Fire TV Stick (4K / HD)</option>
-                      <option value="AndroidTV">Android TV / Google TV (Sony, TCL, Philips)</option>
+                      <option value="AndroidTV">Android TV / Google TV</option>
                       <option value="AppleTV">Apple TV 4K</option>
                       <option value="Samsung">Samsung Smart TV (Tizen)</option>
                       <option value="LG">LG Smart TV (webOS)</option>
                       <option value="Mobile">iOS / Android Smartphone or Tablet</option>
-                      <option value="BoxBundle">Interested in Dedicated 4K IPTV Box Bundle</option>
                     </select>
                   </div>
 
@@ -174,7 +174,7 @@ export function ContactSection() {
                     <textarea
                       rows={4}
                       required
-                      placeholder="Ask about channel availability, broadband compatibility, or setup assistance..."
+                      placeholder="Ask about channel availability, Dune HD hardware, or setup assistance..."
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"
@@ -198,7 +198,7 @@ export function ContactSection() {
                   </div>
                   <h4 className="text-xl font-bold text-white">Thank You, {form.name}!</h4>
                   <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-                    Your enquiry has been received by our UK customer team. We will respond to <strong className="text-white">{form.email}</strong> shortly.
+                    Your enquiry has been received. We will respond to <strong className="text-white">{form.email}</strong> shortly.
                   </p>
                   <Button
                     variant="outline"
@@ -224,7 +224,7 @@ export function ContactSection() {
             href="/contact"
             className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-200 hover:text-white bg-zinc-900 border border-zinc-700 hover:border-zinc-600 px-5 py-2.5 rounded-lg transition-colors min-h-[44px]"
           >
-            <span>Visit Full UK Support Desk, Operating Hours &amp; Ticket Center</span>
+            <span>Visit Full Support Desk, Operating Hours &amp; Ticket Center</span>
             <ChevronRight className="h-4 w-4 text-primary" />
           </Link>
         </div>

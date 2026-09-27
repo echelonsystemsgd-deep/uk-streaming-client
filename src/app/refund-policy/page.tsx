@@ -4,18 +4,17 @@ import React from "react";
 import Link from "next/link";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { ShieldCheck, RefreshCcw, CheckCircle2, MessageSquare, Phone, Lock } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ShieldCheck, CheckCircle2, MessageSquare, Phone, Lock } from "lucide-react";
 
 export default function RefundPolicyPage() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "ChitramTV UK 7-Day Refund Policy",
-    "description": "Unconditional 7-Day Money-Back Guarantee for all ChitramTV UK subscription passes.",
+    "name": "ChitramTV 7-Day Refund Policy",
+    "description": "Unconditional 7-Day Money-Back Guarantee for ChitramTV subscription passes and hardware.",
     "publisher": {
       "@type": "Organization",
-      "name": "ChitramTV UK",
+      "name": "Linus Media",
       "url": "https://chitramtv.eu"
     }
   };
@@ -29,36 +28,39 @@ export default function RefundPolicyPage() {
         <div className="container mx-auto max-w-7xl flex items-center gap-2">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-white font-medium">Refund Policy (7 Days)</span>
+          <span className="text-white font-medium">Refund Policy &amp; Guarantee</span>
         </div>
       </div>
 
-      {/* Policy Content */}
-      <section className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-8">
-        <div className="text-center space-y-3 pb-8 border-b border-border">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background-elevated px-3.5 py-1 text-xs font-semibold text-primary">
-            <RefreshCcw className="h-3.5 w-3.5" />
-            <span>100% RISK-FREE GUARANTEE</span>
+      <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-10">
+        
+        {/* Header */}
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background-elevated px-3 py-1 text-xs font-semibold text-primary">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            <span>100% BUYER CONFIDENCE</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            ChitramTV UK 7-Day Refund Policy
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            ChitramTV 7-Day Refund Policy
           </h1>
-          <p className="text-xs sm:text-sm text-zinc-400">
-            Last Updated: January 2026 • Governed by PayPal Buyer Protection Standards
+          <p className="text-xs text-zinc-400">
+            Last Updated: January 2026 &bull; Operated by Linus Media
           </p>
         </div>
 
-        <div className="space-y-6 text-xs sm:text-sm text-zinc-300 leading-relaxed">
+        {/* Content Blocks */}
+        <div className="space-y-8 text-xs sm:text-sm text-zinc-300 leading-relaxed">
+          
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
             <h2 className="text-base font-bold text-white flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-primary" />
-              <span>1. The Unconditional 7-Day Money-Back Guarantee</span>
+              <CheckCircle2 className="h-5 w-5 text-primary" />
+              <span>1. Our 7-Day Money-Back Guarantee</span>
             </h2>
             <p>
-              At ChitramTV UK, we want every British Indian family to enjoy buffer-free Indian entertainment with total confidence. All subscription passes (1 Month, 6 Months, 12+2 Free Months, and 4K Box Bundles) purchased through our website come with an unconditional <strong className="text-white">7-Day Money-Back Guarantee</strong>.
+              At ChitramTV (Linus Media), we want every customer to enjoy buffer-free Indian entertainment with total confidence. All subscription passes purchased through our service come with an unconditional <strong className="text-white">7-Day Money-Back Guarantee</strong>.
             </p>
             <p>
-              If our service does not meet your expectations, if you experience persistent buffering that our UK support team cannot resolve, or if you decide ChitramTV is not suitable for your household, you are entitled to a full refund within 7 calendar days of your payment date.
+              If our service does not meet your expectations, if you experience persistent buffering that our technical team cannot resolve, or if you decide ChitramTV is not suitable for your household, you are entitled to a full refund within 7 calendar days of your payment date.
             </p>
           </div>
 
@@ -72,13 +74,13 @@ export default function RefundPolicyPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-zinc-400">
               <li>
-                <strong className="text-zinc-200">WhatsApp Desk:</strong> Message our 24/7 UK WhatsApp helpline at <a href="https://wa.me/442079460912" className="text-primary hover:underline font-semibold">+44 20 7946 0912</a> with your registered email and PayPal Transaction ID.
+                <strong className="text-zinc-200">WhatsApp Desk:</strong> Message our WhatsApp help desk at <a href="https://wa.me/31620897414" className="text-primary hover:underline font-semibold">+31 6 20897414</a> with your registered email and PayPal Transaction ID.
               </li>
               <li>
-                <strong className="text-zinc-200">Email Request:</strong> Send an email to our billing desk with the subject line &ldquo;Refund Request - [Your Order ID]&rdquo;.
+                <strong className="text-zinc-200">Email Request:</strong> Send an email to <a href="mailto:info@linusmedia.nl" className="text-primary hover:underline font-semibold">info@linusmedia.nl</a> with the subject line &ldquo;Refund Request - [Your Order ID]&rdquo;.
               </li>
               <li>
-                <strong className="text-zinc-200">Phone:</strong> Call our London helpline on <a href="tel:+442079460912" className="text-primary hover:underline font-semibold">020 7946 0912</a> during operating hours (8:00 AM – 11:00 PM GMT).
+                <strong className="text-zinc-200">Phone:</strong> Call our customer helpline on <a href="tel:+31620897414" className="text-primary hover:underline font-semibold">+31 6 20897414</a>.
               </li>
             </ul>
           </div>
@@ -89,20 +91,20 @@ export default function RefundPolicyPage() {
               <span>3. Processing Times &amp; Method</span>
             </h2>
             <p>
-              All refunds are processed directly back to your original payment method via <strong className="text-white">PayPal in British Pounds (£ GBP)</strong>.
+              All refunds are processed directly back to your original payment method via <strong className="text-white">PayPal in Euros (€ EUR)</strong>.
             </p>
             <p>
-              Once approved by our support team, PayPal refunds are issued within 2 to 4 hours. Depending on whether you paid with PayPal Balance, debit card, or linked UK bank account, funds typically reflect in your account within 1 to 3 working days.
+              Once approved by our support team, PayPal refunds are issued within 2 to 4 hours. Depending on whether you paid with PayPal Balance, debit card, or linked bank account, funds typically reflect in your account within 1 to 3 working days.
             </p>
           </div>
 
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
-            <h2 className="text-base font-bold text-white">4. Hardware Set-Top Box Returns</h2>
+            <h2 className="text-base font-bold text-white">4. Hardware Set-Top Box Returns (Dune HD Classic)</h2>
             <p>
-              For customers who purchased the <strong className="text-white">4K Box + 12M Bundle</strong>, the 7-day guarantee applies to both the subscription and the physical set-top box. If you wish to return the hardware box, it must be returned in its original packaging with all included accessories (remote, HDMI cable, power adapter) to our UK returns depot. Return Royal Mail postage will be reimbursed if the device was defective.
+              For customers who purchased the <strong className="text-white">Dune HD Classic Box</strong> or bundle, the 7-day guarantee applies to both the subscription and the physical receiver. If you wish to return the hardware box, it must be returned in its original packaging with all included accessories (remote, HDMI cable, power adapter) to our European returns depot.
             </p>
             <p>
-              The physical 4K Android TV box also carries a full <strong className="text-white">1-Year Hardware Replacement Warranty</strong> against hardware defects.
+              The physical Dune HD Classic TV box also carries a full <strong className="text-white">1-Year Hardware Replacement Warranty</strong> against hardware defects.
             </p>
           </div>
 
@@ -113,7 +115,7 @@ export default function RefundPolicyPage() {
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-zinc-400">
               <li>The refund request is initiated after the 7-day guarantee window has lapsed.</li>
-              <li>The account has been flagged for commercial resale or unauthorized credential sharing beyond the permitted simultaneous screen limit.</li>
+              <li>The account has been flagged for commercial resale or unauthorized credential sharing beyond permitted screen limits.</li>
             </ul>
           </div>
         </div>
@@ -122,21 +124,22 @@ export default function RefundPolicyPage() {
         <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 sm:p-8 text-center space-y-3">
           <h3 className="text-base font-bold text-white">Questions About Your Billing or Refund?</h3>
           <p className="text-xs text-zinc-400 max-w-md mx-auto">
-            Our London billing team is available 7 days a week to assist with any payment queries.
+            Our Linus Media billing team is available 24 hours to assist with any payment queries.
           </p>
           <div className="pt-2 flex justify-center gap-3">
             <a
-              href="https://wa.me/442079460912"
+              href="https://wa.me/31620897414"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs h-10 px-5 rounded-lg transition-colors"
             >
               <MessageSquare className="h-4 w-4" />
-              <span>WhatsApp Billing Help</span>
+              <span>WhatsApp Billing Help (+31 6 20897414)</span>
             </a>
           </div>
         </div>
-      </section>
+
+      </div>
     </SiteShell>
   );
 }

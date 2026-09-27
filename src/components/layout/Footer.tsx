@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Play, ShieldCheck, Lock, Tv, Heart } from "lucide-react";
+import { Play, ShieldCheck, Lock, Mail, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -19,12 +19,12 @@ export function Footer() {
                   ChitramTV
                 </span>
                 <span className="rounded bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 text-[10px] font-bold text-zinc-300 tracking-wider">
-                  UK
+                  EU
                 </span>
               </div>
             </Link>
             <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
-              The premier streaming television provider for the British Indian community. Over 350+ live Hindi, Punjabi, Tamil, Telugu, and Malayalam channels with 7-day catch-up and 4K live sports.
+              The premier streaming television provider for Indian diaspora families across the UK and Europe. Over 350+ live channels, 7-day catch-up, and official Dune HD set-top hardware.
             </p>
             <div className="flex items-center gap-4 text-xs text-zinc-400">
               <span className="flex items-center gap-1.5">
@@ -49,7 +49,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/plans" className="block py-1.5 hover:text-white transition-colors">
-                  Subscription Plans
+                  Plans &amp; Hardware
                 </Link>
               </li>
               <li>
@@ -69,7 +69,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/contact" className="block py-1.5 hover:text-white transition-colors">
-                  UK Support Desk
+                  Support Desk
                 </Link>
               </li>
             </ul>
@@ -78,52 +78,47 @@ export function Footer() {
           {/* Supported Devices */}
           <div className="space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-white">
-              Devices
+              Hardware &amp; Apps
             </div>
             <ul className="space-y-1.5 text-muted-foreground">
+              <li>Dune HD Classic Box</li>
               <li>Amazon Fire TV Stick 4K</li>
-              <li>Android TV & Google TV</li>
-              <li>Apple TV 4K & iPad</li>
+              <li>Android TV &amp; Google TV</li>
+              <li>Apple TV 4K &amp; iOS</li>
               <li>Samsung Smart TV (Tizen)</li>
               <li>LG Smart TV (webOS)</li>
-              <li>Windows PC & Mac</li>
             </ul>
           </div>
 
           {/* Contact & Legal */}
           <div className="space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-white">
-              UK Office & Help
+              Linus Media Operations
             </div>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Customer Support Desk:<br />
-              <strong className="text-white">020 7946 0912</strong><br />
-              London, United Kingdom
-            </p>
-            <p className="text-xs text-muted-foreground">
-              WhatsApp Support: 24/7<br />
-              Phone Lines: 8am – 11pm GMT
-            </p>
+            <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
+              <p>Operating Entity: <strong className="text-white">Linus Media</strong></p>
+              <p className="flex items-center gap-1.5">
+                <Phone className="h-3 w-3 text-primary shrink-0" />
+                <a href="tel:+31620897414" className="hover:text-white transition-colors">+31 6 20897414</a>
+              </p>
+              <p className="flex items-center gap-1.5">
+                <Mail className="h-3 w-3 text-primary shrink-0" />
+                <a href="mailto:info@linusmedia.nl" className="hover:text-white transition-colors">info@linusmedia.nl</a>
+              </p>
+              <p>Operating Hours: <span className="text-emerald-400 font-semibold">Open 24 Hours</span></p>
+            </div>
           </div>
 
         </div>
 
-        {/* Bottom Strip with Mercian Wealth Credibility */}
+        {/* Bottom Strip */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-center sm:text-left">
           <div className="space-y-1">
             <p>
-              © {new Date().getFullYear()} ChitramTV UK. All Rights Reserved. Not affiliated with third-party broadcasters.
+              © {new Date().getFullYear()} ChitramTV. Operated by Linus Media. All Rights Reserved.
             </p>
             <p className="text-[11px] text-zinc-500">
-              Engineered &amp; Built by{" "}
-              <a
-                href="https://mercianwealth.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-white underline underline-offset-4 font-semibold transition-colors"
-              >
-                mercianwealth
-              </a>
+              Websites: <a href="https://chitramtv.eu" className="hover:text-white underline">chitramtv.eu</a> &bull; <a href="https://www.linusmedia.nl" target="_blank" rel="noopener noreferrer" className="hover:text-white underline">linusmedia.nl</a>
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">

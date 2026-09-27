@@ -8,9 +8,9 @@ export function HowItWorksSection() {
     {
       step: "01",
       icon: CreditCard,
-      title: "Choose Your Plan",
+      title: "Choose Your Plan or Hardware",
       description:
-        "Select your preferred subscription duration (1 month, 6 months, or 12 months + 2 free). Complete payment securely via PayPal buyer protection in GBP (£).",
+        "Select your subscription duration or Dune HD set-top box. Complete payment securely via PayPal buyer protection in Euros (€).",
     },
     {
       step: "02",

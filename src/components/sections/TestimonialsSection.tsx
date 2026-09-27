@@ -28,8 +28,8 @@ const TESTIMONIALS: Testimonial[] = [
     name: "Ananya & Rajesh Rao",
     location: "Birmingham (Smethwick)",
     device: "Samsung Smart TV",
-    plan: "12+2 Free Months Pass",
-    comment: "We replaced our old satellite setup. We get Sun TV, Star Maa, and all Hindi soaps for under £8 a month. Setup took 3 minutes and PayPal buyer protection gave us complete peace of mind."
+    plan: "14 Months Pass",
+    comment: "We replaced our old satellite setup. We get Sun TV, Star Maa, and all Hindi soaps for under €8 a month. Setup took 3 minutes and PayPal buyer protection gave us complete peace of mind."
   },
   {
     name: "Jaswinder Dhillon",

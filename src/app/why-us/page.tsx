@@ -23,22 +23,16 @@ export default function WhyUsPage() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "ChitramTV UK",
+    "name": "ChitramTV",
     "url": "https://chitramtv.eu",
     "logo": "https://chitramtv.eu/assets/client/logo.svg",
-    "description": "UK's dedicated Indian television streaming provider with 350+ live channels and 7-day catch-up TV.",
-    "telephone": "+442079460912",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "London",
-      "addressCountry": "GB"
-    },
+    "description": "Dedicated Indian television streaming provider with 350+ live channels and 7-day catch-up TV across Europe and the UK.",
+    "telephone": "+31620897414",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+442079460912",
+      "telephone": "+31620897414",
       "contactType": "customer service",
-      "areaServed": "GB",
-      "availableLanguage": ["English", "Hindi", "Punjabi"]
+      "availableLanguage": ["English", "Hindi", "Punjabi", "Dutch"]
     }
   };
 
@@ -171,7 +165,7 @@ export default function WhyUsPage() {
             </div>
             <h3 className="text-base font-bold text-white">100% PayPal Buyer Protection</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              All transactions are processed through PayPal in British Pounds (£ GBP). No credit card details stored on our servers. 7-day full refund policy.
+              All transactions are processed through PayPal in Euros (€ EUR). No credit card details stored on our servers. 7-day full refund policy.
             </p>
           </div>
 
@@ -179,9 +173,9 @@ export default function WhyUsPage() {
             <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
               <Heart className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">24/7 UK WhatsApp Help Desk</h3>
+            <h3 className="text-base font-bold text-white">24/7 WhatsApp Help Desk</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Our UK-based support team speaks English, Hindi, and Punjabi. Direct WhatsApp support for Firestick setup, channel inquiries, and renewal advice.
+              Our Linus Media support team speaks English, Hindi, and Punjabi. Direct WhatsApp support for Firestick setup, Dune HD box advice, and renewal assistance.
             </p>
           </div>
         </div>
@@ -237,7 +231,7 @@ export default function WhyUsPage() {
               onClick={quickSubscribe}
               className="font-bold text-xs h-12 px-6"
             >
-              Get Started via PayPal (£7.14/mo)
+              Get Started via PayPal (€7.78/mo)
             </Button>
           </div>
         </div>

@@ -1,12 +1,11 @@
-"use client";
-
 import React from "react";
+import Link from "next/link";
 import { Play, Tv, ShieldCheck, Zap, Clock, Smartphone, Monitor, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
-  onExplorePlans: () => void;
-  onBrowseChannels: () => void;
+  onExplorePlans?: () => void;
+  onBrowseChannels?: () => void;
 }
 
 export function HeroSection({ onExplorePlans, onBrowseChannels }: HeroSectionProps) {
@@ -66,23 +65,27 @@ export function HeroSection({ onExplorePlans, onBrowseChannels }: HeroSectionPro
 
             {/* Action Buttons: 48px height, 8px grid aligned, no button shadows */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              <Button
-                variant="default"
-                size="lg"
-                onClick={onExplorePlans}
-                className="w-full sm:w-auto font-bold flex items-center justify-center gap-2 h-12 px-6"
-              >
-                <span>View Subscription Plans</span>
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={onBrowseChannels}
-                className="w-full sm:w-auto font-medium h-12 px-6"
-              >
-                Browse Channel Lineup
-              </Button>
+              <Link href="/plans" className="w-full sm:w-auto">
+                <Button
+                  variant="default"
+                  size="lg"
+                  onClick={onExplorePlans}
+                  className="w-full font-bold flex items-center justify-center gap-2 h-12 px-6"
+                >
+                  <span>View Subscription Plans</span>
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/channels" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={onBrowseChannels}
+                  className="w-full font-medium h-12 px-6"
+                >
+                  Browse Channel Lineup
+                </Button>
+              </Link>
             </div>
 
             {/* Device Compatibility Bar with Unified Neutral Icons */}

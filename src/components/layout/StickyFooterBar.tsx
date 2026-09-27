@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Play, MessageSquare, ShieldCheck, ChevronRight } from "lucide-react";
+import { MessageSquare, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface StickyFooterBarProps {
@@ -61,7 +61,7 @@ export function StickyFooterBar({ onSubscribeClick }: StickyFooterBarProps) {
           <div className="flex items-center gap-2">
             <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
             <span className="font-bold text-white tracking-wide">
-              ChitramTV UK
+              ChitramTV
             </span>
           </div>
           <span className="text-zinc-600 hidden sm:inline">•</span>
@@ -69,18 +69,18 @@ export function StickyFooterBar({ onSubscribeClick }: StickyFooterBarProps) {
             350+ Channels in 4K • 7-Day Catch-up TV
           </span>
           <span className="rounded bg-zinc-800 border border-zinc-700 px-2 py-0.5 text-[11px] font-bold text-zinc-200">
-            Best Value: £7.14/mo (12+2 Free)
+            Best Value: €7.78/mo (14 Months)
           </span>
         </div>
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
           <a
-            href="https://wa.me/442079460912"
+            href="https://wa.me/31620897414"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 font-semibold text-xs px-3.5 py-2 h-10 transition-colors shrink-0"
-            title="Chat with UK Support on WhatsApp"
+            title="Chat with Support on WhatsApp"
           >
             <MessageSquare className="h-3.5 w-3.5 text-emerald-400" />
             <span className="hidden xs:inline">WhatsApp</span>
@@ -92,7 +92,7 @@ export function StickyFooterBar({ onSubscribeClick }: StickyFooterBarProps) {
             onClick={onSubscribeClick}
             className="font-bold text-xs h-10 px-5 flex-1 sm:flex-initial flex items-center justify-center gap-1.5"
           >
-            <span>Subscribe via PayPal</span>
+            <span>Order via PayPal</span>
             <ChevronRight className="h-3.5 w-3.5" />
           </Button>
         </div>
