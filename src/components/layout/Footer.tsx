@@ -120,6 +120,17 @@ export function Footer() {
             <p className="text-[11px] text-zinc-500">
               Websites: <a href="https://chitramtv.eu" className="hover:text-white underline">chitramtv.eu</a> &bull; <a href="https://www.linusmedia.nl" target="_blank" rel="noopener noreferrer" className="hover:text-white underline">linusmedia.nl</a>
             </p>
+            <p className="text-[11px] text-zinc-500">
+              Engineered &amp; Built by{" "}
+              <a
+                href="https://mercianwealth.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 hover:text-white underline underline-offset-4 font-semibold transition-colors"
+              >
+                mercianwealth
+              </a>
+            </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <Link href="/terms" className="hover:text-white transition-colors py-1">
