@@ -23,16 +23,16 @@ export default function WhyUsPage() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "ChitramTV",
+    "name": "ChitramTV UK",
     "url": "https://chitramtv.eu",
     "logo": "https://chitramtv.eu/assets/client/logo.svg",
-    "description": "Dedicated Indian television streaming provider with 350+ live channels and 7-day catch-up TV across Europe and the UK.",
+    "description": "Dedicated UK Indian television streaming provider with 350+ live channels and 7-day catch-up TV.",
     "telephone": "+31620897414",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+31620897414",
       "contactType": "customer service",
-      "availableLanguage": ["English", "Hindi", "Punjabi", "Dutch"]
+      "availableLanguage": ["English", "Hindi", "Punjabi"]
     }
   };
 
@@ -175,7 +175,7 @@ export default function WhyUsPage() {
             </div>
             <h3 className="text-base font-bold text-white">24/7 WhatsApp Help Desk</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Our Linus Media support team speaks English, Hindi, and Punjabi. Direct WhatsApp support for Firestick setup, Dune HD box advice, and renewal assistance.
+              Our ChitramTV UK support team speaks English, Hindi, and Punjabi. Direct WhatsApp support for Firestick setup, Dune HD box advice, and renewal assistance.
             </p>
           </div>
         </div>

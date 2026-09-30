@@ -265,7 +265,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
               </div>
               <div className="flex justify-between text-zinc-400">
                 <span>Fulfillment Desk</span>
-                <span className="text-emerald-400 font-bold">Linus Media (24/7)</span>
+                <span className="text-emerald-400 font-bold">ChitramTV Dispatch (24/7)</span>
               </div>
             </div>
 
@@ -279,7 +279,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                 Return to Home
               </Button>
               <p className="text-[11px] text-zinc-400">
-                Need immediate activation assistance? WhatsApp Linus Media at +31 6 20897414
+                Need immediate activation assistance? WhatsApp ChitramTV at +31 6 20897414
               </p>
             </div>
           </div>

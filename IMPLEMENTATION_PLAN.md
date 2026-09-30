@@ -1,4 +1,4 @@
-# ChitramTV (Linus Media) — Technical Implementation & Refactor Plan
+# ChitramTV UK — Technical Implementation & Refactor Plan
 
 This document details the architectural refactor, mobile webview compatibility fixes, design system normalization, and WhatsApp Business catalogue data integration executed on the ChitramTV Next.js prototype.
 
@@ -30,14 +30,14 @@ This document details the architectural refactor, mobile webview compatibility f
 
 ---
 
-## 2. Real Business Data & Catalogue Integration (Linus Media)
+## 2. Business Data & Catalogue Integration
 
 ### 2.1 Contact & Identity Standardization
-- **Operating Entity**: Linus Media (Netherlands)
-- **Brand Name**: ChitramTV (Chitram)
+- **Operating Entity**: ChitramTV UK
+- **Brand Name**: ChitramTV UK (ChitramTV)
 - **Phone / WhatsApp**: `+31 6 20897414` (Direct WhatsApp link: `https://wa.me/31620897414`)
-- **Support Email**: `info@linusmedia.nl`
-- **Official Domain**: `https://chitramtv.eu` (and `https://www.linusmedia.nl`)
+- **Support Email**: `support@chitramtv.eu`
+- **Official Domain**: `https://chitramtv.eu`
 - **Support Hours**: Open 24 Hours / 24/7 WhatsApp Desk
 
 ### 2.2 Product Data Model (`src/data/plans.ts`)

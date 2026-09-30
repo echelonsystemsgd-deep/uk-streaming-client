@@ -31,13 +31,13 @@ export default function ContactPage() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "ChitramTV Support Desk (Linus Media)",
+    "name": "ChitramTV UK Customer Support Desk",
     "image": "https://chitramtv.eu/assets/client/logo.svg",
     "telephone": "+31620897414",
-    "email": "info@linusmedia.nl",
+    "email": "support@chitramtv.eu",
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "NL"
+      "addressCountry": "GB"
     },
     "openingHours": "Mo-Su 00:00-24:00",
     "url": "https://chitramtv.eu/contact",
@@ -46,13 +46,13 @@ export default function ContactPage() {
         "@type": "ContactPoint",
         "telephone": "+31620897414",
         "contactType": "customer service",
-        "availableLanguage": ["English", "Hindi", "Punjabi", "Dutch"]
+        "availableLanguage": ["English", "Hindi", "Punjabi"]
       },
       {
         "@type": "ContactPoint",
         "url": "https://wa.me/31620897414",
         "contactType": "technical support",
-        "availableLanguage": ["English", "Hindi", "Punjabi", "Dutch"]
+        "availableLanguage": ["English", "Hindi", "Punjabi"]
       }
     ]
   };
@@ -81,7 +81,7 @@ export default function ContactPage() {
             We Are Here <span className="text-primary">24 Hours a Day</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Need Dune HD setup assistance, Firestick quick codes, channel inquiries, or activation status? Connect directly with Linus Media on WhatsApp or telephone.
+            Need Dune HD setup assistance, Firestick quick codes, channel inquiries, or activation status? Connect directly with ChitramTV on WhatsApp or telephone.
           </p>
         </div>
       </section>
@@ -158,16 +158,16 @@ export default function ContactPage() {
               </div>
               <h3 className="text-base font-bold text-white">Email &amp; Invoicing</h3>
               <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                Contact Linus Media for billing questions, invoice copies, and hardware shipping details.
+                Contact ChitramTV for billing questions, invoice copies, and hardware shipping details.
               </p>
             </div>
             <div className="pt-4 border-t border-zinc-800 mt-4">
               <a
-                href="mailto:info@linusmedia.nl"
+                href="mailto:support@chitramtv.eu"
                 className="w-full inline-flex items-center justify-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs h-11 px-4 rounded-lg transition-colors select-none"
               >
                 <Mail className="h-4 w-4 text-primary" />
-                <span>info@linusmedia.nl</span>
+                <span>support@chitramtv.eu</span>
               </a>
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function ContactPage() {
           {/* Left Form (7 cols) */}
           <div className="lg:col-span-7 rounded-2xl border border-zinc-800 bg-card p-6 sm:p-10 shadow-card">
             <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">
-              Send a Message to Linus Media
+              Send a Message to ChitramTV
             </h2>
             <p className="text-xs sm:text-sm text-zinc-400 mb-6">
               Fill out the form below. For immediate setup during live sports matches, WhatsApp is recommended.
@@ -317,10 +317,10 @@ export default function ContactPage() {
                 <span>Business Operations</span>
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                Operating Entity: <strong className="text-white">Linus Media</strong><br />
+                Operating Entity: <strong className="text-white">ChitramTV UK</strong><br />
                 Telephone: <strong className="text-white">+31 6 20897414</strong><br />
-                Email: <strong className="text-white">info@linusmedia.nl</strong><br />
-                Websites: <a href="https://chitramtv.eu" className="text-primary hover:underline">chitramtv.eu</a> &bull; <a href="https://www.linusmedia.nl" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">linusmedia.nl</a>
+                Email: <strong className="text-white">support@chitramtv.eu</strong><br />
+                Website: <a href="https://chitramtv.eu" className="text-primary hover:underline">chitramtv.eu</a>
               </p>
             </div>
           </div>

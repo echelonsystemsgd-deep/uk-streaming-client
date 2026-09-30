@@ -19,7 +19,7 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3 sm:space-y-4">
           <span className="text-xs font-bold uppercase tracking-widest text-primary">
-            CHITRAMTV &amp; LINUS MEDIA • VERIFIED CATALOGUE
+            CHITRAMTV UK • OFFICIAL SUBSCRIPTION PASSES
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Choose Your Streaming Pass or Hardware

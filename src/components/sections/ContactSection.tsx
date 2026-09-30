@@ -30,7 +30,7 @@ export function ContactSection() {
             Customer Care &amp; Support
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Need device setup assistance, channel advice, or activation status? Connect directly with Linus Media&apos;s support desk.
+            Need device setup assistance, channel advice, or activation status? Connect directly with ChitramTV&apos;s support desk.
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export function ContactSection() {
                     Email Desk
                   </h4>
                   <span className="text-xs text-zinc-400">
-                    info@linusmedia.nl
+                    support@chitramtv.eu
                   </span>
                 </div>
               </div>

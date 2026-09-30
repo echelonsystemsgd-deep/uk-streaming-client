@@ -172,7 +172,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "Multi-Room Additional Screen Add-ons",
       "Specialised International Broadcast Feeds",
       "Custom Multi-Year Enterprise Packages",
-      "Direct 1-on-1 Consultation with Linus Media",
+      "Direct 1-on-1 Consultation with ChitramTV Support",
     ],
   },
 ];

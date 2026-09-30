@@ -14,7 +14,7 @@ export default function RefundPolicyPage() {
     "description": "Unconditional 7-Day Money-Back Guarantee for ChitramTV subscription passes and hardware.",
     "publisher": {
       "@type": "Organization",
-      "name": "Linus Media",
+      "name": "ChitramTV UK",
       "url": "https://chitramtv.eu"
     }
   };
@@ -44,7 +44,7 @@ export default function RefundPolicyPage() {
             ChitramTV 7-Day Refund Policy
           </h1>
           <p className="text-xs text-zinc-400">
-            Last Updated: January 2026 &bull; Operated by Linus Media
+            Last Updated: January 2026
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function RefundPolicyPage() {
               <span>1. Our 7-Day Money-Back Guarantee</span>
             </h2>
             <p>
-              At ChitramTV (Linus Media), we want every customer to enjoy buffer-free Indian entertainment with total confidence. All subscription passes purchased through our service come with an unconditional <strong className="text-white">7-Day Money-Back Guarantee</strong>.
+              At ChitramTV, we want every customer to enjoy buffer-free Indian entertainment with total confidence. All subscription passes purchased through our service come with an unconditional <strong className="text-white">7-Day Money-Back Guarantee</strong>.
             </p>
             <p>
               If our service does not meet your expectations, if you experience persistent buffering that our technical team cannot resolve, or if you decide ChitramTV is not suitable for your household, you are entitled to a full refund within 7 calendar days of your payment date.
@@ -77,7 +77,7 @@ export default function RefundPolicyPage() {
                 <strong className="text-zinc-200">WhatsApp Desk:</strong> Message our WhatsApp help desk at <a href="https://wa.me/31620897414" className="text-primary hover:underline font-semibold">+31 6 20897414</a> with your registered email and PayPal Transaction ID.
               </li>
               <li>
-                <strong className="text-zinc-200">Email Request:</strong> Send an email to <a href="mailto:info@linusmedia.nl" className="text-primary hover:underline font-semibold">info@linusmedia.nl</a> with the subject line &ldquo;Refund Request - [Your Order ID]&rdquo;.
+                <strong className="text-zinc-200">Email Request:</strong> Send an email to <a href="mailto:support@chitramtv.eu" className="text-primary hover:underline font-semibold">support@chitramtv.eu</a> with the subject line &ldquo;Refund Request - [Your Order ID]&rdquo;.
               </li>
               <li>
                 <strong className="text-zinc-200">Phone:</strong> Call our customer helpline on <a href="tel:+31620897414" className="text-primary hover:underline font-semibold">+31 6 20897414</a>.
@@ -124,7 +124,7 @@ export default function RefundPolicyPage() {
         <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 sm:p-8 text-center space-y-3">
           <h3 className="text-base font-bold text-white">Questions About Your Billing or Refund?</h3>
           <p className="text-xs text-zinc-400 max-w-md mx-auto">
-            Our Linus Media billing team is available 24 hours to assist with any payment queries.
+            Our ChitramTV billing team is available 24 hours to assist with any payment queries.
           </p>
           <div className="pt-2 flex justify-center gap-3">
             <a

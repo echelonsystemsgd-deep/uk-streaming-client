@@ -1,0 +1,17 @@
+{
+  "name": "ChitramTV UK — Premium Live Indian TV & Movies",
+  "short_name": "ChitramTV",
+  "description": "Stream 350+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#e11d48",
+  "icons": [
+    {
+      "src": "/assets/client/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

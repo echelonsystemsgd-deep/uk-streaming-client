@@ -1,7 +1,6 @@
 # Client Assets Directory
 
-This folder is dedicated exclusively to the client's own brand imagery, production graphics, channel iconography, and promotional media.
-No assets or copy from the reference competitor site (chitramtv.eu) are stored or referenced here.
+This folder is dedicated exclusively to ChitramTV UK brand imagery, production graphics, channel iconography, and promotional media.
 
 ### Content Structure:
 - `logo.svg`: Primary ChitramTV UK vector logo.

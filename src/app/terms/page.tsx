@@ -14,7 +14,7 @@ export default function TermsPage() {
     "description": "Terms of service and subscription agreement for ChitramTV UK streaming clients.",
     "publisher": {
       "@type": "Organization",
-      "name": "Linus Media",
+      "name": "ChitramTV UK",
       "url": "https://chitramtv.eu"
     }
   };

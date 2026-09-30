@@ -26,7 +26,7 @@ export default function PlansPage() {
         "availability": "https://schema.org/InStock",
         "priceValidUntil": "2027-12-31",
         "url": "https://chitramtv.eu/plans",
-        "seller": { "@type": "Organization", "name": "Linus Media" }
+        "seller": { "@type": "Organization", "name": "ChitramTV" }
       }
     },
     {
@@ -41,7 +41,7 @@ export default function PlansPage() {
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
         "url": "https://chitramtv.eu/plans",
-        "seller": { "@type": "Organization", "name": "Linus Media" }
+        "seller": { "@type": "Organization", "name": "ChitramTV" }
       }
     }
   ];
@@ -70,7 +70,7 @@ export default function PlansPage() {
             Transparent Pricing in <span className="text-primary">Euros (€)</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Verified rates directly from the official Linus Media / Chitram catalogue. No contracts, instant WhatsApp &amp; Email credential dispatch, and official Dune HD hardware.
+            Verified rates directly from the official ChitramTV catalogue. No contracts, instant WhatsApp &amp; Email credential dispatch, and official Dune HD hardware.
           </p>
         </div>
       </section>
@@ -142,7 +142,7 @@ export default function PlansPage() {
                           6 More Items Available
                         </div>
                         <div className="text-xs text-zinc-400 mt-1">
-                          Inquire directly with Linus Media
+                          Inquire directly with ChitramTV Support
                         </div>
                       </div>
                     ) : (

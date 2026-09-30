@@ -93,17 +93,17 @@ export function Footer() {
           {/* Contact & Legal */}
           <div className="space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-white">
-              Linus Media Operations
+              ChitramTV Operations
             </div>
             <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
-              <p>Operating Entity: <strong className="text-white">Linus Media</strong></p>
+              <p>Operating Entity: <strong className="text-white">ChitramTV UK</strong></p>
               <p className="flex items-center gap-1.5">
                 <Phone className="h-3 w-3 text-primary shrink-0" />
                 <a href="tel:+31620897414" className="hover:text-white transition-colors">+31 6 20897414</a>
               </p>
               <p className="flex items-center gap-1.5">
                 <Mail className="h-3 w-3 text-primary shrink-0" />
-                <a href="mailto:info@linusmedia.nl" className="hover:text-white transition-colors">info@linusmedia.nl</a>
+                <a href="mailto:support@chitramtv.eu" className="hover:text-white transition-colors">support@chitramtv.eu</a>
               </p>
               <p>Operating Hours: <span className="text-emerald-400 font-semibold">Open 24 Hours</span></p>
             </div>
@@ -115,10 +115,10 @@ export function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-center sm:text-left">
           <div className="space-y-1">
             <p>
-              © {new Date().getFullYear()} ChitramTV. Operated by Linus Media. All Rights Reserved.
+              © {new Date().getFullYear()} ChitramTV UK. All Rights Reserved.
             </p>
             <p className="text-[11px] text-zinc-500">
-              Websites: <a href="https://chitramtv.eu" className="hover:text-white underline">chitramtv.eu</a> &bull; <a href="https://www.linusmedia.nl" target="_blank" rel="noopener noreferrer" className="hover:text-white underline">linusmedia.nl</a>
+              Website: <a href="https://chitramtv.eu" className="hover:text-white underline">chitramtv.eu</a>
             </p>
             <p className="text-[11px] text-zinc-500">
               Engineered &amp; Built by{" "}

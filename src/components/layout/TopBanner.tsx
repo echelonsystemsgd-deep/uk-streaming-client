@@ -18,7 +18,7 @@ export function TopBanner() {
           </span>
         </div>
 
-        {/* Right: Linus Media & WhatsApp */}
+        {/* Right: ChitramTV Support & WhatsApp */}
         <div className="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs">
           <a
             href="tel:+31620897414"
