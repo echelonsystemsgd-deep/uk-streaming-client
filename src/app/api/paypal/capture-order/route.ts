@@ -5,7 +5,7 @@ import { capturePayPalOrder } from "@/lib/paypal/client";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { orderId, planId, email, whatsapp, macAddress, deviceType } = body;
+    const { orderId, planId, email, whatsapp, macAddress, accountIdentifier, deviceType } = body;
 
     if (!orderId) {
       return NextResponse.json(
@@ -50,7 +50,8 @@ export async function POST(request: Request) {
         email: email || captureResult.payment_source?.paypal?.email_address || "customer@chitramtv.eu",
         whatsapp: whatsapp || null,
         deviceType: deviceType || "Smart TV / Firestick",
-        macAddress: macAddress || null,
+        macAddress: macAddress || accountIdentifier || null,
+        accountIdentifier: accountIdentifier || macAddress || null,
       },
       plan: {
         id: plan.id,

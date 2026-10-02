@@ -69,7 +69,7 @@ export function StickyFooterBar({ onSubscribeClick }: StickyFooterBarProps) {
             350+ Channels in 4K • 7-Day Catch-up TV
           </span>
           <span className="rounded bg-zinc-800 border border-zinc-700 px-2 py-0.5 text-[11px] font-bold text-zinc-200">
-            Best Value: €7.78/mo (14 Months)
+            Best Value: £6.43/mo (14 Months)
           </span>
         </div>
 

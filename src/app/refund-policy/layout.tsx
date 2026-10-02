@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "7-Day Money-Back Guarantee & Refund Policy",
+  title: "7-Day Money-Back Guarantee, Hardware Warranty & Refund Policy",
   description:
-    "ChitramTV unconditional 7-Day Money-Back Guarantee. Fast PayPal refunds, clear return procedures for Dune HD hardware, and fair customer-first terms.",
+    "ChitramTV unconditional 7-Day Money-Back Guarantee, 1-Year Hardware Replacement Warranty, and 14-Day Return Window for ChitramTV Black Edition C1 Box units.",
   alternates: {
     canonical: "https://chitramtv.eu/refund-policy",
   },
@@ -12,9 +12,9 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: "https://chitramtv.eu/refund-policy",
     siteName: "ChitramTV UK",
-    title: "7-Day Money-Back Guarantee & Refund Policy | ChitramTV UK",
+    title: "7-Day Guarantee, Hardware Warranty & Refund Policy | ChitramTV UK",
     description:
-      "ChitramTV unconditional 7-Day Money-Back Guarantee. Fast PayPal refunds and clear return procedures for Dune HD hardware.",
+      "ChitramTV unconditional 7-Day Money-Back Guarantee, 1-Year Hardware Replacement Warranty, and 14-Day Return Window for ChitramTV Black Edition C1 Box units.",
     images: [
       {
         url: "/assets/client/logo.svg",
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "7-Day Money-Back Guarantee & Refund Policy | ChitramTV UK",
+    title: "7-Day Guarantee, Hardware Warranty & Refund Policy | ChitramTV UK",
     description:
-      "Unconditional 7-day money-back guarantee on all ChitramTV passes and hardware bundles.",
+      "Unconditional 7-day money-back guarantee, 1-year C1 Box warranty, and 14-day faulty return window on ChitramTV UK.",
     images: ["/assets/client/logo.svg"],
   },
 };

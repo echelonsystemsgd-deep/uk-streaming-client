@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { PRICING_PLANS } from "@/data/plans";
+import { PRICING_PLANS, CATALOG_CURRENCY } from "@/data/plans";
 import { createPayPalOrder } from "@/lib/paypal/client";
 import { CreateOrderPayload } from "@/lib/paypal/types";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { planId, email, shippingAddress } = body;
+    const { planId, email, shippingAddress, accountIdentifier } = body;
 
     if (!planId) {
       return NextResponse.json(
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     }
 
     const plan = PRICING_PLANS.find((p) => p.id === planId);
-    if (!plan || plan.isPendingCatalogue) {
+    if (!plan) {
       return NextResponse.json(
         { error: "Invalid plan selected" },
         { status: 400 }
@@ -34,11 +34,11 @@ export async function POST(request: Request) {
           description: `ChitramTV UK - ${plan.name}`,
           custom_id: email || "anonymous-buyer",
           amount: {
-            currency_code: "EUR",
+            currency_code: CATALOG_CURRENCY.code,
             value: formattedPrice,
             breakdown: {
               item_total: {
-                currency_code: "EUR",
+                currency_code: CATALOG_CURRENCY.code,
                 value: formattedPrice,
               },
             },
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
               sku: plan.id,
               category: isPhysical ? "PHYSICAL_GOODS" : "DIGITAL_GOODS",
               unit_amount: {
-                currency_code: "EUR",
+                currency_code: CATALOG_CURRENCY.code,
                 value: formattedPrice,
               },
             },

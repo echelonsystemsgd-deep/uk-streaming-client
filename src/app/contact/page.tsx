@@ -17,7 +17,7 @@ export default function ContactPage() {
     name: "",
     email: "",
     phone: "",
-    device: "Dune HD Classic Box",
+    device: "ChitramTV Black Edition C1 Box",
     subject: "New Subscription Inquiry",
     message: "",
   });
@@ -81,7 +81,7 @@ export default function ContactPage() {
             We Are Here <span className="text-primary">24 Hours a Day</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Need Dune HD setup assistance, Firestick quick codes, channel inquiries, or activation status? Connect directly with ChitramTV on WhatsApp or telephone.
+            Need ChitramTV Black Edition C1 Box setup assistance, Firestick quick codes, renewal verification, channel inquiries, or activation status? Connect directly with ChitramTV on WhatsApp or telephone.
           </p>
         </div>
       </section>
@@ -247,7 +247,7 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, device: e.target.value })}
                       className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-base sm:text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[46px]"
                     >
-                      <option>Dune HD Classic Box</option>
+                      <option>ChitramTV Black Edition C1 Box</option>
                       <option>Amazon Firestick 4K</option>
                       <option>Android TV / Google TV</option>
                       <option>Samsung Smart TV (Tizen)</option>
@@ -264,7 +264,7 @@ export default function ContactPage() {
                   <textarea
                     required
                     rows={4}
-                    placeholder="Ask about subscription passes, Dune HD set-top box delivery, or setup codes..."
+                    placeholder="Ask about subscription passes, account renewal, Black Edition C1 box delivery, or setup codes..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full rounded-lg border border-border bg-background p-4 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"

@@ -12,7 +12,7 @@ Engineered and built with enterprise-grade infrastructure by [mercianwealth](htt
 The portal features a streamlined high-converting homepage teaser backed by 6 dedicated deep-dive subpages:
 - **`/` (Homepage)**: High-impact summary hub with smart TV live cricket simulator, moving channel carousel teaser, compact pricing preview, and clear navigation pathways to full sections.
 - **`/channels`**: Complete 350+ channel directory with live search, multi-language dialect tabs (Hindi, Punjabi, Tamil, Telugu, Malayalam, English), genre filters, quality toggles (4K UHD vs 1080p HD), and 7-day EPG catch-up guide.
-- **`/plans`**: Transparent GBP (£) pricing matrix with 4 passes (1M, 6M, 12+2 Free Months Best Value, and 4K Android Box Bundle), detailed side-by-side feature comparison table, and PayPal Buyer Protection guarantees.
+- **`/plans`**: Transparent pricing matrix featuring the 6 verified SKUs matching the European live catalogue: 1 Month Service, 6 Months Subscription, 12+2 Months Service (Flagship Pass), ChitramTV Renewal (12+2 Free Months with dedicated existing customer account lookup), ChitramTV Black Edition C1 Box Only (Android 14 framework), and ChitramTV Box + 1 Year Service Bundle. Includes side-by-side feature comparison table, mobile-first category filter tabs, 1-Year Hardware Replacement Warranty, and 14-Day Return Window.
 - **`/setup-guide`**: Step-by-step 3-minute installation instructions with an interactive device switcher (Amazon Fire TV Stick, Android & Google TV, Samsung Tizen, LG webOS, Apple TV, PC/Mac) and UK ISP compatibility matrix (BT Smart Hub, Virgin Media Hub 3/4/5, Sky Broadband Shield, Vodafone, TalkTalk, EE).
 - **`/why-us`**: The British Indian diaspora story, detailing how ChitramTV bridges the 5.5-hour India-to-UK time gap, London Docklands low-latency edge CDN relays, UK geographic coverage hubs, and security audits by mercianwealth.com.
 - **`/faq`**: Comprehensive 24/7 help center with real-time search, category filters (Setup, Billing, Catch-Up, Broadband), custom accordion, and direct escalation to WhatsApp & phone.
@@ -48,6 +48,24 @@ The portal features a streamlined high-converting homepage teaser backed by 6 de
   - **Auto-Hide at Footer**: Automatically hides via `IntersectionObserver` when reaching the site footer, completely exposing the footer links and the `mercianwealth.com` credibility credit.
 - **Moving Channel Carousel**: Dual-row infinite marquee carousel with smooth pause-on-hover and `.scrollbar-none` horizontal swiping.
 - **Dark Zinc & Cinema Crimson Palette**: Strict 8px rem grid without gimmicky vibecoded pills or random colors.
+
+---
+
+### 4. Verified Catalogue Architecture & Hardware Rebrand
+- **6 Verified SKUs**:
+  1. `1 Month Service` (€15.00) — Flexible zero-commitment pass.
+  2. `6 Months Subscription` (€69.00, was €89.00) — Multi-month family pass.
+  3. `12+2 Months Service (Android TV & Firestick)` (€109.00, was €129.00) — Flagship 14-month annual membership.
+  4. `ChitramTV Renewal (12+2 Free Months)` (€109.00, was €129.00) — Dedicated returning subscriber flow. Captures existing Account ID, Username, or Box MAC Address to extend existing lines with zero setup disruption.
+  5. `ChitramTV Box Only` (€69.00, was €99.00) — Standalone ChitramTV Black Edition C1 Box.
+  6. `ChitramTV Box + 1 Year Service Bundle` (€129.00, was €159.00) — Turnkey pack with C1 Box + 1-year subscription pass.
+- **Hardware Rebrand (`ChitramTV Black Edition C1 Box`)**:
+  - Replaced legacy references across UI copy, metadata, and order forms.
+  - Powered by Android 14 framework (up to 2x faster).
+  - Premium Bluetooth remote control, HDR10+ visuals, and pre-installed YouTube, Netflix, Prime Video, and Chrome with Google Play Store access.
+- **Warranty & Return Terms**:
+  - 1-Year Hardware Replacement Warranty on all C1 TV boxes.
+  - 14-Day Return Window for faulty hardware assessment.
 
 ---
 

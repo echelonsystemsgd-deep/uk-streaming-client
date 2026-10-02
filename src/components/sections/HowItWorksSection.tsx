@@ -10,7 +10,7 @@ export function HowItWorksSection() {
       icon: CreditCard,
       title: "Choose Your Plan or Hardware",
       description:
-        "Select your subscription duration or Dune HD set-top box. Complete payment securely via PayPal buyer protection in Euros (€).",
+        "Select your subscription pass, renewal, or ChitramTV Black Edition C1 Box. Complete payment securely via PayPal buyer protection in British Pounds (£).",
     },
     {
       step: "02",

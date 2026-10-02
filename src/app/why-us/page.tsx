@@ -175,7 +175,7 @@ export default function WhyUsPage() {
             </div>
             <h3 className="text-base font-bold text-white">24/7 WhatsApp Help Desk</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Our ChitramTV UK support team speaks English, Hindi, and Punjabi. Direct WhatsApp support for Firestick setup, Dune HD box advice, and renewal assistance.
+              Our ChitramTV UK support team speaks English, Hindi, and Punjabi. Direct WhatsApp support for Firestick setup, ChitramTV Black Edition C1 box advice, and renewal assistance.
             </p>
           </div>
         </div>

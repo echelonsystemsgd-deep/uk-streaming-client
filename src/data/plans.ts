@@ -1,10 +1,24 @@
-export type ProductCategory = "subscription" | "hardware" | "bundle" | "pending";
+export type ProductCategory = "subscription" | "renewal" | "hardware" | "bundle";
+
+export const HARDWARE_NAME = "ChitramTV Black Edition C1 Box";
+
+export interface CurrencyConfig {
+  code: "EUR" | "GBP";
+  symbol: "€" | "£";
+}
+
+// Single Source of Truth for Catalogue Currency (Confirmed: Localized GBP £)
+export const CATALOG_CURRENCY: CurrencyConfig = {
+  code: "GBP",
+  symbol: "£",
+};
 
 export interface PricingPlan {
   id: string;
+  sku: string;
   name: string;
   badge?: string;
-  price: number; // in EUR €
+  price: number;
   currencySymbol: string;
   originalPrice?: number;
   period: string;
@@ -14,21 +28,21 @@ export interface PricingPlan {
   isPopular?: boolean;
   isBoxBundle?: boolean;
   isHardwareOnly?: boolean;
-  isPendingCatalogue?: boolean;
+  isRenewal?: boolean;
   savings?: string;
   devices: number;
   category: ProductCategory;
-  whatsappUrl?: string;
 }
 
 export const PRICING_PLANS: PricingPlan[] = [
   {
     id: "plan-1m",
+    sku: "CTV-SUB-1M",
     name: "1 Month Service",
-    price: 15.00,
-    currencySymbol: "€",
+    price: 14.99,
+    currencySymbol: CATALOG_CURRENCY.symbol,
     period: "per month",
-    effectiveMonthly: "€15.00",
+    effectiveMonthly: "£14.99",
     description: "Flexible trial to experience 350+ live channels and 7-day catch-up with zero commitment.",
     devices: 2,
     category: "subscription",
@@ -43,15 +57,16 @@ export const PRICING_PLANS: PricingPlan[] = [
   },
   {
     id: "plan-6m",
-    name: "6 Months Service",
+    sku: "CTV-SUB-6M",
+    name: "6 Months Subscription",
     badge: "POPULAR PASS",
-    price: 69.00,
-    currencySymbol: "€",
-    originalPrice: 90.00,
+    price: 59.99,
+    currencySymbol: CATALOG_CURRENCY.symbol,
+    originalPrice: 74.99,
     period: "for 6 months",
-    effectiveMonthly: "€11.50",
-    savings: "Save €21 vs monthly",
-    description: "Ideal multi-month pass for families wanting steady entertainment across Europe and the UK.",
+    effectiveMonthly: "£10.00",
+    savings: "Save £15 vs monthly",
+    description: "Ideal multi-month pass for families wanting steady Indian entertainment across the UK.",
     devices: 3,
     category: "subscription",
     features: [
@@ -61,21 +76,22 @@ export const PRICING_PLANS: PricingPlan[] = [
       "3 Simultaneous Devices",
       "Amazon Firestick, Apple TV, Smart TV & Mobile",
       "Direct WhatsApp Customer Support Desk",
-      "High-Speed European Edge Delivery",
+      "London Low-Latency Edge Delivery",
     ],
   },
   {
     id: "plan-14m",
-    name: "14 Months Service",
+    sku: "CTV-SUB-14M",
+    name: "12+2 Months Service (Android TV & Firestick)",
     badge: "BEST VALUE — 14 MONTHS",
-    price: 109.00,
-    currencySymbol: "€",
-    originalPrice: 210.00,
+    price: 89.99,
+    currencySymbol: CATALOG_CURRENCY.symbol,
+    originalPrice: 109.99,
     period: "for 14 months",
-    effectiveMonthly: "€7.78",
+    effectiveMonthly: "£6.43",
     savings: "Includes 2 Free Bonus Months",
     isPopular: true,
-    description: "Our flagship 14-month annual membership. Unbeatable Indian TV experience at under €1.80/week.",
+    description: "Our flagship 14-month annual membership. Unbeatable Indian TV experience at under £1.50/week.",
     devices: 4,
     category: "subscription",
     features: [
@@ -90,89 +106,81 @@ export const PRICING_PLANS: PricingPlan[] = [
     ],
   },
   {
-    id: "plan-firestick-14m",
-    name: "Firestick & Android TV (12+2 Pass)",
-    badge: "SMART TV & FIRESTICK",
-    price: 109.00,
-    currencySymbol: "€",
-    originalPrice: 210.00,
-    period: "for 14 months",
-    effectiveMonthly: "€7.78",
-    savings: "Optimized for Android & Fire TV",
-    description: "Specialized 14-month digital pass tailored for Amazon Fire TV Stick and Android TV OS devices.",
+    id: "plan-renewal-14m",
+    sku: "CTV-REN-14M",
+    name: "ChitramTV Renewal (12+2 Free Months)",
+    badge: "EXISTING SUBSCRIBERS",
+    price: 89.99,
+    currencySymbol: CATALOG_CURRENCY.symbol,
+    originalPrice: 109.99,
+    period: "for 14 months extension",
+    effectiveMonthly: "£6.43",
+    savings: "Save £20 + 2 Free Months",
+    isRenewal: true,
+    category: "renewal",
+    description: "Extend your existing subscription without changing equipment or losing saved channels and settings.",
     devices: 4,
-    category: "subscription",
     features: [
-      "14 Full Months (12+2 Free Months Included)",
-      "One-Click Setup via Downloader App",
-      "Optimized for Firestick 4K / Max & Google TV",
-      "350+ Live Channels with 7-Day Catch-up",
-      "4 Simultaneous Screens",
-      "Fast Credential Dispatch via WhatsApp & Email",
+      "14 Full Months Service Extension (12 + 2 Free)",
+      "Keep Existing Account Number & Setup",
+      "Zero Interruption to Live Channels & Catch-up",
+      "Fast Activation via Account ID or MAC Address",
+      "Works on ChitramTV Box, Firestick & Android TV",
+      "Priority WhatsApp Support for Active Members",
     ],
   },
   {
-    id: "plan-dune-bundle",
-    name: "Dune HD Classic Box + 1 Year Service",
-    badge: "HARDWARE + SERVICE BUNDLE",
-    price: 129.00,
-    currencySymbol: "€",
-    originalPrice: 198.00,
-    period: "complete bundle",
-    effectiveMonthly: "Includes 12M Pass",
-    isBoxBundle: true,
-    description: "Pre-configured Dune HD Classic set-top box bundled with 12 months full ChitramTV subscription.",
-    devices: 4,
-    category: "bundle",
-    features: [
-      "Dune HD Classic High-Performance IPTV Box",
-      "Pre-loaded ChitramTV Software (Zero configuration)",
-      "Dedicated Ergonomic Remote Control Included",
-      "Includes 12 Months Full Subscription",
-      "HDMI Cable & European/UK Power Supply Included",
-      "1-Year Hardware Replacement Warranty",
-    ],
-  },
-  {
-    id: "plan-dune-box-only",
-    name: "Dune HD Classic Box Only",
+    id: "plan-c1-box-only",
+    sku: "CTV-HW-C1",
+    name: "ChitramTV Box Only",
     badge: "HARDWARE ONLY",
-    price: 69.00,
-    currencySymbol: "€",
+    price: 59.99,
+    currencySymbol: CATALOG_CURRENCY.symbol,
+    originalPrice: 79.99,
     period: "one-off hardware",
     effectiveMonthly: "Hardware only",
+    savings: "Save £20 (25% Off)",
     isHardwareOnly: true,
-    description: "Official standalone Dune HD Classic set-top box. Ideal if you already hold an active subscription.",
-    devices: 1,
     category: "hardware",
+    description: "Official standalone ChitramTV Black Edition C1 Box powered by Android 14. Ideal if you already have an active subscription.",
+    devices: 1,
     features: [
-      "Official Dune HD Classic IPTV Media Receiver",
-      "ChitramTV Firmware Ready",
-      "Remote Control, HDMI & Power Adapter Included",
-      "Hardware Only (No Subscription Pass Included)",
-      "Fast Tracked Courier Dispatch",
-      "1-Year Manufacturer Warranty",
+      "ChitramTV Black Edition C1 Box",
+      "Latest Android 14 Framework (Up to 2x Faster)",
+      "Premium ChitramTV Bluetooth Remote Included",
+      "HDR10+ Ultra-Realistic Visuals",
+      "Pre-installed Apps: Netflix, Prime Video, YouTube, Chrome",
+      "Google Play Store Integration",
+      "HDMI Cable & UK Power Adapter Included",
+      "1-Year Hardware Replacement Warranty",
+      "14-Day Faulty Return Window",
     ],
   },
   {
-    id: "plan-pending-catalogue",
-    name: "Explore 6 More WhatsApp Catalogue Items",
-    badge: "CATALOGUE SLOTS",
-    price: 0,
-    currencySymbol: "€",
-    period: "ask via WhatsApp",
-    effectiveMonthly: "Custom options",
-    isPendingCatalogue: true,
-    whatsappUrl: "https://wa.me/31620897414?text=Hi%20ChitramTV%2C%20I%20would%20like%20to%20inquire%20about%20your%20additional%20catalogue%20plans%20and%20hardware%20options.",
-    description: "We have 6 additional specialised hardware accessories and custom passes in our official WhatsApp catalogue.",
-    devices: 0,
-    category: "pending",
+    id: "plan-c1-bundle",
+    sku: "CTV-BND-C1-1YR",
+    name: "ChitramTV Box + 1 Year Service Bundle",
+    badge: "BOX + 1 YEAR BUNDLE",
+    price: 109.99,
+    currencySymbol: CATALOG_CURRENCY.symbol,
+    originalPrice: 139.99,
+    period: "complete bundle",
+    effectiveMonthly: "Includes 12M Pass",
+    savings: "Save £30 (21% Off)",
+    isBoxBundle: true,
+    category: "bundle",
+    description: "Complete all-in-one entertainment package: ChitramTV Black Edition C1 Box bundled with a full 1-year subscription pass.",
+    devices: 4,
     features: [
-      "Replacement Remote Controls & Power Units",
-      "Multi-Room Additional Screen Add-ons",
-      "Specialised International Broadcast Feeds",
-      "Custom Multi-Year Enterprise Packages",
-      "Direct 1-on-1 Consultation with ChitramTV Support",
+      "ChitramTV Black Edition C1 Box Included",
+      "12 Full Months Subscription Pass Included",
+      "Android 14 Framework with Bluetooth Remote",
+      "HDR10+ Ultra HD Streaming & 7-Day Catch-up",
+      "Pre-installed Netflix, YouTube, Prime & Chrome",
+      "Zero Configuration: Plug & Play HDMI Connection",
+      "Tracked Courier Delivery across the UK",
+      "1-Year Hardware Replacement Warranty",
+      "14-Day Faulty Return Window",
     ],
   },
 ];

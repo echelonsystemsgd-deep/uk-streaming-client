@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Subscription Plans & Dune HD Set-Top Box Bundles",
+  title: "Subscription Plans & ChitramTV Black Edition C1 Box Bundles",
   description:
-    "Official ChitramTV subscription plans and Dune HD Classic hardware bundles. 100% PayPal Buyer Protection, no contracts, and instant digital credential dispatch.",
+    "Official ChitramTV subscription plans, renewal passes, and ChitramTV Black Edition C1 Android 14 TV Box bundles. 100% PayPal Buyer Protection, no contracts, and instant digital credential dispatch.",
   alternates: {
     canonical: "https://chitramtv.eu/plans",
   },
@@ -12,9 +12,9 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: "https://chitramtv.eu/plans",
     siteName: "ChitramTV UK",
-    title: "Subscription Plans & Dune HD Set-Top Box Bundles | ChitramTV UK",
+    title: "Subscription Plans & ChitramTV Black Edition C1 Box Bundles | ChitramTV UK",
     description:
-      "Official ChitramTV subscription plans and Dune HD Classic hardware bundles. 100% PayPal Buyer Protection, no contracts, and instant digital credential dispatch.",
+      "Official ChitramTV subscription plans, renewal passes, and ChitramTV Black Edition C1 Android 14 TV Box bundles. 100% PayPal Buyer Protection, no contracts, and instant digital credential dispatch.",
     images: [
       {
         url: "/assets/client/logo.svg",
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Subscription Plans & Dune HD Set-Top Box Bundles | ChitramTV UK",
+    title: "Subscription Plans & ChitramTV Black Edition C1 Box Bundles | ChitramTV UK",
     description:
-      "Official ChitramTV subscription plans and Dune HD Classic hardware bundles. 100% PayPal Buyer Protection, no contracts, and instant dispatch.",
+      "Official ChitramTV subscription plans, renewal passes, and ChitramTV Black Edition C1 Android 14 TV Box bundles. 100% PayPal Buyer Protection, no contracts, and instant dispatch.",
     images: ["/assets/client/logo.svg"],
   },
 };

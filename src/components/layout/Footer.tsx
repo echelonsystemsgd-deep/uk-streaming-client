@@ -24,7 +24,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
-              The premier streaming television provider for Indian diaspora families across the UK and Europe. Over 350+ live channels, 7-day catch-up, and official Dune HD set-top hardware.
+              The premier streaming television provider for Indian diaspora families across the UK and Europe. Over 350+ live channels, 7-day catch-up, and official ChitramTV Black Edition C1 Box hardware.
             </p>
             <div className="flex items-center gap-4 text-xs text-zinc-400">
               <span className="flex items-center gap-1.5">
@@ -81,7 +81,7 @@ export function Footer() {
               Hardware &amp; Apps
             </div>
             <ul className="space-y-1.5 text-muted-foreground">
-              <li>Dune HD Classic Box</li>
+              <li>ChitramTV Black Edition C1 Box</li>
               <li>Amazon Fire TV Stick 4K</li>
               <li>Android TV &amp; Google TV</li>
               <li>Apple TV 4K &amp; iOS</li>

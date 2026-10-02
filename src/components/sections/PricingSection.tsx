@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Check, ShieldCheck, Lock, Tv, Package, ChevronRight, MessageSquare } from "lucide-react";
-import { PRICING_PLANS, PricingPlan } from "@/data/plans";
+import { Check, ShieldCheck, Lock, Tv, Package, ChevronRight, RefreshCw, Sparkles } from "lucide-react";
+import { PRICING_PLANS, PricingPlan, HARDWARE_NAME } from "@/data/plans";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -11,31 +11,91 @@ interface PricingSectionProps {
   onSelectPlan: (plan: PricingPlan) => void;
 }
 
+type FilterCategory = "all" | "subscription" | "renewal" | "hardware";
+
 export function PricingSection({ onSelectPlan }: PricingSectionProps) {
+  const [activeCategory, setActiveCategory] = useState<FilterCategory>("all");
+
+  const filteredPlans = PRICING_PLANS.filter((plan) => {
+    if (activeCategory === "all") return true;
+    if (activeCategory === "subscription") return plan.category === "subscription";
+    if (activeCategory === "renewal") return plan.category === "renewal";
+    if (activeCategory === "hardware") return plan.category === "hardware" || plan.category === "bundle";
+    return true;
+  });
+
   return (
     <section id="plans" className="py-16 sm:py-20 bg-background border-b border-border relative">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3 sm:space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-3 sm:space-y-4">
           <span className="text-xs font-bold uppercase tracking-widest text-primary">
-            CHITRAMTV UK • OFFICIAL SUBSCRIPTION PASSES
+            CHITRAMTV UK • OFFICIAL SUBSCRIPTION PASSES &amp; HARDWARE
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Choose Your Streaming Pass or Hardware
+            Choose Your Streaming Pass, Renewal, or TV Box
           </h2>
           <p className="text-base sm:text-lg text-zinc-400 leading-relaxed">
-            Instant digital credential dispatch via WhatsApp &amp; Email. Complete subscription passes, official Dune HD set-top boxes, and European delivery.
+            Instant digital credential dispatch via WhatsApp &amp; Email. Complete subscription passes, official {HARDWARE_NAME} units, and UK delivery.
           </p>
+        </div>
+
+        {/* Mobile-Friendly Category Switcher */}
+        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+          <button
+            type="button"
+            onClick={() => setActiveCategory("all")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap min-h-[44px] transition-all select-none ${
+              activeCategory === "all"
+                ? "bg-primary text-white shadow-md shadow-primary/20"
+                : "bg-card border border-border text-zinc-400 hover:text-white hover:bg-background-subtle"
+            }`}
+          >
+            All Products (6)
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveCategory("subscription")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap min-h-[44px] transition-all select-none ${
+              activeCategory === "subscription"
+                ? "bg-primary text-white shadow-md shadow-primary/20"
+                : "bg-card border border-border text-zinc-400 hover:text-white hover:bg-background-subtle"
+            }`}
+          >
+            Streaming Passes (3)
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveCategory("renewal")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap min-h-[44px] transition-all select-none ${
+              activeCategory === "renewal"
+                ? "bg-primary text-white shadow-md shadow-primary/20"
+                : "bg-card border border-border text-zinc-400 hover:text-white hover:bg-background-subtle"
+            }`}
+          >
+            Account Renewal (1)
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveCategory("hardware")}
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap min-h-[44px] transition-all select-none ${
+              activeCategory === "hardware"
+                ? "bg-primary text-white shadow-md shadow-primary/20"
+                : "bg-card border border-border text-zinc-400 hover:text-white hover:bg-background-subtle"
+            }`}
+          >
+            C1 TV Box &amp; Bundles (2)
+          </button>
         </div>
 
         {/* Dynamic Multi-Category Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {PRICING_PLANS.map((plan) => {
+          {filteredPlans.map((plan) => {
             const isPopular = plan.isPopular;
             const isBox = plan.isBoxBundle;
             const isHardware = plan.isHardwareOnly;
-            const isPending = plan.isPendingCatalogue;
+            const isRenewal = plan.isRenewal;
             const currency = plan.currencySymbol || "€";
 
             return (
@@ -44,9 +104,11 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
                 className={`relative flex flex-col justify-between transition-all duration-200 bg-card ${
                   isPopular
                     ? "border-primary ring-1 ring-primary/40 lg:-translate-y-1 shadow-xl"
-                    : isPending
-                    ? "border-emerald-500/40 bg-zinc-950/80"
-                    : "border-border hover:border-zinc-700"
+                    : isRenewal
+                    ? "border-emerald-500/40 bg-zinc-950/90 shadow-lg"
+                    : isBox
+                    ? "border-amber-500/50 shadow-lg"
+                    : "border-border hover:border-zinc-700 hover:shadow-card-hover"
                 }`}
               >
                 {/* Popular / Box Badges */}
@@ -56,8 +118,10 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
                       className={`text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full whitespace-nowrap border ${
                         isPopular
                           ? "bg-primary border-primary text-white"
-                          : isPending
-                          ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400"
+                          : isRenewal
+                          ? "bg-emerald-600 border-emerald-500 text-white"
+                          : isBox
+                          ? "bg-amber-500 border-amber-400 text-zinc-950"
                           : "bg-zinc-900 border-zinc-700 text-zinc-200"
                       }`}
                     >
@@ -72,9 +136,9 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
                       {plan.name}
                     </h3>
                     {isBox || isHardware ? (
-                      <Package className="h-5 w-5 text-zinc-400 shrink-0" />
-                    ) : isPending ? (
-                      <MessageSquare className="h-5 w-5 text-emerald-400 shrink-0" />
+                      <Package className="h-5 w-5 text-amber-400 shrink-0" />
+                    ) : isRenewal ? (
+                      <RefreshCw className="h-5 w-5 text-emerald-400 shrink-0" />
                     ) : (
                       <Tv className="h-5 w-5 text-primary shrink-0" />
                     )}
@@ -85,50 +149,37 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
 
                   {/* Price Display */}
                   <div className="py-4 my-2 border-y border-border">
-                    {isPending ? (
-                      <div className="flex flex-col">
-                        <span className="text-2xl font-extrabold text-emerald-400 tracking-tight">
-                          6 More Items
-                        </span>
-                        <span className="text-xs text-zinc-400 mt-1">
-                          Direct in WhatsApp Catalogue
-                        </span>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                            {currency}{plan.price.toFixed(2)}
-                          </span>
-                          <span className="text-xs text-zinc-400">
-                            /{plan.period}
-                          </span>
-                        </div>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                        {currency}{plan.price.toFixed(2)}
+                      </span>
+                      <span className="text-xs text-zinc-400">
+                        /{plan.period}
+                      </span>
+                    </div>
 
-                        {/* Effective monthly price calculation */}
-                        <div className="flex items-center gap-2 mt-2">
-                          <span className="text-xs font-semibold text-zinc-200 bg-zinc-800 border border-zinc-700/80 px-2 py-0.5 rounded">
-                            {plan.effectiveMonthly}
-                          </span>
-                          {plan.savings && (
-                            <span className="text-xs text-emerald-400 font-medium">
-                              {plan.savings}
-                            </span>
-                          )}
-                        </div>
-                      </>
-                    )}
+                    {/* Effective monthly price calculation & Savings */}
+                    <div className="flex items-center gap-2 mt-2">
+                      <span className="text-xs font-semibold text-zinc-200 bg-zinc-800 border border-zinc-700/80 px-2 py-0.5 rounded">
+                        {plan.effectiveMonthly}
+                      </span>
+                      {plan.savings && (
+                        <span className="text-xs text-emerald-400 font-medium">
+                          {plan.savings}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Features Checklist */}
+                  {/* Features List */}
                   <div className="space-y-2.5 pt-2">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 block">
-                      {isPending ? "Catalogue Overview:" : "Item Highlights:"}
+                      {isRenewal ? "Renewal Benefits:" : "Item Highlights:"}
                     </span>
                     <ul className="space-y-2 text-xs">
-                      {plan.features.map((feature, fIdx) => (
-                        <li key={fIdx} className="flex items-start gap-2 text-zinc-300">
-                          <Check className={`h-4 w-4 shrink-0 mt-0.5 ${isPending ? "text-emerald-400" : "text-primary"}`} />
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-zinc-300">
+                          <Check className={`h-4 w-4 shrink-0 mt-0.5 ${isRenewal ? "text-emerald-400" : isBox || isHardware ? "text-amber-400" : "text-primary"}`} />
                           <span className="leading-tight">{feature}</span>
                         </li>
                       ))}
@@ -136,59 +187,68 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
                   </div>
                 </div>
 
-                {/* Card Footer with CTA (48px / h-12 height) */}
+                {/* Card CTA Button (min 44px height for mobile touch target) */}
                 <div className="p-6 pt-4">
-                  {isPending ? (
-                    <a
-                      href={plan.whatsappUrl || "https://wa.me/31620897414"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm h-12 px-4 transition-colors select-none"
-                    >
-                      <MessageSquare className="h-4 w-4" />
-                      <span>Inquire via WhatsApp</span>
-                    </a>
-                  ) : (
-                    <Button
-                      variant={isPopular ? "default" : "outline"}
-                      size="lg"
-                      className="w-full font-bold justify-center h-12 text-sm"
-                      onClick={() => onSelectPlan(plan)}
-                    >
-                      <span>
-                        {isHardware ? "Order Hardware with PayPal" : "Order with PayPal"}
-                      </span>
-                    </Button>
-                  )}
+                  <Button
+                    onClick={() => onSelectPlan(plan)}
+                    variant={isPopular ? "default" : "outline"}
+                    size="lg"
+                    className={`w-full font-bold justify-center h-12 text-sm min-h-[48px] ${
+                      isPopular
+                        ? "shadow-md shadow-primary/20"
+                        : isRenewal
+                        ? "border-emerald-500/50 hover:bg-emerald-500/10 text-emerald-300 hover:text-white"
+                        : isBox
+                        ? "border-amber-500/50 hover:bg-amber-500/10 text-amber-300 hover:text-white"
+                        : ""
+                    }`}
+                  >
+                    <span>
+                      {isRenewal
+                        ? "Renew Existing Subscription"
+                        : isBox
+                        ? "Order C1 Box + 1Yr Bundle"
+                        : isHardware
+                        ? "Order Standalone C1 Box"
+                        : "Order with PayPal"}
+                    </span>
+                  </Button>
                 </div>
               </Card>
             );
           })}
         </div>
 
-        {/* PayPal Security & Guarantees under plans */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400">
-          <span className="flex items-center gap-1.5">
-            <Lock className="h-4 w-4 text-zinc-400" />
-            256-bit TLS Encrypted Transaction
-          </span>
-          <span className="flex items-center gap-1.5">
-            <ShieldCheck className="h-4 w-4 text-zinc-400" />
-            Full PayPal Buyer Protection
-          </span>
-          <span className="flex items-center gap-1.5">
-            <Tv className="h-4 w-4 text-zinc-400" />
-            Instant Digital Dispatch (&lt;2 Minutes)
-          </span>
+        {/* Hardware Warranty & Returns Banner */}
+        <div className="mt-12 rounded-xl border border-zinc-800 bg-zinc-900/60 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-4">
+            <div className="h-12 w-12 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-primary shrink-0">
+              <ShieldCheck className="h-6 w-6" />
+            </div>
+            <div>
+              <div className="text-base font-bold text-white">
+                1-Year Hardware Replacement Warranty &amp; 14-Day Return Window
+              </div>
+              <div className="text-xs text-zinc-400 mt-0.5">
+                All {HARDWARE_NAME} units are covered by a full 1-year replacement guarantee against faults, backed by our 14-day return policy and PayPal Buyer Protection.
+              </div>
+            </div>
+          </div>
+          <Link
+            href="/refund-policy"
+            className="shrink-0 text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-md px-4 py-2.5 bg-zinc-800/80 transition-colors min-h-[44px] flex items-center"
+          >
+            Read Returns Policy
+          </Link>
         </div>
 
-        {/* Link to dedicated /plans page */}
+        {/* Comparison Page Pathway */}
         <div className="mt-8 text-center">
           <Link
             href="/plans"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-200 hover:text-white bg-zinc-900 border border-zinc-700 hover:border-zinc-600 px-5 py-2.5 rounded-lg transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 text-xs font-bold text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 hover:border-zinc-700 px-5 py-3 rounded-lg transition-colors min-h-[44px]"
           >
-            <span>Compare All Plans &amp; Dune HD Hardware Specs</span>
+            <span>Compare All 6 Plans &amp; Black Edition C1 Hardware Specs</span>
             <ChevronRight className="h-4 w-4 text-primary" />
           </Link>
         </div>

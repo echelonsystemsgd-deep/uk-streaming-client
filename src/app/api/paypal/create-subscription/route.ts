@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     }
 
     const plan = PRICING_PLANS.find((p) => p.id === planId);
-    if (!plan || plan.isPendingCatalogue) {
+    if (!plan || plan.isHardwareOnly) {
       return NextResponse.json(
         { error: "Invalid subscription plan selected" },
         { status: 400 }

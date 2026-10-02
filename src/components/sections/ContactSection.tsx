@@ -54,7 +54,7 @@ export function ContactSection() {
                 </div>
               </div>
               <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
-                Message our technical team directly on WhatsApp for real-time setup guidance on Firestick, Samsung TV, Dune HD box, or Android.
+                Message our technical team directly on WhatsApp for real-time setup guidance on Firestick, Samsung TV, ChitramTV Black Edition C1 box, or Android.
               </p>
               <a
                 href="https://wa.me/31620897414"
@@ -157,7 +157,7 @@ export function ContactSection() {
                       onChange={(e) => setForm({ ...form, device: e.target.value })}
                       className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[46px]"
                     >
-                      <option value="DuneHD">Dune HD Classic Box</option>
+                      <option value="ChitramTV_C1">ChitramTV Black Edition C1 Box</option>
                       <option value="Firestick">Amazon Fire TV Stick (4K / HD)</option>
                       <option value="AndroidTV">Android TV / Google TV</option>
                       <option value="AppleTV">Apple TV 4K</option>
@@ -174,7 +174,7 @@ export function ContactSection() {
                     <textarea
                       rows={4}
                       required
-                      placeholder="Ask about channel availability, Dune HD hardware, or setup assistance..."
+                      placeholder="Ask about channel availability, account renewal, C1 Box hardware, or setup assistance..."
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"

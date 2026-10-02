@@ -91,7 +91,7 @@ export default function RefundPolicyPage() {
               <span>3. Processing Times &amp; Method</span>
             </h2>
             <p>
-              All refunds are processed directly back to your original payment method via <strong className="text-white">PayPal in Euros (€ EUR)</strong>.
+              All refunds are processed directly back to your original payment method via <strong className="text-white">PayPal in British Pounds (£ GBP)</strong>.
             </p>
             <p>
               Once approved by our support team, PayPal refunds are issued within 2 to 4 hours. Depending on whether you paid with PayPal Balance, debit card, or linked bank account, funds typically reflect in your account within 1 to 3 working days.
@@ -99,13 +99,24 @@ export default function RefundPolicyPage() {
           </div>
 
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
-            <h2 className="text-base font-bold text-white">4. Hardware Set-Top Box Returns (Dune HD Classic)</h2>
+            <h2 className="text-base font-bold text-white">4. Hardware Set-Top Box Returns &amp; 1-Year Warranty (ChitramTV Black Edition C1 Box)</h2>
             <p>
-              For customers who purchased the <strong className="text-white">Dune HD Classic Box</strong> or bundle, the 7-day guarantee applies to both the subscription and the physical receiver. If you wish to return the hardware box, it must be returned in its original packaging with all included accessories (remote, HDMI cable, power adapter) to our European returns depot.
+              For customers who purchased the <strong className="text-white">ChitramTV Black Edition C1 Box</strong> (standalone or bundled with 1-year service), our terms match the official European hardware standards:
             </p>
-            <p>
-              The physical Dune HD Classic TV box also carries a full <strong className="text-white">1-Year Hardware Replacement Warranty</strong> against hardware defects.
-            </p>
+            <ul className="list-disc pl-5 space-y-2 text-zinc-400">
+              <li>
+                <strong className="text-white">1-Year Hardware Replacement Warranty:</strong> All ChitramTV Black Edition C1 media players carry a full 1-year manufacturer replacement warranty from the date of purchase covering manufacturing faults, firmware integrity, and internal hardware components.
+              </li>
+              <li>
+                <strong className="text-white">14-Day Faulty Return Window:</strong> Customers have up to 14 days from delivery to return a device in the event of hardware fault or malfunction.
+              </li>
+              <li>
+                <strong className="text-white">Return Conditions:</strong> Returned units must be sent complete with all original accessories included (ChitramTV Bluetooth remote control, HDMI lead, power supply unit). The unit and packaging must remain in intact condition with barcode and serial number labels clearly preserved.
+              </li>
+              <li>
+                <strong className="text-white">Return Logistics:</strong> Return postage costs for faulty device assessment to our European logistics depot are the responsibility of the customer.
+              </li>
+            </ul>
           </div>
 
           <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">

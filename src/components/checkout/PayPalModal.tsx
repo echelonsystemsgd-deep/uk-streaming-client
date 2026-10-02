@@ -16,6 +16,7 @@ import {
   Sparkles,
   ChevronRight,
   Info,
+  RefreshCw,
 } from "lucide-react";
 import { PricingPlan } from "@/data/plans";
 import { Button } from "@/components/ui/button";
@@ -36,6 +37,8 @@ interface OrderConfirmationData {
   deviceType: string;
   dispatchTime: string;
   capturedAt: string;
+  accountIdentifier?: string;
+  isRenewal?: boolean;
 }
 
 const STREAMING_DEVICES = [
@@ -44,7 +47,7 @@ const STREAMING_DEVICES = [
   "LG Smart TV (webOS)",
   "Android TV / Google TV",
   "Apple TV 4K",
-  "Dune HD Classic Box",
+  "ChitramTV Black Edition C1 Box",
   "Windows PC / Mac",
 ];
 
@@ -52,6 +55,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
   const [email, setEmail] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [address, setAddress] = useState("");
+  const [accountIdentifier, setAccountIdentifier] = useState("");
   const [deviceType, setDeviceType] = useState(STREAMING_DEVICES[0]);
   const [isSubscription, setIsSubscription] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -71,6 +75,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
 
   const currency = plan.currencySymbol || "€";
   const needsDeliveryAddress = plan.isBoxBundle || plan.isHardwareOnly;
+  const isRenewal = Boolean(plan.isRenewal);
   const payIn3Amount = (plan.price / 3).toFixed(2);
 
   const handleExecutePayPalCheckout = async (e: React.FormEvent) => {
@@ -79,8 +84,12 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
       setError("Please enter a valid email address to receive your activation credentials.");
       return;
     }
+    if (isRenewal && !accountIdentifier.trim()) {
+      setError("Please enter your existing ChitramTV Account Number, Username, or Box MAC Address to process your renewal.");
+      return;
+    }
     if (needsDeliveryAddress && !address.trim()) {
-      setError("Please enter your shipping address for Dune HD hardware courier dispatch.");
+      setError("Please enter your delivery address for ChitramTV Black Edition C1 Box courier dispatch.");
       return;
     }
 
@@ -88,7 +97,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
     setIsProcessing(true);
 
     try {
-      if (isSubscription && !needsDeliveryAddress) {
+      if (isSubscription && !needsDeliveryAddress && !isRenewal) {
         // Step 1: Initialize Recurring Subscription via PayPal REST API
         setProcessingStep("Initializing PayPal Subscription...");
         const subRes = await fetch("/api/paypal/create-subscription", {
@@ -109,7 +118,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
         const subData = await subRes.json();
         setProcessingStep("Activating Subscription via PayPal...");
 
-        // Simulate seamless approval or capture
+        // Seamless approval simulation
         await new Promise((r) => setTimeout(r, 900));
 
         setConfirmation({
@@ -131,6 +140,8 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
           body: JSON.stringify({
             planId: plan.id,
             email,
+            accountIdentifier: isRenewal ? accountIdentifier : undefined,
+            isRenewal,
             shippingAddress: needsDeliveryAddress
               ? {
                   fullName: email.split("@")[0],
@@ -145,14 +156,13 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
 
         if (!createRes.ok) {
           const errData = await createRes.json();
-          throw new Error(errData.error || "Order creation failed");
+          throw new Error(errData.error || "Failed to create PayPal order");
         }
 
-        const createData = await createRes.json();
-        const orderId = createData.orderId;
+        const { orderId } = await createRes.json();
+        setProcessingStep("Authorizing via PayPal Buyer Protection...");
 
-        // Step 2: Authorize & Capture Order via PayPal Orders v2 REST API
-        setProcessingStep("Capturing PayPal Payment...");
+        // Step 2: Capture Authorized Payment
         const captureRes = await fetch("/api/paypal/capture-order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -162,12 +172,13 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
             email,
             whatsapp,
             deviceType,
+            accountIdentifier: isRenewal ? accountIdentifier : undefined,
           }),
         });
 
         if (!captureRes.ok) {
           const errData = await captureRes.json();
-          throw new Error(errData.error || "Payment capture failed");
+          throw new Error(errData.error || "Failed to capture PayPal order");
         }
 
         const captureData = await captureRes.json();
@@ -176,16 +187,22 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
           orderId: captureData.orderId,
           captureId: captureData.captureId,
           referenceId: captureData.referenceId,
-          customerEmail: captureData.customer.email,
-          customerWhatsapp: captureData.customer.whatsapp,
-          deviceType: captureData.customer.deviceType,
-          dispatchTime: captureData.dispatch.estimatedTime,
+          customerEmail: email,
+          customerWhatsapp: whatsapp || undefined,
+          deviceType,
+          accountIdentifier: isRenewal ? accountIdentifier : undefined,
+          isRenewal,
+          dispatchTime: isRenewal
+            ? "Applied to existing line within 2 hours"
+            : needsDeliveryAddress
+            ? "Tracked 24-48h Courier Dispatch"
+            : "Instant (<2 minutes via WhatsApp & Email)",
           capturedAt: captureData.capturedAt,
         });
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Payment processing encountered an error.";
-      setError(msg);
+      const message = err instanceof Error ? err.message : "PayPal transaction could not be completed";
+      setError(message);
     } finally {
       setIsProcessing(false);
     }
@@ -193,50 +210,46 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
 
   const handleResetAndClose = () => {
     setConfirmation(null);
-    setIsProcessing(false);
     setError(null);
     setEmail("");
     setWhatsapp("");
     setAddress("");
+    setAccountIdentifier("");
     onClose();
   };
 
   const modalContent = (
     <div
-      className="fixed inset-0 z-[80] flex items-center justify-center p-2.5 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto overscroll-contain animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="checkout-modal-title"
-      onClick={handleResetAndClose}
+      aria-labelledby="paypal-checkout-title"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
     >
       <div
-        className="relative w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-950 p-4 sm:p-7 shadow-2xl max-h-[92dvh] overflow-y-auto overscroll-contain my-auto text-foreground"
-        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-950 p-5 sm:p-7 shadow-2xl overflow-y-auto max-h-[92dvh] scrollbar-none overscroll-contain"
+        style={{ overscrollBehavior: "contain" }}
       >
-        {/* Mobile-Friendly Close Button (48x48 touch target) */}
+        {/* Close Button with 44px min tap area */}
         <button
           onClick={handleResetAndClose}
-          className="absolute right-3 top-3 sm:right-4 sm:top-4 rounded-lg p-2.5 text-zinc-400 hover:bg-zinc-900 hover:text-white transition-colors min-h-[48px] min-w-[48px] flex items-center justify-center select-none"
-          aria-label="Close checkout modal"
+          className="absolute right-4 top-4 rounded-full p-2.5 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
+          aria-label="Close modal"
         >
           <X className="h-5 w-5" />
         </button>
 
         {!confirmation ? (
           <div>
-            {/* Header & Trust Badge */}
-            <div className="flex items-center gap-2 mb-2 pr-10">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/20 text-primary shrink-0">
-                <Lock className="h-3.5 w-3.5" />
-              </span>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-300">
-                Official PayPal Checkout &bull; ChitramTV UK
+            {/* Modal Header */}
+            <div className="flex items-center gap-2">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-400">
+                Official PayPal Checkout Desk
               </span>
             </div>
-
-            <h3 id="checkout-modal-title" className="text-xl sm:text-2xl font-black text-white pr-8 tracking-tight">
-              Activate Your Subscription
-            </h3>
+            <h2 id="paypal-checkout-title" className="text-xl sm:text-2xl font-black text-white mt-1">
+              {isRenewal ? "Renew Your Subscription" : "Complete Your Order"}
+            </h2>
             <p className="text-xs sm:text-sm text-zinc-400 mt-1">
               PayPal Buyer Protection &bull; Instant WhatsApp &amp; Email Credentials
             </p>
@@ -254,9 +267,13 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                     )}
                   </div>
                   <div className="text-xs text-zinc-400 mt-0.5">
-                    {plan.isHardwareOnly
-                      ? "Official Dune HD Classic Media Receiver"
-                      : `${plan.devices} Devices &bull; 7-Day Catch-up &bull; 350+ Channels`}
+                    {isRenewal
+                      ? "14-Month Service Extension • Keeps Existing Account & Channels"
+                      : plan.isHardwareOnly
+                      ? "Official ChitramTV Black Edition C1 Box (Android 14)"
+                      : plan.isBoxBundle
+                      ? "Black Edition C1 Box + 1 Year Subscription Pass Included"
+                      : `${plan.devices} Devices • 7-Day Catch-up • 350+ Channels`}
                   </div>
                 </div>
                 <div className="text-right shrink-0">
@@ -301,8 +318,8 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
               </div>
             </div>
 
-            {/* Billing Mode Toggle (for subscription passes) */}
-            {!plan.isHardwareOnly && (
+            {/* Billing Mode Toggle (for standard new subscription passes) */}
+            {!plan.isHardwareOnly && !isRenewal && (
               <div className="mb-4 rounded-xl border border-zinc-800 bg-zinc-900/40 p-2.5 flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-amber-400 shrink-0" />
@@ -329,6 +346,29 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
 
             {/* Mobile-Friendly Input Form */}
             <form onSubmit={handleExecutePayPalCheckout} className="space-y-3.5">
+              {/* Existing Account Identifier for Renewal */}
+              {isRenewal && (
+                <div className="rounded-xl border border-primary/40 bg-primary/5 p-3.5 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <RefreshCw className="h-4 w-4 text-primary shrink-0" />
+                    <label className="block text-xs font-bold text-white">
+                      Existing Account / MAC Address <span className="text-primary">*</span>
+                    </label>
+                  </div>
+                  <p className="text-[11px] text-zinc-400 leading-relaxed">
+                    Enter your existing ChitramTV Account Number, Username, or Box MAC Address (found under Box Settings &gt; System Info or your activation message).
+                  </p>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. CTV-88492 or 00:1A:79:XX:XX:XX"
+                    value={accountIdentifier}
+                    onChange={(e) => setAccountIdentifier(e.target.value)}
+                    className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3.5 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
+                  />
+                </div>
+              )}
+
               {/* Email Input */}
               <div>
                 <label className="block text-xs font-semibold text-zinc-300 mb-1">
@@ -367,7 +407,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
               {/* Streaming Device Selection */}
               <div>
                 <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                  Primary Device for Setup
+                  Primary Device
                 </label>
                 <div className="relative">
                   <Tv className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
@@ -389,14 +429,14 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
               {needsDeliveryAddress && (
                 <div>
                   <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                    Courier Shipping Address <span className="text-primary">*</span>
+                    Delivery Address for Box Courier <span className="text-primary">*</span>
                   </label>
                   <div className="relative">
                     <MapPin className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
                     <input
                       type="text"
                       required
-                      placeholder="Flat, Street, City, Postcode, UK"
+                      placeholder="Street, City, Postcode, UK"
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
@@ -448,7 +488,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Info className="h-3.5 w-3.5 text-zinc-400" />
-                  7-Day Money-Back Guarantee
+                  {needsDeliveryAddress ? "1-Year Hardware Warranty" : "7-Day Money-Back Guarantee"}
                 </span>
               </div>
             </form>
@@ -461,12 +501,16 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
             </div>
 
             <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-400">
-              PayPal Authorization Complete
+              {confirmation.isRenewal ? "Subscription Renewal Queued" : "PayPal Authorization Complete"}
             </span>
 
-            <h3 className="text-xl sm:text-2xl font-black text-white">Order Confirmed!</h3>
+            <h3 className="text-xl sm:text-2xl font-black text-white">
+              {confirmation.isRenewal ? "Renewal Confirmed!" : "Order Confirmed!"}
+            </h3>
             <p className="text-xs sm:text-sm text-zinc-400 max-w-sm mx-auto">
-              Your ChitramTV streaming credentials and M3U playlist link are being generated for:
+              {confirmation.isRenewal
+                ? `Your 14-month service extension has been linked to existing account ${confirmation.accountIdentifier}. Notification sent to:`
+                : "Your ChitramTV streaming credentials and activation instructions are being delivered to:"}
             </p>
             <div className="font-mono text-xs sm:text-sm text-primary font-bold bg-zinc-900 py-1.5 px-3 rounded-lg inline-block break-all max-w-full border border-zinc-800">
               {confirmation.customerEmail}
@@ -482,6 +526,12 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                 <span>PayPal Transaction ID</span>
                 <span className="font-mono text-zinc-300">{confirmation.captureId}</span>
               </div>
+              {confirmation.accountIdentifier && (
+                <div className="flex justify-between text-zinc-400">
+                  <span>Target Account ID</span>
+                  <span className="font-mono text-emerald-400 font-bold">{confirmation.accountIdentifier}</span>
+                </div>
+              )}
               <div className="flex justify-between text-zinc-400">
                 <span>Package</span>
                 <span className="text-white font-semibold">{plan.name}</span>
@@ -495,7 +545,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                 <span className="text-zinc-200">{confirmation.deviceType}</span>
               </div>
               <div className="flex justify-between text-zinc-400">
-                <span>Dispatch SLA</span>
+                <span>Dispatch / Extension SLA</span>
                 <span className="text-emerald-400 font-bold">{confirmation.dispatchTime}</span>
               </div>
             </div>
@@ -510,7 +560,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                 Return to Site
               </Button>
               <p className="text-[11px] text-zinc-400">
-                Need instant setup advice? WhatsApp ChitramTV Help Desk at +31 6 20897414
+                Need instant setup advice or renewal verification? WhatsApp ChitramTV Help Desk at +31 6 20897414
               </p>
             </div>
           </div>
