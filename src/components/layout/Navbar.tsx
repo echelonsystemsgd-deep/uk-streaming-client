@@ -48,7 +48,7 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
                   ChitramTV
                 </span>
                 <span className="rounded bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 text-[10px] font-bold text-zinc-300 tracking-wider leading-none">
-                  EU
+                  UK
                 </span>
               </div>
               <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase mt-1 leading-none">
