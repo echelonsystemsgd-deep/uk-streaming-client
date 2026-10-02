@@ -148,10 +148,11 @@ export function ChannelShowcaseSection() {
             <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground pointer-events-none" />
             <input
               type="text"
+              aria-label="Search live Indian TV channels, cricket, and movies"
               placeholder="Search Star, Zee, Cricket..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-lg border border-border bg-background pl-10 pr-10 py-2.5 text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px]"
+              className="w-full rounded-lg border border-border bg-background pl-10 pr-10 py-2.5 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
             />
             {searchQuery && (
               <button

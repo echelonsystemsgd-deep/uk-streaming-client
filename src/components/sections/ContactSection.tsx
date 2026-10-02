@@ -121,41 +121,44 @@ export function ContactSection() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-muted-foreground mb-1.5">
+                      <label htmlFor="contact-name" className="block text-xs font-semibold text-muted-foreground mb-1.5">
                         Your Full Name
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
                         required
                         placeholder="e.g. Raj Patel"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[46px]"
+                        className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-muted-foreground mb-1.5">
+                      <label htmlFor="contact-email" className="block text-xs font-semibold text-muted-foreground mb-1.5">
                         Email Address
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
                         required
                         placeholder="name@example.com"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[46px]"
+                        className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-muted-foreground mb-1.5">
+                    <label htmlFor="contact-device" className="block text-xs font-semibold text-muted-foreground mb-1.5">
                       Your Primary TV / Streaming Device
                     </label>
                     <select
+                      id="contact-device"
                       value={form.device}
                       onChange={(e) => setForm({ ...form, device: e.target.value })}
-                      className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[46px]"
+                      className="w-full rounded-md border border-border bg-background px-3.5 py-3 text-base sm:text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
                     >
                       <option value="ChitramTV_C1">ChitramTV Black Edition C1 Box</option>
                       <option value="Firestick">Amazon Fire TV Stick (4K / HD)</option>

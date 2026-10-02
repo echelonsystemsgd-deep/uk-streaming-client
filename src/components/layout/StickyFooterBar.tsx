@@ -49,7 +49,8 @@ export function StickyFooterBar({ onSubscribeClick }: StickyFooterBarProps) {
   return (
     <aside
       aria-label="Quick subscription and support bar"
-      className={`fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 backdrop-blur-md border-t border-border pt-2.5 pb-3 sm:pb-2.5 px-4 sm:px-6 shadow-2xl transition-all duration-300 ease-in-out ${
+      style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
+      className={`fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 backdrop-blur-md border-t border-border pt-2.5 px-4 sm:px-6 shadow-2xl transition-all duration-300 ease-in-out ${
         shouldShow
           ? "translate-y-0 opacity-100 pointer-events-auto"
           : "translate-y-full opacity-0 pointer-events-none"

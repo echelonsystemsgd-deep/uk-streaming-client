@@ -356,7 +356,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                   <div className="rounded-xl border border-primary/40 bg-primary/5 p-3 space-y-2">
                     <div className="flex items-center gap-2">
                       <RefreshCw className="h-4 w-4 text-primary shrink-0" />
-                      <label className="block text-xs font-bold text-white">
+                      <label htmlFor="paypal-account-id" className="block text-xs font-bold text-white">
                         Existing Account / MAC Address <span className="text-primary">*</span>
                       </label>
                     </div>
@@ -364,6 +364,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                       Enter your existing ChitramTV Account Number, Username, or Box MAC Address.
                     </p>
                     <input
+                      id="paypal-account-id"
                       type="text"
                       required
                       placeholder="e.g. CTV-88492 or 00:1A:79:XX:XX:XX"
@@ -376,12 +377,13 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
 
                 {/* Email Input */}
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                  <label htmlFor="paypal-email" className="block text-xs font-semibold text-zinc-300 mb-1">
                     Email Address <span className="text-primary">*</span>
                   </label>
                   <div className="relative">
                     <Mail className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
                     <input
+                      id="paypal-email"
                       type="email"
                       required
                       placeholder="your-email@example.com"
@@ -394,12 +396,13 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
 
                 {/* WhatsApp Optional Number */}
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                  <label htmlFor="paypal-whatsapp" className="block text-xs font-semibold text-zinc-300 mb-1">
                     WhatsApp Number (Optional for &lt;2 min mobile dispatch)
                   </label>
                   <div className="relative">
                     <MessageSquare className="absolute left-3.5 top-3.5 h-4 w-4 text-emerald-400 pointer-events-none" />
                     <input
+                      id="paypal-whatsapp"
                       type="tel"
                       placeholder="+44 7123 456789"
                       value={whatsapp}
@@ -411,12 +414,13 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
 
                 {/* Streaming Device Selection */}
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                  <label htmlFor="paypal-device" className="block text-xs font-semibold text-zinc-300 mb-1">
                     Primary Device
                   </label>
                   <div className="relative">
                     <Tv className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
                     <select
+                      id="paypal-device"
                       value={deviceType}
                       onChange={(e) => setDeviceType(e.target.value)}
                       className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px] appearance-none"
@@ -433,12 +437,13 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                 {/* Hardware Delivery Address if applicable */}
                 {needsDeliveryAddress && (
                   <div>
-                    <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    <label htmlFor="paypal-address" className="block text-xs font-semibold text-zinc-300 mb-1">
                       Delivery Address for Box Courier <span className="text-primary">*</span>
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
                       <input
+                        id="paypal-address"
                         type="text"
                         required
                         placeholder="Street, City, Postcode, UK"
