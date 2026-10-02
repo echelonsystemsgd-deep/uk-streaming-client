@@ -31,8 +31,8 @@ export async function POST(request: Request) {
       purchase_units: [
         {
           reference_id: plan.id,
-          description: `ChitramTV UK - ${plan.name}`,
-          custom_id: email || "anonymous-buyer",
+          description: `UK Streaming - ${plan.name}`,
+          custom_id: `${email || "guest"}|${accountIdentifier || "new"}`.substring(0, 127),
           amount: {
             currency_code: CATALOG_CURRENCY.code,
             value: formattedPrice,
@@ -45,10 +45,10 @@ export async function POST(request: Request) {
           },
           items: [
             {
-              name: `ChitramTV ${plan.name}`,
+              name: plan.name,
               quantity: "1",
               description: plan.description.substring(0, 120),
-              sku: plan.id,
+              sku: plan.sku || plan.id,
               category: isPhysical ? "PHYSICAL_GOODS" : "DIGITAL_GOODS",
               unit_amount: {
                 currency_code: CATALOG_CURRENCY.code,
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
         },
       ],
       application_context: {
-        brand_name: "ChitramTV UK",
+        brand_name: "UK Streaming Hub",
         locale: "en-GB",
         landing_page: "NO_PREFERENCE",
         shipping_preference: isPhysical
@@ -94,6 +94,7 @@ export async function POST(request: Request) {
         id: plan.id,
         name: plan.name,
         price: plan.price,
+        currency: CATALOG_CURRENCY.code,
       },
     });
   } catch (error: unknown) {

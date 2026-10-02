@@ -1,0 +1,58 @@
+{
+  "intent": "CAPTURE",
+  "purchase_units": [
+    {
+      "reference_id": "PU-STREAMING-001",
+      "description": "UK Streaming Hub - 1 Month VIP Pass",
+      "custom_id": "cust_usr_88231",
+      "invoice_id": "INV-2026-00412",
+      "amount": {
+        "currency_code": "GBP",
+        "value": "29.99",
+        "breakdown": {
+          "item_total": {
+            "currency_code": "GBP",
+            "value": "24.99"
+          },
+          "tax_total": {
+            "currency_code": "GBP",
+            "value": "5.00"
+          },
+          "shipping": {
+            "currency_code": "GBP",
+            "value": "0.00"
+          },
+          "handling": {
+            "currency_code": "GBP",
+            "value": "0.00"
+          },
+          "discount": {
+            "currency_code": "GBP",
+            "value": "0.00"
+          }
+        }
+      },
+      "items": [
+        {
+          "name": "VIP Monthly Streaming Subscription",
+          "description": "Unlimited UHD streaming, 4 concurrent screens",
+          "quantity": "1",
+          "unit_amount": {
+            "currency_code": "GBP",
+            "value": "24.99"
+          },
+          "category": "DIGITAL_GOODS"
+        }
+      ]
+    }
+  ],
+  "application_context": {
+    "brand_name": "UK Streaming Hub",
+    "locale": "en-GB",
+    "landing_page": "NO_PREFERENCE",
+    "shipping_preference": "NO_SHIPPING",
+    "user_action": "PAY_NOW",
+    "return_url": "https://example.com/checkout/return",
+    "cancel_url": "https://example.com/checkout/cancel"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "5O190127TN364715T",
+  "status": "COMPLETED",
+  "payment_source": {
+    "paypal": {
+      "email_address": "buyer-test@example.com",
+      "account_id": "QZBRLQG5NE5TA",
+      "account_status": "VERIFIED",
+      "name": {
+        "given_name": "Alex",
+        "surname": "Taylor"
+      }
+    }
+  },
+  "purchase_units": [
+    {
+      "reference_id": "PU-STREAMING-001",
+      "shipping": {
+        "name": {
+          "full_name": "Alex Taylor"
+        }
+      },
+      "payments": {
+        "captures": [
+          {
+            "id": "3C679366HH2525463",
+            "status": "COMPLETED",
+            "amount": {
+              "currency_code": "GBP",
+              "value": "29.99"
+            },
+            "final_capture": true,
+            "seller_protection": {
+              "status": "ELIGIBLE",
+              "dispute_categories": [
+                "ITEM_NOT_RECEIVED",
+                "UNAUTHORIZED_TRANSACTION"
+              ]
+            },
+            "seller_receivable_breakdown": {
+              "gross_amount": {
+                "currency_code": "GBP",
+                "value": "29.99"
+              },
+              "paypal_fee": {
+                "currency_code": "GBP",
+                "value": "1.05"
+              },
+              "net_amount": {
+                "currency_code": "GBP",
+                "value": "28.94"
+              }
+            },
+            "create_time": "2026-10-02T19:45:00Z",
+            "update_time": "2026-10-02T19:45:01Z"
+          }
+        ]
+      }
+    }
+  ],
+  "payer": {
+    "name": {
+      "given_name": "Alex",
+      "surname": "Taylor"
+    },
+    "email_address": "buyer-test@example.com",
+    "payer_id": "QZBRLQG5NE5TA"
+  },
+  "links": [
+    {
+      "href": "https://api-m.sandbox.paypal.com/v2/checkout/orders/5O190127TN364715T",
+      "rel": "self",
+      "method": "GET"
+    }
+  ]
+}

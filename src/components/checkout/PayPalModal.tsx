@@ -14,13 +14,14 @@ import {
   Tv,
   CreditCard,
   Sparkles,
-  ChevronRight,
   Info,
   RefreshCw,
+  ExternalLink,
 } from "lucide-react";
-import { PricingPlan } from "@/data/plans";
+import { PricingPlan, CATALOG_CURRENCY } from "@/data/plans";
 import { Button } from "@/components/ui/button";
 import { useScrollLock } from "@/hooks/useScrollLock";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 interface PayPalModalProps {
   isOpen: boolean;
@@ -41,6 +42,12 @@ interface OrderConfirmationData {
   isRenewal?: boolean;
 }
 
+interface PayPalConfigState {
+  isConfigured: boolean;
+  clientId: string;
+  currency: string;
+}
+
 const STREAMING_DEVICES = [
   "Amazon Fire TV Stick",
   "Samsung Smart TV (Tizen)",
@@ -57,15 +64,28 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
   const [address, setAddress] = useState("");
   const [accountIdentifier, setAccountIdentifier] = useState("");
   const [deviceType, setDeviceType] = useState(STREAMING_DEVICES[0]);
-  const [isSubscription, setIsSubscription] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingStep, setProcessingStep] = useState<string>("Connecting to PayPal...");
   const [confirmation, setConfirmation] = useState<OrderConfirmationData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
+  // PayPal Environment Configuration
+  const [payPalConfig, setPayPalConfig] = useState<PayPalConfigState>({
+    isConfigured: false,
+    clientId: "",
+    currency: CATALOG_CURRENCY.code,
+  });
+
+  // Emulation modal state for local testing when keys are unset
+  const [emulatedApprovalOrderId, setEmulatedApprovalOrderId] = useState<string | null>(null);
+
   useEffect(() => {
     setMounted(true);
+    fetch("/api/paypal/config")
+      .then((res) => res.json())
+      .then((data: PayPalConfigState) => setPayPalConfig(data))
+      .catch((err) => console.warn("[PayPal Config Error]:", err));
   }, []);
 
   // Webview-tested position:fixed scroll lock
@@ -73,140 +93,15 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
 
   if (!isOpen || !plan) return null;
 
-  const currency = plan.currencySymbol || "€";
+  const currency = plan.currencySymbol || CATALOG_CURRENCY.symbol;
   const needsDeliveryAddress = plan.isBoxBundle || plan.isHardwareOnly;
   const isRenewal = Boolean(plan.isRenewal);
   const payIn3Amount = (plan.price / 3).toFixed(2);
 
-  const handleExecutePayPalCheckout = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !email.includes("@")) {
-      setError("Please enter a valid email address to receive your activation credentials.");
-      return;
-    }
-    if (isRenewal && !accountIdentifier.trim()) {
-      setError("Please enter your existing ChitramTV Account Number, Username, or Box MAC Address to process your renewal.");
-      return;
-    }
-    if (needsDeliveryAddress && !address.trim()) {
-      setError("Please enter your delivery address for ChitramTV Black Edition C1 Box courier dispatch.");
-      return;
-    }
-
-    setError(null);
-    setIsProcessing(true);
-
-    try {
-      if (isSubscription && !needsDeliveryAddress && !isRenewal) {
-        // Step 1: Initialize Recurring Subscription via PayPal REST API
-        setProcessingStep("Initializing PayPal Subscription...");
-        const subRes = await fetch("/api/paypal/create-subscription", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            planId: plan.id,
-            email,
-            subscriberName: email.split("@")[0],
-          }),
-        });
-
-        if (!subRes.ok) {
-          const errData = await subRes.json();
-          throw new Error(errData.error || "Subscription creation failed");
-        }
-
-        const subData = await subRes.json();
-        setProcessingStep("Activating Subscription via PayPal...");
-
-        // Seamless approval simulation
-        await new Promise((r) => setTimeout(r, 900));
-
-        setConfirmation({
-          orderId: subData.subscriptionId,
-          captureId: `SUB-${subData.subscriptionId.substring(2, 10)}`,
-          referenceId: `UK-CHITRAM-${Math.floor(10000 + Math.random() * 90000)}`,
-          customerEmail: email,
-          customerWhatsapp: whatsapp || undefined,
-          deviceType,
-          dispatchTime: "Instant (within 60-120s)",
-          capturedAt: new Date().toISOString(),
-        });
-      } else {
-        // Step 1: Initialize One-Time Order via PayPal Orders v2 REST API
-        setProcessingStep("Creating PayPal Order...");
-        const createRes = await fetch("/api/paypal/create-order", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            planId: plan.id,
-            email,
-            accountIdentifier: isRenewal ? accountIdentifier : undefined,
-            isRenewal,
-            shippingAddress: needsDeliveryAddress
-              ? {
-                  fullName: email.split("@")[0],
-                  addressLine1: address,
-                  city: "UK",
-                  postalCode: "UK",
-                  country: "GB",
-                }
-              : undefined,
-          }),
-        });
-
-        if (!createRes.ok) {
-          const errData = await createRes.json();
-          throw new Error(errData.error || "Failed to create PayPal order");
-        }
-
-        const { orderId } = await createRes.json();
-        setProcessingStep("Authorizing via PayPal Buyer Protection...");
-
-        // Step 2: Capture Authorized Payment
-        const captureRes = await fetch("/api/paypal/capture-order", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            orderId,
-            planId: plan.id,
-            email,
-            whatsapp,
-            deviceType,
-            accountIdentifier: isRenewal ? accountIdentifier : undefined,
-          }),
-        });
-
-        if (!captureRes.ok) {
-          const errData = await captureRes.json();
-          throw new Error(errData.error || "Failed to capture PayPal order");
-        }
-
-        const captureData = await captureRes.json();
-
-        setConfirmation({
-          orderId: captureData.orderId,
-          captureId: captureData.captureId,
-          referenceId: captureData.referenceId,
-          customerEmail: email,
-          customerWhatsapp: whatsapp || undefined,
-          deviceType,
-          accountIdentifier: isRenewal ? accountIdentifier : undefined,
-          isRenewal,
-          dispatchTime: isRenewal
-            ? "Applied to existing line within 2 hours"
-            : needsDeliveryAddress
-            ? "Tracked 24-48h Courier Dispatch"
-            : "Instant (<2 minutes via WhatsApp & Email)",
-          capturedAt: captureData.capturedAt,
-        });
-      }
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "PayPal transaction could not be completed";
-      setError(message);
-    } finally {
-      setIsProcessing(false);
-    }
-  };
+  const isFormValid =
+    Boolean(email && email.includes("@")) &&
+    (!isRenewal || Boolean(accountIdentifier.trim())) &&
+    (!needsDeliveryAddress || Boolean(address.trim()));
 
   const handleResetAndClose = () => {
     setConfirmation(null);
@@ -215,7 +110,111 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
     setWhatsapp("");
     setAddress("");
     setAccountIdentifier("");
+    setEmulatedApprovalOrderId(null);
+    setIsProcessing(false);
     onClose();
+  };
+
+  /**
+   * Emulation mode handler (when no live API keys are configured)
+   * Honors the 2-step Create -> Approve -> Capture lifecycle cleanly.
+   */
+  const handleStartEmulatedCheckout = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isFormValid) {
+      setError("Please complete all required fields highlighted above.");
+      return;
+    }
+
+    setError(null);
+    setIsProcessing(true);
+    setProcessingStep("Creating Sandbox Order...");
+
+    try {
+      const res = await fetch("/api/paypal/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          planId: plan.id,
+          email,
+          accountIdentifier: isRenewal ? accountIdentifier : undefined,
+          isRenewal,
+          shippingAddress: needsDeliveryAddress
+            ? {
+                fullName: email.split("@")[0],
+                addressLine1: address,
+                city: "UK",
+                postalCode: "UK",
+                country: "GB",
+              }
+            : undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Failed to create sandbox order");
+      }
+
+      const { orderId } = await res.json();
+      // Prompt user to simulate approval
+      setEmulatedApprovalOrderId(orderId);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Sandbox initiation failed";
+      setError(msg);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleConfirmEmulatedApproval = async () => {
+    if (!emulatedApprovalOrderId) return;
+    setIsProcessing(true);
+    setProcessingStep("Capturing Authorized Payment...");
+
+    try {
+      const captureRes = await fetch("/api/paypal/capture-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId: emulatedApprovalOrderId,
+          planId: plan.id,
+          email,
+          whatsapp,
+          deviceType,
+          accountIdentifier: isRenewal ? accountIdentifier : undefined,
+        }),
+      });
+
+      if (!captureRes.ok) {
+        const errData = await captureRes.json();
+        throw new Error(errData.error || "Failed to capture sandbox order");
+      }
+
+      const captureData = await captureRes.json();
+      setConfirmation({
+        orderId: captureData.orderId,
+        captureId: captureData.captureId,
+        referenceId: captureData.referenceId,
+        customerEmail: email,
+        customerWhatsapp: whatsapp || undefined,
+        deviceType,
+        accountIdentifier: isRenewal ? accountIdentifier : undefined,
+        isRenewal,
+        dispatchTime: isRenewal
+          ? "Applied to existing line within 2 hours"
+          : needsDeliveryAddress
+          ? "Tracked 24-48h Courier Dispatch"
+          : "Instant (<2 minutes via WhatsApp & Email)",
+        capturedAt: captureData.capturedAt,
+      });
+      setEmulatedApprovalOrderId(null);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Capture failed";
+      setError(msg);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const modalContent = (
@@ -223,16 +222,16 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="paypal-checkout-title"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
     >
       <div
-        className="relative w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-950 p-5 sm:p-7 shadow-2xl overflow-y-auto max-h-[92dvh] scrollbar-none overscroll-contain"
+        className="relative w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-950 p-4 sm:p-6 shadow-2xl overflow-y-auto max-h-[90dvh] scrollbar-none overscroll-contain"
         style={{ overscrollBehavior: "contain" }}
       >
-        {/* Close Button with 44px min tap area */}
+        {/* Close Button with 48px touch area */}
         <button
           onClick={handleResetAndClose}
-          className="absolute right-4 top-4 rounded-full p-2.5 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
+          className="absolute right-3.5 top-3.5 rounded-full p-3 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none min-h-[48px] min-w-[48px] flex items-center justify-center cursor-pointer"
           aria-label="Close modal"
         >
           <X className="h-5 w-5" />
@@ -255,7 +254,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
             </p>
 
             {/* Plan Breakdown Card */}
-            <div className="my-4 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 space-y-3">
+            <div className="my-3.5 rounded-xl border border-zinc-800 bg-zinc-900/60 p-3.5 sm:p-4 space-y-3">
               <div className="flex justify-between items-start gap-2">
                 <div>
                   <div className="text-base sm:text-lg font-bold text-white flex flex-wrap items-center gap-2">
@@ -305,7 +304,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                 </div>
                 <div className="flex justify-between">
                   <span>VAT &amp; Taxes</span>
-                  <span className="text-zinc-300">{currency}{(plan.price * 0.20 / 1.20).toFixed(2)} (Included)</span>
+                  <span className="text-zinc-300">{currency}{((plan.price * 0.20) / 1.20).toFixed(2)} (Included)</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Activation &amp; Digital Setup</span>
@@ -318,180 +317,318 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
               </div>
             </div>
 
-            {/* Billing Mode Toggle (for standard new subscription passes) */}
-            {!plan.isHardwareOnly && !isRenewal && (
-              <div className="mb-4 rounded-xl border border-zinc-800 bg-zinc-900/40 p-2.5 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-amber-400 shrink-0" />
-                  <div>
-                    <div className="font-semibold text-white">Billing Preference</div>
-                    <div className="text-[11px] text-zinc-400">
-                      {isSubscription ? "Auto-renews at end of period" : "One-time pass (no recurring charges)"}
-                    </div>
-                  </div>
+            {/* Simulated Approval Drawer if in local emulation mode */}
+            {emulatedApprovalOrderId ? (
+              <div className="my-4 rounded-xl border border-amber-500/40 bg-amber-500/10 p-4 space-y-3 animate-in fade-in">
+                <div className="flex items-center gap-2 text-amber-400">
+                  <Sparkles className="h-5 w-5 shrink-0" />
+                  <span className="text-sm font-bold">PayPal Sandbox Approval Simulation</span>
+                </div>
+                <p className="text-xs text-zinc-300 leading-relaxed">
+                  In a production environment, PayPal opens an authentication popup where the customer confirms payment. Tap below to simulate successful buyer authorization:
+                </p>
+                <div className="bg-zinc-900/80 p-2.5 rounded-lg text-xs space-y-1 font-mono text-zinc-400 border border-zinc-800">
+                  <div>Order ID: <span className="text-white">{emulatedApprovalOrderId}</span></div>
+                  <div>Buyer: <span className="text-white">{email}</span></div>
+                  <div>Amount: <span className="text-emerald-400">{currency}{plan.price.toFixed(2)}</span></div>
                 </div>
                 <button
                   type="button"
-                  onClick={() => setIsSubscription(!isSubscription)}
-                  className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-colors min-h-[36px] ${
-                    isSubscription
-                      ? "bg-primary text-white"
-                      : "bg-zinc-800 text-zinc-300 hover:text-white"
-                  }`}
+                  onClick={handleConfirmEmulatedApproval}
+                  disabled={isProcessing}
+                  className="w-full min-h-[48px] rounded-xl bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-extrabold text-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.98] cursor-pointer"
                 >
-                  {isSubscription ? "Recurring Pass" : "One-Time Pass"}
+                  {isProcessing ? (
+                    <span className="flex items-center gap-2">
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-950 border-t-transparent" />
+                      <span>{processingStep}</span>
+                    </span>
+                  ) : (
+                    <span>Authorize &amp; Complete Capture</span>
+                  )}
                 </button>
               </div>
-            )}
-
-            {/* Mobile-Friendly Input Form */}
-            <form onSubmit={handleExecutePayPalCheckout} className="space-y-3.5">
-              {/* Existing Account Identifier for Renewal */}
-              {isRenewal && (
-                <div className="rounded-xl border border-primary/40 bg-primary/5 p-3.5 space-y-2">
-                  <div className="flex items-center gap-2">
-                    <RefreshCw className="h-4 w-4 text-primary shrink-0" />
-                    <label className="block text-xs font-bold text-white">
-                      Existing Account / MAC Address <span className="text-primary">*</span>
-                    </label>
-                  </div>
-                  <p className="text-[11px] text-zinc-400 leading-relaxed">
-                    Enter your existing ChitramTV Account Number, Username, or Box MAC Address (found under Box Settings &gt; System Info or your activation message).
-                  </p>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. CTV-88492 or 00:1A:79:XX:XX:XX"
-                    value={accountIdentifier}
-                    onChange={(e) => setAccountIdentifier(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3.5 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
-                  />
-                </div>
-              )}
-
-              {/* Email Input */}
-              <div>
-                <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                  Email Address <span className="text-primary">*</span>
-                </label>
-                <div className="relative">
-                  <Mail className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
-                  <input
-                    type="email"
-                    required
-                    placeholder="your-email@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
-                  />
-                </div>
-              </div>
-
-              {/* WhatsApp Optional Number for instant dispatch */}
-              <div>
-                <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                  WhatsApp Number (Optional for &lt;2 min mobile dispatch)
-                </label>
-                <div className="relative">
-                  <MessageSquare className="absolute left-3.5 top-3.5 h-4 w-4 text-emerald-400 pointer-events-none" />
-                  <input
-                    type="tel"
-                    placeholder="+44 7123 456789"
-                    value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
-                  />
-                </div>
-              </div>
-
-              {/* Streaming Device Selection */}
-              <div>
-                <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                  Primary Device
-                </label>
-                <div className="relative">
-                  <Tv className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
-                  <select
-                    value={deviceType}
-                    onChange={(e) => setDeviceType(e.target.value)}
-                    className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px] appearance-none"
-                  >
-                    {STREAMING_DEVICES.map((d) => (
-                      <option key={d} value={d} className="bg-zinc-900 text-white">
-                        {d}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Hardware Delivery Address if applicable */}
-              {needsDeliveryAddress && (
-                <div>
-                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                    Delivery Address for Box Courier <span className="text-primary">*</span>
-                  </label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
+            ) : (
+              /* Mobile Form */
+              <form onSubmit={handleStartEmulatedCheckout} className="space-y-3">
+                {/* Existing Account Identifier for Renewal */}
+                {isRenewal && (
+                  <div className="rounded-xl border border-primary/40 bg-primary/5 p-3 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <RefreshCw className="h-4 w-4 text-primary shrink-0" />
+                      <label className="block text-xs font-bold text-white">
+                        Existing Account / MAC Address <span className="text-primary">*</span>
+                      </label>
+                    </div>
+                    <p className="text-[11px] text-zinc-400 leading-relaxed">
+                      Enter your existing ChitramTV Account Number, Username, or Box MAC Address.
+                    </p>
                     <input
                       type="text"
                       required
-                      placeholder="Street, City, Postcode, UK"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder="e.g. CTV-88492 or 00:1A:79:XX:XX:XX"
+                      value={accountIdentifier}
+                      onChange={(e) => setAccountIdentifier(e.target.value)}
+                      className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3.5 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
+                    />
+                  </div>
+                )}
+
+                {/* Email Input */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    Email Address <span className="text-primary">*</span>
+                  </label>
+                  <div className="relative">
+                    <Mail className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
+                    <input
+                      type="email"
+                      required
+                      placeholder="your-email@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
                     />
                   </div>
                 </div>
-              )}
 
-              {error && (
-                <div className="flex items-center gap-2 p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-xs">
-                  <AlertCircle className="h-4 w-4 shrink-0" />
-                  <span>{error}</span>
+                {/* WhatsApp Optional Number */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    WhatsApp Number (Optional for &lt;2 min mobile dispatch)
+                  </label>
+                  <div className="relative">
+                    <MessageSquare className="absolute left-3.5 top-3.5 h-4 w-4 text-emerald-400 pointer-events-none" />
+                    <input
+                      type="tel"
+                      placeholder="+44 7123 456789"
+                      value={whatsapp}
+                      onChange={(e) => setWhatsapp(e.target.value)}
+                      className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
+                    />
+                  </div>
                 </div>
-              )}
 
-              {/* Official PayPal Action Button */}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isProcessing}
-                  className="w-full min-h-[50px] rounded-xl bg-[#FFC439] hover:bg-[#F2BA36] text-[#003087] font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-transform active:scale-[0.98] disabled:opacity-60 shadow-lg select-none cursor-pointer"
-                >
-                  {isProcessing ? (
-                    <span className="flex items-center gap-2 text-[#003087]">
-                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#003087] border-t-transparent" />
-                      <span>{processingStep}</span>
-                    </span>
+                {/* Streaming Device Selection */}
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    Primary Device
+                  </label>
+                  <div className="relative">
+                    <Tv className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
+                    <select
+                      value={deviceType}
+                      onChange={(e) => setDeviceType(e.target.value)}
+                      className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px] appearance-none"
+                    >
+                      {STREAMING_DEVICES.map((d) => (
+                        <option key={d} value={d} className="bg-zinc-900 text-white">
+                          {d}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Hardware Delivery Address if applicable */}
+                {needsDeliveryAddress && (
+                  <div>
+                    <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                      Delivery Address for Box Courier <span className="text-primary">*</span>
+                    </label>
+                    <div className="relative">
+                      <MapPin className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-400 pointer-events-none" />
+                      <input
+                        type="text"
+                        required
+                        placeholder="Street, City, Postcode, UK"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-10 py-2.5 text-base sm:text-sm text-white placeholder:text-zinc-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {error && (
+                  <div className="flex items-center gap-2 p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-xs">
+                    <AlertCircle className="h-4 w-4 shrink-0" />
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                {/* Official PayPal Buttons Container */}
+                <div className="pt-2">
+                  {payPalConfig.isConfigured && payPalConfig.clientId ? (
+                    <div className="space-y-2">
+                      {!isFormValid && (
+                        <p className="text-[11px] text-amber-400 text-center font-medium">
+                          Please enter your email above to activate PayPal Checkout
+                        </p>
+                      )}
+                      <div className={!isFormValid ? "opacity-50 pointer-events-none" : ""}>
+                        <PayPalScriptProvider
+                          options={{
+                            clientId: payPalConfig.clientId,
+                            currency: CATALOG_CURRENCY.code,
+                            intent: "capture",
+                            components: "buttons",
+                          }}
+                        >
+                          <PayPalButtons
+                            style={{
+                              layout: "vertical",
+                              color: "gold",
+                              shape: "rect",
+                              height: 48,
+                              label: "paypal",
+                            }}
+                            disabled={!isFormValid || isProcessing}
+                            createOrder={async () => {
+                              setIsProcessing(true);
+                              setError(null);
+                              try {
+                                const res = await fetch("/api/paypal/create-order", {
+                                  method: "POST",
+                                  headers: { "Content-Type": "application/json" },
+                                  body: JSON.stringify({
+                                    planId: plan.id,
+                                    email,
+                                    accountIdentifier: isRenewal ? accountIdentifier : undefined,
+                                    isRenewal,
+                                    shippingAddress: needsDeliveryAddress
+                                      ? {
+                                          fullName: email.split("@")[0],
+                                          addressLine1: address,
+                                          city: "UK",
+                                          postalCode: "UK",
+                                          country: "GB",
+                                        }
+                                      : undefined,
+                                  }),
+                                });
+
+                                if (!res.ok) {
+                                  const err = await res.json();
+                                  throw new Error(err.error || "Order creation failed");
+                                }
+
+                                const data = await res.json();
+                                return data.orderId;
+                              } catch (err: unknown) {
+                                const msg = err instanceof Error ? err.message : "Error initializing order";
+                                setError(msg);
+                                throw err;
+                              } finally {
+                                setIsProcessing(false);
+                              }
+                            }}
+                            onApprove={async (data, actions) => {
+                              setIsProcessing(true);
+                              setProcessingStep("Verifying payment with PayPal...");
+                              try {
+                                const res = await fetch("/api/paypal/capture-order", {
+                                  method: "POST",
+                                  headers: { "Content-Type": "application/json" },
+                                  body: JSON.stringify({
+                                    orderId: data.orderID,
+                                    planId: plan.id,
+                                    email,
+                                    whatsapp,
+                                    deviceType,
+                                    accountIdentifier: isRenewal ? accountIdentifier : undefined,
+                                  }),
+                                });
+
+                                const captureData = await res.json();
+
+                                if (captureData?.issue === "INSTRUMENT_DECLINED") {
+                                  // Recoverable decline: prompt customer to select alternate funding source in PayPal
+                                  setError("Your card was declined. Please try another card or bank in PayPal.");
+                                  return actions.restart();
+                                }
+
+                                if (!res.ok) {
+                                  throw new Error(captureData.error || "Failed to capture payment");
+                                }
+
+                                setConfirmation({
+                                  orderId: captureData.orderId,
+                                  captureId: captureData.captureId,
+                                  referenceId: captureData.referenceId,
+                                  customerEmail: email,
+                                  customerWhatsapp: whatsapp || undefined,
+                                  deviceType,
+                                  accountIdentifier: isRenewal ? accountIdentifier : undefined,
+                                  isRenewal,
+                                  dispatchTime: isRenewal
+                                    ? "Applied to existing line within 2 hours"
+                                    : needsDeliveryAddress
+                                    ? "Tracked 24-48h Courier Dispatch"
+                                    : "Instant (<2 minutes via WhatsApp & Email)",
+                                  capturedAt: captureData.capturedAt,
+                                });
+                              } catch (err: unknown) {
+                                const msg = err instanceof Error ? err.message : "Transaction capture error";
+                                setError(msg);
+                              } finally {
+                                setIsProcessing(false);
+                              }
+                            }}
+                            onError={(err) => {
+                              console.error("[PayPal SDK Error]:", err);
+                              setError("PayPal checkout error. Please refresh and try again.");
+                              setIsProcessing(false);
+                            }}
+                            onCancel={() => {
+                              setIsProcessing(false);
+                            }}
+                          />
+                        </PayPalScriptProvider>
+                      </div>
+                    </div>
                   ) : (
-                    <span className="flex items-center gap-2">
-                      <span className="italic font-black text-lg text-[#003087]">Pay</span>
-                      <span className="italic font-black text-lg text-[#0079C1]">Pal</span>
-                      <span className="text-[#003087] font-bold text-sm ml-1">
-                        &bull; Pay {currency}{plan.price.toFixed(2)}
-                      </span>
-                    </span>
+                    /* Fallback Button for Development / Sandbox Emulation */
+                    <button
+                      type="submit"
+                      disabled={isProcessing || !isFormValid}
+                      className="w-full min-h-[50px] rounded-xl bg-[#FFC439] hover:bg-[#F2BA36] text-[#003087] font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-transform active:scale-[0.98] disabled:opacity-60 shadow-lg select-none cursor-pointer"
+                    >
+                      {isProcessing ? (
+                        <span className="flex items-center gap-2 text-[#003087]">
+                          <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#003087] border-t-transparent" />
+                          <span>{processingStep}</span>
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <span className="italic font-black text-lg text-[#003087]">Pay</span>
+                          <span className="italic font-black text-lg text-[#0079C1]">Pal</span>
+                          <span className="text-[#003087] font-bold text-sm ml-1">
+                            &bull; Pay {currency}{plan.price.toFixed(2)}
+                          </span>
+                        </span>
+                      )}
+                    </button>
                   )}
-                </button>
-              </div>
+                </div>
 
-              {/* Trust & Guarantee Markers */}
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 pt-2 text-[11px] text-zinc-400">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-                  PayPal Buyer Protection
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Lock className="h-3.5 w-3.5 text-zinc-400" />
-                  256-Bit SSL Encrypted
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Info className="h-3.5 w-3.5 text-zinc-400" />
-                  {needsDeliveryAddress ? "1-Year Hardware Warranty" : "7-Day Money-Back Guarantee"}
-                </span>
-              </div>
-            </form>
+                {/* Trust & Guarantee Markers */}
+                <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 pt-2 text-[11px] text-zinc-400">
+                  <span className="flex items-center gap-1.5">
+                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                    PayPal Buyer Protection
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Lock className="h-3.5 w-3.5 text-zinc-400" />
+                    256-Bit SSL Encrypted
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Info className="h-3.5 w-3.5 text-zinc-400" />
+                    {needsDeliveryAddress ? "1-Year Hardware Warranty" : "7-Day Money-Back Guarantee"}
+                  </span>
+                </div>
+              </form>
+            )}
           </div>
         ) : (
           /* Order Confirmed & Receipt View */
@@ -510,7 +647,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
             <p className="text-xs sm:text-sm text-zinc-400 max-w-sm mx-auto">
               {confirmation.isRenewal
                 ? `Your 14-month service extension has been linked to existing account ${confirmation.accountIdentifier}. Notification sent to:`
-                : "Your ChitramTV streaming credentials and activation instructions are being delivered to:"}
+                : "Your streaming credentials and activation instructions are being delivered to:"}
             </p>
             <div className="font-mono text-xs sm:text-sm text-primary font-bold bg-zinc-900 py-1.5 px-3 rounded-lg inline-block break-all max-w-full border border-zinc-800">
               {confirmation.customerEmail}
@@ -559,8 +696,9 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
               >
                 Return to Site
               </Button>
-              <p className="text-[11px] text-zinc-400">
-                Need instant setup advice or renewal verification? WhatsApp ChitramTV Help Desk at +31 6 20897414
+              <p className="text-[11px] text-zinc-400 flex items-center justify-center gap-1">
+                <span>Need instant setup advice or renewal verification? Contact UK Help Desk</span>
+                <ExternalLink className="h-3 w-3 inline" />
               </p>
             </div>
           </div>

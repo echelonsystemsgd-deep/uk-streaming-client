@@ -5,6 +5,7 @@ import {
   CreateSubscriptionPayload,
   PayPalSubscriptionResponse,
 } from "./types";
+import { CATALOG_CURRENCY } from "@/data/plans";
 
 const PAYPAL_ENV = process.env.PAYPAL_ENVIRONMENT || "sandbox";
 const PAYPAL_API_BASE =
@@ -14,6 +15,10 @@ const PAYPAL_API_BASE =
 
 const CLIENT_ID = process.env.PAYPAL_CLIENT_ID || "";
 const CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET || "";
+
+// In-memory token cache to prevent repeated OAuth token handshakes
+let cachedToken: string | null = null;
+let tokenExpiresAt = 0;
 
 /**
  * Checks if production/sandbox API keys are supplied or if placeholder mode is active.
@@ -31,11 +36,24 @@ export function isPayPalConfigured(): boolean {
 }
 
 /**
- * Retrieves OAuth 2.0 bearer token from PayPal Identity Services.
+ * Returns the public Client ID for frontend SDK rendering.
  */
-export async function getPayPalAccessToken(): Promise<string> {
+export function getPayPalClientId(): string {
+  return CLIENT_ID;
+}
+
+/**
+ * Retrieves OAuth 2.0 bearer token from PayPal Identity Services with in-memory caching.
+ */
+export async function getPayPalAccessToken(forceRefresh = false): Promise<string> {
   if (!isPayPalConfigured()) {
     return "MOCK_PAYPAL_ACCESS_TOKEN";
+  }
+
+  const now = Date.now();
+  // Reuse token if valid and not within 60 seconds of expiring
+  if (!forceRefresh && cachedToken && now < tokenExpiresAt - 60000) {
+    return cachedToken;
   }
 
   const auth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
@@ -45,6 +63,8 @@ export async function getPayPalAccessToken(): Promise<string> {
     headers: {
       Authorization: `Basic ${auth}`,
       "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+      "Accept-Language": "en_US",
     },
     body: "grant_type=client_credentials",
   });
@@ -55,15 +75,19 @@ export async function getPayPalAccessToken(): Promise<string> {
   }
 
   const data = await response.json();
-  return data.access_token;
+  const accessToken: string = data.access_token;
+  cachedToken = accessToken;
+  tokenExpiresAt = now + (data.expires_in || 32400) * 1000;
+  return accessToken;
 }
 
 /**
- * Creates an order via PayPal Orders v2 API.
+ * Creates an order via PayPal Orders v2 API with idempotency protection.
  * Spec: checkout_orders_v2.json
  */
 export async function createPayPalOrder(
-  payload: CreateOrderPayload
+  payload: CreateOrderPayload,
+  requestId?: string
 ): Promise<PayPalOrderResponse> {
   if (!isPayPalConfigured()) {
     // High-fidelity Sandbox Emulation for prototyping without active API secrets
@@ -94,6 +118,7 @@ export async function createPayPalOrder(
   }
 
   const accessToken = await getPayPalAccessToken();
+  const idempotencyId = requestId || crypto.randomUUID();
 
   const response = await fetch(`${PAYPAL_API_BASE}/v2/checkout/orders`, {
     method: "POST",
@@ -101,34 +126,36 @@ export async function createPayPalOrder(
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
       Prefer: "return=representation",
+      "PayPal-Request-Id": idempotencyId,
     },
     body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`PayPal Create Order error: ${response.status} - ${errorBody}`);
+    throw new Error(`PayPal Create Order error (${response.status}): ${errorBody}`);
   }
 
   return response.json();
 }
 
 /**
- * Captures an authorized PayPal order.
+ * Captures an authorized PayPal order with idempotency protection and decline handling.
  * Spec: checkout_orders_v2.json (Capture an order)
  */
 export async function capturePayPalOrder(
-  orderId: string
+  orderId: string,
+  requestId?: string
 ): Promise<PayPalCaptureResponse> {
   if (!isPayPalConfigured()) {
-    // High-fidelity Sandbox Emulation response
+    // High-fidelity Sandbox Emulation response aligned with CATALOG_CURRENCY
     const mockCaptureId = `CAP-${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
     return {
       id: orderId,
       status: "COMPLETED",
       payment_source: {
         paypal: {
-          email_address: "customer@chitramtv.eu",
+          email_address: "customer@example.com",
           account_id: "SANDBOX_ACCOUNT_ID",
           name: { given_name: "Valued", surname: "Customer" },
         },
@@ -141,7 +168,7 @@ export async function capturePayPalOrder(
               {
                 id: mockCaptureId,
                 status: "COMPLETED",
-                amount: { currency_code: "EUR", value: "109.00" },
+                amount: { currency_code: CATALOG_CURRENCY.code, value: "89.99" },
                 seller_protection: {
                   status: "ELIGIBLE",
                   dispute_categories: [
@@ -159,6 +186,7 @@ export async function capturePayPalOrder(
   }
 
   const accessToken = await getPayPalAccessToken();
+  const idempotencyId = requestId || crypto.randomUUID();
 
   const response = await fetch(`${PAYPAL_API_BASE}/v2/checkout/orders/${orderId}/capture`, {
     method: "POST",
@@ -166,12 +194,28 @@ export async function capturePayPalOrder(
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
       Prefer: "return=representation",
+      "PayPal-Request-Id": idempotencyId,
     },
   });
 
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`PayPal Capture Order error: ${response.status} - ${errorBody}`);
+    let parsedError: Record<string, unknown> | null = null;
+    try {
+      parsedError = JSON.parse(errorBody);
+    } catch {
+      // Non-JSON response
+    }
+
+    const details = parsedError?.details as Array<{ issue?: string; description?: string }> | undefined;
+    const issue = details?.[0]?.issue || "";
+    const debugId = parsedError?.debug_id || "";
+
+    const error = new Error(`PayPal Capture Order error (${response.status}) [DebugId: ${debugId}]: ${errorBody}`);
+    // Attach issue code for frontend recovery (e.g. INSTRUMENT_DECLINED)
+    (error as Error & { issue?: string; debugId?: string }).issue = issue;
+    (error as Error & { issue?: string; debugId?: string }).debugId = String(debugId);
+    throw error;
   }
 
   return response.json();
@@ -182,7 +226,8 @@ export async function capturePayPalOrder(
  * Spec: billing_subscriptions_v1.json
  */
 export async function createPayPalSubscription(
-  payload: CreateSubscriptionPayload
+  payload: CreateSubscriptionPayload,
+  requestId?: string
 ): Promise<PayPalSubscriptionResponse> {
   if (!isPayPalConfigured()) {
     const mockSubId = `I-SANDBOX-${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
@@ -205,6 +250,7 @@ export async function createPayPalSubscription(
   }
 
   const accessToken = await getPayPalAccessToken();
+  const idempotencyId = requestId || crypto.randomUUID();
 
   const response = await fetch(`${PAYPAL_API_BASE}/v1/billing/subscriptions`, {
     method: "POST",
@@ -212,20 +258,21 @@ export async function createPayPalSubscription(
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
       Prefer: "return=representation",
+      "PayPal-Request-Id": idempotencyId,
     },
     body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`PayPal Subscription Create error: ${response.status} - ${errorBody}`);
+    throw new Error(`PayPal Subscription Create error (${response.status}): ${errorBody}`);
   }
 
   return response.json();
 }
 
 /**
- * Verifies webhook signatures to ensure notifications originate from PayPal.
+ * Verifies webhook signatures to ensure notifications originate strictly from PayPal.
  * Spec: notifications_webhooks_v1.json
  */
 export async function verifyPayPalWebhookSignature(params: {
@@ -238,7 +285,13 @@ export async function verifyPayPalWebhookSignature(params: {
   webhookEvent: Record<string, unknown>;
 }): Promise<boolean> {
   if (!isPayPalConfigured()) {
-    return true; // Auto-pass in sandbox/mock development
+    // In local sandbox mock without keys, require at least headers to be present
+    return Boolean(params.transmissionId && params.transmissionSig);
+  }
+
+  if (!params.webhookId || params.webhookId.includes("placeholder")) {
+    console.error("[PayPal Webhook Error]: PAYPAL_WEBHOOK_ID is unconfigured.");
+    return false;
   }
 
   const accessToken = await getPayPalAccessToken();
@@ -260,7 +313,11 @@ export async function verifyPayPalWebhookSignature(params: {
     }),
   });
 
-  if (!response.ok) return false;
+  if (!response.ok) {
+    const errText = await response.text();
+    console.warn(`[PayPal Webhook Verify Failed] Status ${response.status}: ${errText}`);
+    return false;
+  }
 
   const data = await response.json();
   return data.verification_status === "SUCCESS";

@@ -16,8 +16,8 @@ export async function POST(request: Request) {
 
     const plan = PRICING_PLANS.find((p) => p.id === planId) || {
       id: planId || "plan-custom",
-      name: "ChitramTV Service Pass",
-      price: 109.0,
+      name: "UK Streaming Pass",
+      price: 89.99,
       devices: 4,
     };
 
@@ -36,9 +36,9 @@ export async function POST(request: Request) {
 
     const captureId =
       captureResult.purchase_units?.[0]?.payments?.captures?.[0]?.id ||
-      `CAP-${orderId.substring(orderId.length - 8)}`;
+      `CAP-${orderId.substring(Math.max(0, orderId.length - 8))}`;
 
-    const referenceId = `UK-CHITRAM-${Math.floor(10000 + Math.random() * 90000)}`;
+    const referenceId = `UK-STREAM-${Math.floor(10000 + Math.random() * 90000)}`;
 
     return NextResponse.json({
       success: true,
@@ -47,9 +47,9 @@ export async function POST(request: Request) {
       captureId,
       referenceId,
       customer: {
-        email: email || captureResult.payment_source?.paypal?.email_address || "customer@chitramtv.eu",
+        email: email || captureResult.payment_source?.paypal?.email_address || "customer@example.com",
         whatsapp: whatsapp || null,
-        deviceType: deviceType || "Smart TV / Firestick",
+        deviceType: deviceType || "Amazon Fire TV Stick",
         macAddress: macAddress || accountIdentifier || null,
         accountIdentifier: accountIdentifier || macAddress || null,
       },
@@ -66,10 +66,33 @@ export async function POST(request: Request) {
       capturedAt: new Date().toISOString(),
     });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : "Internal Server Error";
-    console.error("[PayPal Capture Order Error]:", message);
+    const errObj = error as Error & { issue?: string; debugId?: string };
+    const message = errObj?.message || "Internal Server Error";
+    const issue = errObj?.issue || "";
+    const debugId = errObj?.debugId || "";
+
+    console.error(`[PayPal Capture Order Error] [DebugId: ${debugId}] [Issue: ${issue}]:`, message);
+
+    // If instrument was declined, send specific recoverable code so client can trigger actions.restart()
+    if (issue === "INSTRUMENT_DECLINED") {
+      return NextResponse.json(
+        {
+          error: "Your card or funding source was declined. Please try another payment method in PayPal.",
+          issue: "INSTRUMENT_DECLINED",
+          recoverable: true,
+          debugId,
+        },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json(
-      { error: "Failed to capture PayPal payment", details: message },
+      {
+        error: "Failed to capture PayPal payment",
+        details: message,
+        issue: issue || undefined,
+        debugId: debugId || undefined,
+      },
       { status: 500 }
     );
   }

@@ -1,0 +1,46 @@
+interface:
+  display_name: "PayPal REST API"
+  short_description: "Integrate PayPal REST APIs (v1/v2), Orders, Captures, Webhooks, and Subscriptions."
+  default_model: "gpt-4o"
+  icon: "credit-card"
+  category: "Payments & Commerce"
+
+agent:
+  name: "paypal-rest-api"
+  description: "Specialized assistant for implementing, debugging, and auditing PayPal REST API integrations with zero errors."
+  system_instructions: |
+    You are an expert PayPal REST API integration engineer. When helping users implement or troubleshoot PayPal APIs:
+    1. Always enforce OAuth2 token caching (reusing access tokens until near expiration).
+    2. Enforce the `PayPal-Request-Id` idempotency header on all mutating POST and PATCH operations.
+    3. Ensure all money values are formatted as strict strings with 2 decimal places for decimal currencies (e.g., '19.99' GBP/USD/EUR).
+    4. Mandate cryptographic webhook signature verification via the `/v1/notifications/verify-webhook-signature` endpoint.
+    5. Never expose client secrets in client-side code; isolate all REST API calls to backend servers.
+    6. Consult the skill references in `references/` whenever detailed schema fields or edge case error codes are needed.
+
+triggers:
+  - "paypal"
+  - "paypal rest api"
+  - "paypal checkout"
+  - "paypal orders v2"
+  - "paypal capture"
+  - "paypal webhooks"
+  - "paypal subscriptions"
+  - "verify webhook signature"
+
+capabilities:
+  - "orders_v2_management"
+  - "payments_and_refunds"
+  - "webhook_verification"
+  - "subscription_lifecycle"
+  - "idempotency_handling"
+
+parameters:
+  environment:
+    type: string
+    enum: ["sandbox", "production"]
+    default: "sandbox"
+    description: "Target PayPal environment."
+  currency:
+    type: string
+    default: "GBP"
+    description: "ISO-4217 three-letter currency code."

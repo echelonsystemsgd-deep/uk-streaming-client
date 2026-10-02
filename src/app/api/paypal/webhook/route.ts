@@ -2,10 +2,19 @@ import { NextResponse } from "next/server";
 import { verifyPayPalWebhookSignature } from "@/lib/paypal/client";
 import { PayPalWebhookEvent } from "@/lib/paypal/types";
 
+// In-memory processed event deduplication set (up to 500 recent events)
+const processedEventIds = new Set<string>();
+
 export async function POST(request: Request) {
   try {
     const rawBody = await request.text();
     const event: PayPalWebhookEvent = JSON.parse(rawBody);
+
+    // Deduplication check: if already processed, return 200 immediately to acknowledge PayPal retry
+    if (event?.id && processedEventIds.has(event.id)) {
+      console.log(`[PayPal Webhook]: Duplicate event ${event.id} received. Skipping processing.`);
+      return NextResponse.json({ received: true, duplicate: true });
+    }
 
     const headersList = request.headers;
     const transmissionId = headersList.get("paypal-transmission-id") || "";
@@ -13,7 +22,7 @@ export async function POST(request: Request) {
     const certUrl = headersList.get("paypal-cert-url") || "";
     const authAlgo = headersList.get("paypal-auth-algo") || "";
     const transmissionSig = headersList.get("paypal-transmission-sig") || "";
-    const webhookId = process.env.PAYPAL_WEBHOOK_ID || "placeholder_webhook_id";
+    const webhookId = process.env.PAYPAL_WEBHOOK_ID || "";
 
     // Verify PayPal authenticity
     const isValid = await verifyPayPalWebhookSignature({
@@ -31,6 +40,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
     }
 
+    // Mark as processed
+    if (event?.id) {
+      if (processedEventIds.size > 500) {
+        processedEventIds.clear();
+      }
+      processedEventIds.add(event.id);
+    }
+
     console.log(`[PayPal Webhook Event]: ${event.event_type} (${event.id})`);
 
     // Event Handling Routing
@@ -38,28 +55,28 @@ export async function POST(request: Request) {
       case "PAYMENT.CAPTURE.COMPLETED": {
         // Successful payment: Trigger automatic credential generation & dispatch
         const capture = event.resource as { id: string; amount?: { value: string; currency_code: string } };
-        console.log(`[Fulfillment]: Payment captured ${capture.id}. Triggering WhatsApp & Email credential dispatch.`);
+        console.log(`[Fulfillment]: Payment captured ${capture?.id}. Triggering dispatch pipeline.`);
         break;
       }
 
       case "BILLING.SUBSCRIPTION.ACTIVATED": {
         // Recurring subscription activated
         const sub = event.resource as { id: string };
-        console.log(`[Subscription Activated]: ${sub.id}. Provisioning recurring stream access.`);
+        console.log(`[Subscription Activated]: ${sub?.id}. Provisioning recurring stream access.`);
         break;
       }
 
       case "BILLING.SUBSCRIPTION.CANCELLED": {
         // Customer canceled renewal
         const sub = event.resource as { id: string };
-        console.log(`[Subscription Cancelled]: ${sub.id}. Access scheduled to expire at period end.`);
+        console.log(`[Subscription Cancelled]: ${sub?.id}. Access scheduled to expire at period end.`);
         break;
       }
 
       case "CUSTOMER.DISPUTE.CREATED": {
-        // Dispute alert: Enables immediate proactive resolution under 7-day guarantee
+        // Dispute alert: Enables immediate proactive resolution under guarantee
         const dispute = event.resource as { dispute_id: string; reason?: string };
-        console.log(`[Customer Dispute Alert]: ${dispute.dispute_id}. Triggering customer success escalation.`);
+        console.log(`[Customer Dispute Alert]: ${dispute?.dispute_id}. Triggering customer success escalation.`);
         break;
       }
 
