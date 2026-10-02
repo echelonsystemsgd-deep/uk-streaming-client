@@ -118,9 +118,6 @@ export function Footer() {
               © {new Date().getFullYear()} ChitramTV UK. All Rights Reserved.
             </p>
             <p className="text-[11px] text-zinc-500">
-              Website: <a href="https://chitramtv.eu" className="hover:text-white underline">chitramtv.eu</a>
-            </p>
-            <p className="text-[11px] text-zinc-500">
               Engineered &amp; Built by{" "}
               <a
                 href="https://mercianwealth.com"

@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ShieldCheck, CheckCircle2, MessageSquare, Phone, Lock } from "lucide-react";
 
@@ -20,7 +19,7 @@ export default function RefundPolicyPage() {
   };
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -151,6 +150,6 @@ export default function RefundPolicyPage() {
         </div>
 
       </div>
-    </SiteShell>
+    </>
   );
 }

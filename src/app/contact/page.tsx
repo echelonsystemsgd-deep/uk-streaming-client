@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Phone, MessageSquare, Mail, Clock, MapPin, Send, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -58,7 +57,7 @@ export default function ContactPage() {
   };
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -319,8 +318,7 @@ export default function ContactPage() {
               <p className="text-xs text-zinc-400 leading-relaxed">
                 Operating Entity: <strong className="text-white">ChitramTV UK</strong><br />
                 Telephone: <strong className="text-white">+31 6 20897414</strong><br />
-                Email: <strong className="text-white">support@chitramtv.eu</strong><br />
-                Website: <a href="https://chitramtv.eu" className="text-primary hover:underline">chitramtv.eu</a>
+                Email: <strong className="text-white">support@chitramtv.eu</strong>
               </p>
             </div>
           </div>
@@ -348,6 +346,6 @@ export default function ContactPage() {
           ))}
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

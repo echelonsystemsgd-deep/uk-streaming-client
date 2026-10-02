@@ -21,6 +21,17 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
     setMounted(true);
   }, []);
 
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
+
   // Lock background scroll on mobile Safari and WhatsApp in-app browser
   useScrollLock(mobileMenuOpen);
 
@@ -57,7 +68,7 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop Nav Links (Visible at >= 1024px) */}
           <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -77,54 +88,62 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
             })}
           </nav>
 
-          {/* Right Actions Desktop */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Action Suite: Unified across Desktop, Split-Screen & Mobile */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* WhatsApp Desk: visible on md and up */}
             <a
               href="https://wa.me/31620897414"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-semibold text-muted-foreground hover:text-white transition-colors px-3 py-2 min-h-[44px] flex items-center gap-1.5"
+              className="hidden md:flex text-xs font-semibold text-muted-foreground hover:text-white transition-colors px-2.5 py-2 min-h-[44px] items-center gap-1.5"
             >
               <MessageSquare className="h-3.5 w-3.5 text-emerald-400" />
               <span>WhatsApp Desk</span>
             </a>
+
+            {/* Subscribe Button (sm and up) */}
             <Button
               variant="default"
               size="default"
               onClick={onSubscribeClick}
-              className="font-bold flex items-center gap-1.5 min-h-[44px]"
+              className="hidden sm:flex font-bold items-center gap-1.5 min-h-[44px] px-4 text-xs sm:text-sm"
             >
               <span>Subscribe Now</span>
               <ChevronRight className="h-4 w-4" />
             </Button>
-          </div>
 
-          {/* Mobile Right Controls */}
-          <div className="flex sm:hidden items-center gap-2">
+            {/* Compact Subscribe on mobile (< 640px) */}
             <Button
               variant="default"
               size="sm"
               onClick={onSubscribeClick}
-              className="text-xs font-bold px-3 min-h-[40px]"
+              className="flex sm:hidden text-xs font-bold px-3 min-h-[38px]"
             >
               Subscribe
             </Button>
+
+            {/* Hamburger Menu Toggle Button (Visible whenever desktop nav is hidden: lg:hidden) */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="rounded-md p-2.5 text-muted-foreground hover:text-white hover:bg-background-subtle focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors"
-              aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
+              className="lg:hidden rounded-lg p-2 text-zinc-300 hover:text-white hover:bg-zinc-800/80 border border-zinc-800/80 focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors shrink-0"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6 text-white" />
+              ) : (
+                <Menu className="h-6 w-6 text-white" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer Rendered Via React Portal to Escape Header Backdrop-Filter Block */}
+      {/* Mobile & Split-Screen Drawer Sidebar Rendered Via React Portal */}
       {mounted && createPortal(
         <div
-          className={`fixed inset-0 z-[70] sm:hidden transition-all duration-300 ${
+          className={`fixed inset-0 z-[70] lg:hidden transition-all duration-300 ${
             mobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
           }`}
           aria-hidden={!mobileMenuOpen}
@@ -149,9 +168,15 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
                   <div className="h-8 w-8 rounded bg-primary flex items-center justify-center text-white font-bold">
                     <Play className="h-4 w-4 fill-current ml-0.5" />
                   </div>
-                  <span className="font-extrabold text-white text-lg">ChitramTV</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-extrabold text-white text-lg">ChitramTV</span>
+                    <span className="rounded bg-zinc-800 border border-zinc-700 px-1 py-0.5 text-[9px] font-bold text-zinc-300">
+                      UK
+                    </span>
+                  </div>
                 </div>
                 <button
+                  type="button"
                   onClick={() => setMobileMenuOpen(false)}
                   className="rounded-md p-2 text-muted-foreground hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center"
                   aria-label="Close menu drawer"

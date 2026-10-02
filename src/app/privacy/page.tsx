@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ShieldCheck, Lock, EyeOff, Server, CheckCircle2 } from "lucide-react";
 
@@ -20,7 +19,7 @@ export default function PrivacyPage() {
   };
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -97,6 +96,6 @@ export default function PrivacyPage() {
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

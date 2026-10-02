@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
+import { useSiteShell } from "@/components/layout/SiteShell";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ValuePropositionSection } from "@/components/sections/ValuePropositionSection";
 import { PricingSection } from "@/components/sections/PricingSection";
@@ -44,11 +44,12 @@ const homeJsonLd = [
   }
 ];
 
-function HomeContent() {
+export default function HomePage() {
   const { openPlan, quickSubscribe } = useSiteShell();
 
   return (
     <>
+      <JsonLd data={homeJsonLd} />
       <HeroSection />
       <ValuePropositionSection />
 
@@ -73,14 +74,5 @@ function HomeContent() {
       {/* Contact Teaser */}
       <ContactSection />
     </>
-  );
-}
-
-export default function HomePage() {
-  return (
-    <SiteShell>
-      <JsonLd data={homeJsonLd} />
-      <HomeContent />
-    </SiteShell>
   );
 }

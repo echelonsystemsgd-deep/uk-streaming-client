@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
+import { useSiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PRICING_PLANS, PricingPlan, HARDWARE_NAME } from "@/data/plans";
 import {
@@ -100,7 +100,7 @@ export default function PlansPage() {
   ];
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -129,7 +129,7 @@ export default function PlansPage() {
       </section>
 
       {/* Category Tabs for Clean Mobile & Desktop Navigation */}
-      <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6">
+      <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-2">
         <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
           <button
             type="button"
@@ -434,6 +434,6 @@ export default function PlansPage() {
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

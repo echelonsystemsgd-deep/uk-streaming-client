@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
+import { useSiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ShieldCheck, Clock, Zap, Tv, Heart, Globe, Award, MapPin, ChevronRight, Lock, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -37,7 +37,7 @@ export default function WhyUsPage() {
   };
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -231,11 +231,11 @@ export default function WhyUsPage() {
               onClick={quickSubscribe}
               className="font-bold text-xs h-12 px-6"
             >
-              Get Started via PayPal (€7.78/mo)
+              Get Started via PayPal (£6.43/mo)
             </Button>
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

@@ -42,9 +42,9 @@ The portal features a streamlined high-converting homepage teaser backed by 6 de
 ### 3. Mobile-First Optimization & Visual Polish
 - **Touch-Friendly Targets**: All buttons, navigation links, and category pills strictly adhere to minimum 44px touch targets.
 - **Input Zoom Prevention**: Form fields use `text-base sm:text-sm` to eliminate unwanted iOS Safari auto-zoom on mobile focus.
-- **Persistent Fixed Header Dock**: Pinned across all scroll depths with responsive mobile hamburger drawer.
+- **Persistent Fixed Header Dock**: Pinned across all scroll depths with responsive mobile & split-screen hamburger drawer (accessible on all screens `< 1024px`).
 - **Intelligent Conversion Dock (`StickyFooterBar`)**:
-  - Highlights the **"Best Value: £7.14/mo (12+2 Free Months)"** pass.
+  - Highlights the **"Best Value: £6.43/mo (12+2 Free Months)"** pass.
   - **Auto-Hide at Footer**: Automatically hides via `IntersectionObserver` when reaching the site footer, completely exposing the footer links and the `mercianwealth.com` credibility credit.
 - **Moving Channel Carousel**: Dual-row infinite marquee carousel with smooth pause-on-hover and `.scrollbar-none` horizontal swiping.
 - **Dark Zinc & Cinema Crimson Palette**: Strict 8px rem grid without gimmicky vibecoded pills or random colors.
@@ -52,13 +52,13 @@ The portal features a streamlined high-converting homepage teaser backed by 6 de
 ---
 
 ### 4. Verified Catalogue Architecture & Hardware Rebrand
-- **6 Verified SKUs**:
-  1. `1 Month Service` (€15.00) — Flexible zero-commitment pass.
-  2. `6 Months Subscription` (€69.00, was €89.00) — Multi-month family pass.
-  3. `12+2 Months Service (Android TV & Firestick)` (€109.00, was €129.00) — Flagship 14-month annual membership.
-  4. `ChitramTV Renewal (12+2 Free Months)` (€109.00, was €129.00) — Dedicated returning subscriber flow. Captures existing Account ID, Username, or Box MAC Address to extend existing lines with zero setup disruption.
-  5. `ChitramTV Box Only` (€69.00, was €99.00) — Standalone ChitramTV Black Edition C1 Box.
-  6. `ChitramTV Box + 1 Year Service Bundle` (€129.00, was €159.00) — Turnkey pack with C1 Box + 1-year subscription pass.
+- **6 Verified SKUs (in GBP £)**:
+  1. `1 Month Service` (£14.99) — Flexible zero-commitment pass.
+  2. `6 Months Subscription` (£59.99) — Multi-month family pass (£10.00/mo).
+  3. `12+2 Months Service (Android TV & Firestick)` (£89.99) — Flagship 14-month annual membership (£6.43/mo).
+  4. `ChitramTV Renewal (12+2 Free Months)` (£89.99) — Dedicated returning subscriber flow. Prompts for existing Account ID, Username, or Box MAC Address to extend existing lines with zero setup disruption.
+  5. `ChitramTV Black Edition C1 Box Only` (£59.99) — Standalone official set-top box.
+  6. `ChitramTV Box + 1 Year Service Bundle` (£109.99) — Turnkey pack with C1 Box + 1-year subscription pass.
 - **Hardware Rebrand (`ChitramTV Black Edition C1 Box`)**:
   - Replaced legacy references across UI copy, metadata, and order forms.
   - Powered by Android 14 framework (up to 2x faster).

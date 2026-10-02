@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
+import { useSiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Search, X, ChevronDown, ChevronUp, HelpCircle, MessageSquare, Phone, ShieldCheck, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -134,7 +134,7 @@ export default function FaqPage() {
   };
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -288,6 +288,6 @@ export default function FaqPage() {
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

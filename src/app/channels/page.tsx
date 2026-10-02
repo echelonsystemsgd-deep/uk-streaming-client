@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
+import { useSiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CHANNEL_CATEGORIES, FEATURED_CHANNELS, Channel } from "@/data/channels";
 import { Search, X, Clock, Tv, ChevronRight, CheckCircle2, Sparkles, Filter } from "lucide-react";
@@ -57,7 +57,7 @@ export default function ChannelsPage() {
   };
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -324,6 +324,6 @@ export default function ChannelsPage() {
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

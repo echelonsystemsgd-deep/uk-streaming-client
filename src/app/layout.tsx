@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SiteShell } from "@/components/layout/SiteShell";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chitramtv.eu"),
@@ -85,7 +86,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans bg-background text-foreground min-h-screen antialiased selection:bg-primary/20 selection:text-primary">
-        {children}
+        <SiteShell>
+          {children}
+        </SiteShell>
       </body>
     </html>
   );

@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { SiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FileText, Shield, Tv, CheckCircle2, Lock } from "lucide-react";
 
@@ -20,7 +19,7 @@ export default function TermsPage() {
   };
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -92,6 +91,6 @@ export default function TermsPage() {
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }

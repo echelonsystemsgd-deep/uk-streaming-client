@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { SiteShell, useSiteShell } from "@/components/layout/SiteShell";
+import { useSiteShell } from "@/components/layout/SiteShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Tv, Smartphone, Monitor, CheckCircle2, ChevronRight, MessageSquare, Phone, Download, Wifi, ShieldAlert, Laptop } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -54,7 +54,7 @@ export default function SetupGuidePage() {
   };
 
   return (
-    <SiteShell>
+    <>
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
@@ -395,11 +395,11 @@ export default function SetupGuidePage() {
               onClick={quickSubscribe}
               className="font-bold text-xs h-12 px-6 w-full sm:w-auto"
             >
-              Get Your Credentials (€7.78/mo)
+              Get Your Credentials (£6.43/mo)
             </Button>
           </div>
         </div>
       </section>
-    </SiteShell>
+    </>
   );
 }
