@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Play, Tv, ShieldCheck, Zap, Clock, Smartphone, Monitor, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SERVICE_STATS } from "@/data/serviceFeatures";
 
 interface HeroSectionProps {
   onExplorePlans?: () => void;
@@ -9,6 +10,13 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onExplorePlans, onBrowseChannels }: HeroSectionProps) {
+  const statIcons = {
+    Tv: Tv,
+    Clock: Clock,
+    Zap: Zap,
+    ShieldCheck: ShieldCheck,
+  };
+
   return (
     <section className="relative overflow-hidden pt-8 pb-16 lg:pt-12 lg:pb-20">
       {/* Subtle, restrained cinematic glow */}
@@ -39,28 +47,18 @@ export function HeroSection({ onExplorePlans, onBrowseChannels }: HeroSectionPro
               Never miss Indian primetime shows due to the UK time difference. Stream Hindi, Punjabi, Tamil, Telugu, and live cricket in crystal-clear 4K with automatic <strong className="text-white font-semibold">7-day catch-up</strong> on your Amazon Firestick or Smart TV.
             </p>
 
-            {/* Metric Call-outs (Unified monochrome icons, strict 8px grid spacing, no rainbow clown palette) */}
+            {/* Metric Call-outs (Sourced from central SERVICE_STATS single-source-of-truth) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2 pb-2">
-              <div className="rounded-lg border border-border bg-card p-4 text-left">
-                <Tv className="h-4 w-4 text-zinc-400 mb-2" />
-                <div className="text-2xl font-bold text-white tracking-tight">350+</div>
-                <div className="text-xs text-muted-foreground mt-0.5">Live Channels</div>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-4 text-left">
-                <Clock className="h-4 w-4 text-zinc-400 mb-2" />
-                <div className="text-2xl font-bold text-white tracking-tight">7 Days</div>
-                <div className="text-xs text-muted-foreground mt-0.5">Catch-up TV</div>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-4 text-left">
-                <Zap className="h-4 w-4 text-zinc-400 mb-2" />
-                <div className="text-2xl font-bold text-white tracking-tight">4K UHD</div>
-                <div className="text-xs text-muted-foreground mt-0.5">60fps Live Cricket</div>
-              </div>
-              <div className="rounded-lg border border-border bg-card p-4 text-left">
-                <ShieldCheck className="h-4 w-4 text-zinc-400 mb-2" />
-                <div className="text-2xl font-bold text-white tracking-tight">100%</div>
-                <div className="text-xs text-muted-foreground mt-0.5">PayPal Protected</div>
-              </div>
+              {SERVICE_STATS.map((stat) => {
+                const IconComponent = statIcons[stat.iconName as keyof typeof statIcons] || Tv;
+                return (
+                  <div key={stat.id} className="rounded-lg border border-border bg-card p-4 text-left">
+                    <IconComponent className="h-4 w-4 text-zinc-400 mb-2" />
+                    <div className="text-2xl font-bold text-white tracking-tight">{stat.metric}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Action Buttons: 48px height, 8px grid aligned, no button shadows */}
