@@ -1,8 +1,8 @@
 # ChitramTV UK — Premium Live Indian TV & 4K Streaming
 
-High-performance, multi-page Next.js 14 streaming portal engineered for British Indian households. Delivers 350+ live Indian television channels, live cricket in 4K UHD 60fps, and automatic 7-day catch-up TV tailored for the UK timezone.
+High-performance, multi-page Next.js 14 streaming portal engineered for British Indian households. Delivers 500+ live Indian television channels, live cricket in 4K UHD 60fps, and automatic 14-day catch-up TV tailored for the UK timezone.
 
-Engineered and built with enterprise-grade infrastructure by [mercianwealth](https://mercianwealth.com).
+Operated by **Shiva Technology Ltd** (trading as ChitramTV UK). Official support helpline: 07979637777.
 
 ---
 
