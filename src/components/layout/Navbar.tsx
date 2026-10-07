@@ -1,27 +1,34 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, Play, ChevronRight, MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  Menu,
+  X,
+  Search,
+  ShoppingBag,
+  Phone,
+  MessageSquare,
+  Tv,
+  ChevronDown,
+} from "lucide-react";
+import { useCart } from "@/context/CartContext";
 import { useScrollLock } from "@/hooks/useScrollLock";
 
 interface NavbarProps {
-  onSubscribeClick: () => void;
+  onSubscribeClick?: () => void;
 }
 
 export function Navbar({ onSubscribeClick }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
+  const router = useRouter();
+  const { totalItems, totalPrice, setIsCartDrawerOpen } = useCart();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Close on Escape key
+  // Close menu on Escape
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && mobileMenuOpen) {
@@ -32,209 +39,210 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [mobileMenuOpen]);
 
-  // Lock background scroll on mobile Safari and WhatsApp in-app browser
+  // Close menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
   useScrollLock(mobileMenuOpen);
 
-  const navLinks = [
-    { name: "Channels (350+)", href: "/channels" },
-    { name: "Plans & Pricing", href: "/plans" },
-    { name: "Setup Guide", href: "/setup-guide" },
-    { name: "Why Us", href: "/why-us" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Help Desk", href: "/contact" },
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/buy-now?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  // Exact 7 links matching chitramtv.eu (+ Home and Channels)
+  const menuLinks = [
+    { name: "HOME", href: "/" },
+    { name: "BUY NOW", href: "/buy-now", highlight: true },
+    { name: "CHANNELS", href: "/channels" },
+    { name: "FEATURES", href: "/features" },
+    { name: "DOWNLOAD", href: "/download" },
+    { name: "SETUP GUIDE", href: "/setup-guide" },
+    { name: "ABOUT US", href: "/about" },
+    { name: "TERMS AND CONDITION", href: "/terms" },
+    { name: "CONTACT US", href: "/contact" },
   ];
 
   return (
-    <>
-      <div className="w-full">
-        <div className="container mx-auto max-w-7xl flex h-16 sm:h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 group select-none">
-            <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center text-white font-bold transition-transform group-hover:scale-105 shrink-0 shadow-sm">
-              <Play className="h-5 w-5 fill-current ml-0.5" />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-white leading-none">
-                  ChitramTV
-                </span>
-                <span className="rounded bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 text-[10px] font-bold text-zinc-300 tracking-wider leading-none">
-                  UK
-                </span>
-              </div>
-              <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase mt-1 leading-none">
-                Indian TV &amp; 4K Streaming
-              </span>
-            </div>
-          </Link>
+    <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+      {/* Middle Bar: Brand Logo + Search + Cart (Journal 3 Classic Header) */}
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 select-none shrink-0">
+          <div className="relative h-12 w-44 sm:h-14 sm:w-56">
+            <Image
+              src="/Logo.png"
+              alt="ChitramTV UK"
+              fill
+              priority
+              className="object-contain object-left"
+            />
+          </div>
+        </Link>
 
-          {/* Desktop Nav Links (Visible at >= 1024px) */}
-          <nav className="hidden lg:flex items-center gap-7">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+        {/* Search Bar (Desktop) */}
+        <div className="hidden md:flex flex-1 max-w-lg mx-4">
+          <form onSubmit={handleSearchSubmit} className="w-full flex">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search all Indian channels, boxes, renewals..."
+              className="w-full px-4 py-2 text-sm bg-gray-50 border border-gray-300 rounded-l focus:outline-none focus:ring-1 focus:ring-[#dd0e1c] focus:border-[#dd0e1c]"
+            />
+            <button
+              type="submit"
+              className="bg-[#dd0e1c] hover:bg-[#b00b16] text-white px-5 py-2 rounded-r flex items-center justify-center transition-colors"
+              title="Search"
+            >
+              <Search className="w-4 h-4" />
+            </button>
+          </form>
+        </div>
+
+        {/* Right Suite: Cart Button + Mobile Hamburger */}
+        <div className="flex items-center gap-3">
+          {/* Cart Button */}
+          <button
+            onClick={() => setIsCartDrawerOpen(true)}
+            className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 px-3 py-2 rounded text-left transition-colors"
+          >
+            <div className="relative">
+              <ShoppingBag className="w-5 h-5 text-gray-700" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1.5 -right-2 bg-[#dd0e1c] text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </div>
+            <div className="hidden sm:block text-xs">
+              <div className="text-gray-500 font-medium">Cart</div>
+              <div className="text-gray-900 font-bold">
+                {totalItems} item(s) - £{totalPrice.toFixed(2)}
+              </div>
+            </div>
+          </button>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded bg-gray-100 hover:bg-gray-200 text-gray-800"
+            aria-label="Toggle Navigation Menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Primary Navigation Menu Bar (Journal 3 Dark Slate Bar) */}
+      <div className="hidden lg:block bg-[#2c3640] border-t border-gray-700 text-white">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+          <nav className="flex items-center overflow-x-auto scrollbar-none">
+            {menuLinks.map((item) => {
+              const isActive = pathname === item.href;
               return (
                 <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`text-xs font-semibold tracking-wide transition-colors py-1 ${
+                  key={item.name}
+                  href={item.href}
+                  className={`text-xs font-bold tracking-wider uppercase px-4 py-3 whitespace-nowrap transition-colors flex items-center gap-1 ${
                     isActive
-                      ? "text-white border-b-2 border-primary"
-                      : "text-zinc-400 hover:text-white"
+                      ? "bg-[#dd0e1c] text-white"
+                      : item.highlight
+                      ? "text-[#fdc22d] hover:bg-[#3a4754] hover:text-white"
+                      : "text-gray-200 hover:bg-[#3a4754] hover:text-[#fdc22d]"
                   }`}
                 >
-                  {link.name}
+                  {item.name}
                 </Link>
               );
             })}
           </nav>
-
-          {/* Right Action Suite: Unified across Desktop, Split-Screen & Mobile */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* WhatsApp Desk: visible on md and up */}
-            <a
-              href="https://wa.me/31620897414"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:flex text-xs font-semibold text-muted-foreground hover:text-white transition-colors px-2.5 py-2 min-h-[44px] items-center gap-1.5"
-            >
-              <MessageSquare className="h-3.5 w-3.5 text-emerald-400" />
-              <span>WhatsApp Desk</span>
-            </a>
-
-            {/* Subscribe Button (sm and up) */}
-            <Button
-              variant="default"
-              size="default"
-              onClick={onSubscribeClick}
-              className="hidden sm:flex font-bold items-center gap-1.5 min-h-[44px] px-4 text-xs sm:text-sm"
-            >
-              <span>Subscribe Now</span>
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-
-            {/* Compact Subscribe on mobile (< 640px) */}
-            <Button
-              variant="default"
-              size="sm"
-              onClick={onSubscribeClick}
-              className="flex sm:hidden text-xs font-bold px-3 min-h-[38px]"
-            >
-              Subscribe
-            </Button>
-
-            {/* Hamburger Menu Toggle Button (Visible whenever desktop nav is hidden: lg:hidden) */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="lg:hidden rounded-lg p-2 text-zinc-300 hover:text-white hover:bg-zinc-800/80 border border-zinc-800/80 focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors shrink-0"
-              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6 text-white" />
-              ) : (
-                <Menu className="h-6 w-6 text-white" />
-              )}
-            </button>
-          </div>
         </div>
       </div>
 
-      {/* Mobile & Split-Screen Drawer Sidebar Rendered Via React Portal */}
-      {mounted && createPortal(
-        <div
-          className={`fixed inset-0 z-[70] lg:hidden transition-all duration-300 ${
-            mobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-          }`}
-          aria-hidden={!mobileMenuOpen}
-        >
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-
-          {/* Drawer Sidebar */}
-          <div
-            className={`fixed inset-y-0 right-0 w-[85%] max-w-sm bg-zinc-950 border-l border-zinc-800 p-6 shadow-2xl flex flex-col justify-between overflow-y-auto overscroll-contain transition-transform duration-300 ease-in-out ${
-              mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div>
-              {/* Drawer Top */}
-              <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
-                <div className="flex items-center gap-2">
-                  <div className="h-8 w-8 rounded bg-primary flex items-center justify-center text-white font-bold">
-                    <Play className="h-4 w-4 fill-current ml-0.5" />
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-extrabold text-white text-lg">ChitramTV</span>
-                    <span className="rounded bg-zinc-800 border border-zinc-700 px-1 py-0.5 text-[9px] font-bold text-zinc-300">
-                      UK
-                    </span>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-md p-2 text-muted-foreground hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center"
-                  aria-label="Close menu drawer"
-                >
-                  <X className="h-6 w-6" />
-                </button>
-              </div>
-
-              {/* Navigation Links with large 48px touch targets */}
-              <nav className="py-4 space-y-1">
-                {navLinks.map((link) => {
-                  const isActive = pathname === link.href;
-                  return (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center justify-between min-h-[48px] px-3.5 rounded-lg text-base font-semibold transition-colors select-none ${
-                        isActive
-                          ? "bg-primary text-white"
-                          : "text-zinc-300 hover:text-white hover:bg-zinc-900"
-                      }`}
-                    >
-                      <span>{link.name}</span>
-                      <ChevronRight className={`h-4 w-4 ${isActive ? "text-white" : "text-zinc-500"}`} />
-                    </Link>
-                  );
-                })}
-              </nav>
+      {/* Mobile Drawer Navigation */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
+          <div className="fixed inset-y-0 left-0 w-4/5 max-w-sm bg-[#2c3640] text-white flex flex-col shadow-2xl">
+            <div className="p-4 border-b border-gray-700 flex items-center justify-between">
+              <span className="font-bold text-sm tracking-wider uppercase text-gray-200">
+                Menu
+              </span>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1 rounded text-gray-300 hover:text-white"
+              >
+                <X className="w-6 h-6" />
+              </button>
             </div>
 
-            {/* Bottom Drawer Actions */}
-            <div className="pt-6 border-t border-zinc-800 space-y-3">
-              <Button
-                variant="default"
-                size="lg"
-                className="w-full justify-center font-bold text-base min-h-[48px]"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onSubscribeClick();
-                }}
-              >
-                Order with PayPal
-              </Button>
+            {/* Mobile Search */}
+            <div className="p-4 border-b border-gray-700">
+              <form onSubmit={handleSearchSubmit} className="flex">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search channels..."
+                  className="w-full px-3 py-2 text-xs bg-gray-800 border border-gray-600 rounded-l text-white focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  className="bg-[#dd0e1c] text-white px-3 py-2 rounded-r"
+                >
+                  <Search className="w-4 h-4" />
+                </button>
+              </form>
+            </div>
+
+            {/* Mobile Nav Links */}
+            <nav className="flex-1 overflow-y-auto divide-y divide-gray-700/50">
+              {menuLinks.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-5 py-3.5 text-xs font-bold tracking-wider uppercase transition-colors ${
+                      isActive
+                        ? "bg-[#dd0e1c] text-white"
+                        : item.highlight
+                        ? "text-[#fdc22d] hover:bg-gray-700"
+                        : "text-gray-200 hover:bg-gray-700"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Mobile Footer Help */}
+            <div className="p-4 bg-gray-900/60 border-t border-gray-700 text-xs space-y-2">
               <a
-                href="https://wa.me/31620897414"
+                href="tel:07979637777"
+                className="flex items-center gap-2 text-white font-semibold hover:text-[#fdc22d]"
+              >
+                <Phone className="w-4 h-4 text-[#fdc22d]" />
+                <span>Call Helpline: 07979637777</span>
+              </a>
+              <a
+                href="https://wa.me/447979637777"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3 text-xs text-muted-foreground hover:text-white min-h-[44px] bg-zinc-900 rounded-lg border border-zinc-800"
+                className="flex items-center gap-2 text-emerald-400 font-semibold"
               >
-                <MessageSquare className="h-4 w-4 text-emerald-400" />
-                <span>WhatsApp: +31 6 20897414</span>
+                <MessageSquare className="w-4 h-4" />
+                <span>WhatsApp 24/7 Desk</span>
               </a>
             </div>
           </div>
-        </div>,
-        document.body
+        </div>
       )}
-    </>
+    </header>
   );
 }

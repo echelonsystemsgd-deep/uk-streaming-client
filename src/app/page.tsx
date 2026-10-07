@@ -18,26 +18,26 @@ const homeJsonLd = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "ChitramTV UK",
-    "url": "https://chitramtv.eu",
-    "description": "Stream 350+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK.",
+    "url": "https://chitramtv.uk",
+    "description": "Stream 500+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK with 14 Days Catch-Up TV.",
     "publisher": {
       "@type": "Organization",
-      "name": "ChitramTV UK",
-      "url": "https://chitramtv.eu",
-      "logo": "https://chitramtv.eu/assets/client/logo.svg"
+      "name": "Shiva Technology Ltd",
+      "url": "https://chitramtv.uk",
+      "logo": "/Logo.png"
     }
   },
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "ChitramTV UK",
-    "url": "https://chitramtv.eu",
-    "logo": "https://chitramtv.eu/assets/client/logo.svg",
-    "description": "Dedicated UK Indian television streaming provider with 350+ live channels and 7-day catch-up TV.",
-    "telephone": "+31620897414",
+    "name": "ChitramTV UK (Shiva Technology Ltd)",
+    "url": "https://chitramtv.uk",
+    "logo": "/Logo.png",
+    "description": "Dedicated UK Indian television streaming provider with 500+ live channels and 14-day catch-up TV.",
+    "telephone": "07979637777",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+31620897414",
+      "telephone": "07979637777",
       "contactType": "customer service",
       "availableLanguage": ["English", "Hindi", "Punjabi"]
     }

@@ -21,7 +21,7 @@ export function FaqSection() {
             Got Questions? We’ve Got Answers
           </h2>
           <p className="text-base text-zinc-400 leading-relaxed">
-            Everything you need to know about our UK streaming subscriptions, devices, 7-day catch-up, and PayPal checkout.
+            Everything you need to know about our UK streaming subscriptions, devices, 14-day catch-up, and PayPal checkout.
           </p>
         </div>
 
@@ -48,13 +48,13 @@ export function FaqSection() {
             Our UK support specialists are on standby via WhatsApp to test your broadband speed or guide you through setup.
           </p>
           <a
-            href="https://wa.me/31620897414"
+            href="https://wa.me/447979637777"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white font-semibold text-xs px-5 py-2.5 h-10 transition-colors"
           >
             <MessageSquare className="h-4 w-4 text-emerald-400" />
-            <span>Chat on WhatsApp (+31 6 20897414)</span>
+            <span>Chat on WhatsApp (07979637777)</span>
           </a>
         </div>
 

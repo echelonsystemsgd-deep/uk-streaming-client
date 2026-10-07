@@ -1,147 +1,169 @@
 import React from "react";
 import Link from "next/link";
-import { Play, ShieldCheck, Lock, Mail, Phone } from "lucide-react";
+import Image from "next/image";
+import { Phone, MessageSquare, ShieldCheck, Lock, CheckCircle2, CreditCard } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer id="site-footer" className="bg-background border-t border-border/80 text-muted-foreground text-xs select-none">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-border/60">
-          
-          {/* Brand Col */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-white font-bold shadow-sm">
-                <Play className="h-4 w-4 fill-current ml-0.5" />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xl font-extrabold tracking-tight text-white">
-                  ChitramTV
-                </span>
-                <span className="rounded bg-zinc-800 border border-zinc-700 px-1.5 py-0.5 text-[10px] font-bold text-zinc-300 tracking-wider">
-                  EU
-                </span>
+    <footer id="site-footer" className="bg-[#2c3640] text-gray-300 text-xs border-t border-gray-700">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-gray-700">
+          {/* Brand & Company Details */}
+          <div className="space-y-4 lg:col-span-1">
+            <Link href="/" className="inline-block">
+              <div className="relative h-12 w-48 bg-white/10 p-2 rounded">
+                <Image
+                  src="/Logo.png"
+                  alt="ChitramTV UK"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </Link>
-            <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
-              The premier streaming television provider for Indian diaspora families across the UK and Europe. Over 350+ live channels, 7-day catch-up, and official ChitramTV Black Edition C1 Box hardware.
+            <p className="text-gray-400 text-xs leading-relaxed">
+              Watch your favourite Indian TV Channels on TV with Chitram 4K Set top box with extended media player functionality and 14 Days Catch-Up TV.
             </p>
-            <div className="flex items-center gap-4 text-xs text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-zinc-400" /> PayPal Verified Merchant
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Lock className="h-4 w-4 text-zinc-400" /> 256-Bit SSL Protection
-              </span>
+            <div className="text-xs text-gray-300 bg-gray-800/80 p-3 rounded border border-gray-700 space-y-1">
+              <div className="font-bold text-white">Shiva Technology Ltd</div>
+              <div className="text-gray-400">Trading as ChitramTV UK</div>
+              <div className="text-emerald-400 font-semibold flex items-center gap-1 mt-1">
+                <CheckCircle2 className="w-3.5 h-3.5" /> Authorized UK Reseller
+              </div>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Information Links (Exact links from chitramtv.eu) */}
           <div className="space-y-3">
-            <div className="text-xs font-bold uppercase tracking-wider text-white">
-              Navigation
-            </div>
-            <ul className="space-y-1">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white border-b border-gray-700 pb-2">
+              Information
+            </h4>
+            <ul className="space-y-2">
               <li>
-                <Link href="/channels" className="block py-1.5 hover:text-white transition-colors">
-                  Channels (350+)
+                <Link href="/about" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="/plans" className="block py-1.5 hover:text-white transition-colors">
-                  Plans &amp; Hardware
+                <Link href="/terms" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  Terms and Condition
                 </Link>
               </li>
               <li>
-                <Link href="/setup-guide" className="block py-1.5 hover:text-white transition-colors">
-                  Device Setup Guide
+                <Link href="/download" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  Download (TV &amp; Mobile Apps)
                 </Link>
               </li>
               <li>
-                <Link href="/why-us" className="block py-1.5 hover:text-white transition-colors">
-                  Why ChitramTV
+                <Link href="/setup-guide" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  Setup Guide
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="block py-1.5 hover:text-white transition-colors">
-                  Help Center &amp; FAQ
+                <Link href="/features" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  Features &amp; 14-Day DVR
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="block py-1.5 hover:text-white transition-colors">
-                  Support Desk
+                <Link href="/contact" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  Contact Us
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Supported Devices */}
+          {/* Quick Catalogue & Hardware */}
           <div className="space-y-3">
-            <div className="text-xs font-bold uppercase tracking-wider text-white">
-              Hardware &amp; Apps
-            </div>
-            <ul className="space-y-1.5 text-muted-foreground">
-              <li>ChitramTV Black Edition C1 Box</li>
-              <li>Amazon Fire TV Stick 4K</li>
-              <li>Android TV &amp; Google TV</li>
-              <li>Apple TV 4K &amp; iOS</li>
-              <li>Samsung Smart TV (Tizen)</li>
-              <li>LG Smart TV (webOS)</li>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white border-b border-gray-700 pb-2">
+              Tariff Plans &amp; Boxes
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/buy-now" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  Buy Now — Full Catalogue
+                </Link>
+              </li>
+              <li>
+                <Link href="/channels" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  500+ Indian Live TV Channels
+                </Link>
+              </li>
+              <li>
+                <Link href="/buy-now" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  ChitramTV Renewal (12+2 Free Months)
+                </Link>
+              </li>
+              <li>
+                <Link href="/buy-now" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  ChitramTV Black Edition C1 Box
+                </Link>
+              </li>
+              <li>
+                <Link href="/buy-now" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  Box + 1 Year Service Bundle
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="text-gray-400 hover:text-[#fdc22d] transition-colors">
+                  Frequently Asked Questions
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Contact & Legal */}
+          {/* UK Customer Support */}
           <div className="space-y-3">
-            <div className="text-xs font-bold uppercase tracking-wider text-white">
-              ChitramTV Operations
-            </div>
-            <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
-              <p>Operating Entity: <strong className="text-white">ChitramTV UK</strong></p>
-              <p className="flex items-center gap-1.5">
-                <Phone className="h-3 w-3 text-primary shrink-0" />
-                <a href="tel:+31620897414" className="hover:text-white transition-colors">+31 6 20897414</a>
-              </p>
-              <p className="flex items-center gap-1.5">
-                <Mail className="h-3 w-3 text-primary shrink-0" />
-                <a href="mailto:support@chitramtv.eu" className="hover:text-white transition-colors">support@chitramtv.eu</a>
-              </p>
-              <p>Operating Hours: <span className="text-emerald-400 font-semibold">Open 24 Hours</span></p>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom Strip */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-center sm:text-left">
-          <div className="space-y-1">
-            <p>
-              © {new Date().getFullYear()} ChitramTV UK. All Rights Reserved.
-            </p>
-            <p className="text-[11px] text-zinc-500">
-              Engineered &amp; Built by{" "}
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white border-b border-gray-700 pb-2">
+              UK Customer Desk
+            </h4>
+            <div className="space-y-2.5 text-gray-300">
               <a
-                href="https://mercianwealth.com"
+                href="tel:07979637777"
+                className="flex items-center gap-2 text-white hover:text-[#fdc22d] transition-colors font-semibold"
+              >
+                <Phone className="w-4 h-4 text-[#fdc22d] shrink-0" />
+                <span>Helpline: 07979637777</span>
+              </a>
+              <a
+                href="https://wa.me/447979637777"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-white underline underline-offset-4 font-semibold transition-colors"
+                className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
               >
-                mercianwealth
+                <MessageSquare className="w-4 h-4 shrink-0" />
+                <span>24/7 WhatsApp Support</span>
               </a>
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <Link href="/terms" className="hover:text-white transition-colors py-1">
-              Terms &amp; Conditions
-            </Link>
-            <Link href="/privacy" className="hover:text-white transition-colors py-1">
-              Privacy Policy
-            </Link>
-            <Link href="/refund-policy" className="hover:text-white transition-colors py-1 text-primary hover:text-red-400 font-medium">
-              Refund Policy (7 Days)
-            </Link>
+              <p className="text-gray-400 pt-1">
+                Hours: Mon – Sun, 9:00 AM – 10:00 PM UK
+              </p>
+              <div className="pt-2 flex items-center gap-3 text-xs text-gray-400">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" /> PayPal Protected
+                </span>
+                <span className="flex items-center gap-1">
+                  <Lock className="w-4 h-4 text-blue-400" /> 256-Bit SSL
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
+        {/* Bottom Bar: Copyright & Payment Badges */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-400">
+          <p>
+            Chitram TV © All Rights Reserved — The business ChitramTV UK is a part of{" "}
+            <strong className="text-white">Shiva Technology Ltd</strong>.
+          </p>
+          <div className="flex items-center gap-2 text-xs font-semibold text-gray-400 bg-gray-800 px-3 py-1.5 rounded border border-gray-700">
+            <span>Accepted Payments:</span>
+            <span className="text-blue-400 font-bold">PayPal</span>
+            <span>•</span>
+            <span className="text-white">Visa</span>
+            <span>•</span>
+            <span className="text-white">Mastercard</span>
+            <span>•</span>
+            <span className="text-amber-400">Pay in 3</span>
+          </div>
+        </div>
       </div>
     </footer>
   );

@@ -73,13 +73,13 @@ export default function RefundPolicyPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-zinc-400">
               <li>
-                <strong className="text-zinc-200">WhatsApp Desk:</strong> Message our WhatsApp help desk at <a href="https://wa.me/31620897414" className="text-primary hover:underline font-semibold">+31 6 20897414</a> with your registered email and PayPal Transaction ID.
+                <strong className="text-zinc-200">WhatsApp Desk:</strong> Message our WhatsApp help desk at <a href="https://wa.me/447979637777" className="text-primary hover:underline font-semibold">07979637777</a> with your registered email and PayPal Transaction ID.
               </li>
               <li>
                 <strong className="text-zinc-200">Email Request:</strong> Send an email to <a href="mailto:support@chitramtv.eu" className="text-primary hover:underline font-semibold">support@chitramtv.eu</a> with the subject line &ldquo;Refund Request - [Your Order ID]&rdquo;.
               </li>
               <li>
-                <strong className="text-zinc-200">Phone:</strong> Call our customer helpline on <a href="tel:+31620897414" className="text-primary hover:underline font-semibold">+31 6 20897414</a>.
+                <strong className="text-zinc-200">Phone:</strong> Call our customer helpline on <a href="tel:07979637777" className="text-primary hover:underline font-semibold">07979637777</a>.
               </li>
             </ul>
           </div>
@@ -138,13 +138,13 @@ export default function RefundPolicyPage() {
           </p>
           <div className="pt-2 flex justify-center gap-3">
             <a
-              href="https://wa.me/31620897414"
+              href="https://wa.me/447979637777"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs h-10 px-5 rounded-lg transition-colors"
             >
               <MessageSquare className="h-4 w-4" />
-              <span>WhatsApp Billing Help (+31 6 20897414)</span>
+              <span>WhatsApp Billing Help (07979637777)</span>
             </a>
           </div>
         </div>

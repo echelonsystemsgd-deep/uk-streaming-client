@@ -33,7 +33,7 @@ export default function SetupGuidePage() {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "How to Set Up ChitramTV UK on Amazon Firestick and Smart TV",
-    "description": "Step-by-step setup guide for streaming 350+ live Indian TV channels on Amazon Firestick in the UK.",
+    "description": "Step-by-step setup guide for streaming 500+ live Indian TV channels on Amazon Firestick in the UK with 14 Days Catch-Up TV.",
     "step": [
       {
         "@type": "HowToStep",
@@ -48,7 +48,7 @@ export default function SetupGuidePage() {
       {
         "@type": "HowToStep",
         "name": "3. Login and Stream",
-        "text": "Launch ChitramTV, enter your username and password, and start watching 350+ live Indian channels with 7-day catch-up."
+        "text": "Launch ChitramTV, enter your username and password, and start watching 500+ live Indian channels with 14-day catch-up."
       }
     ]
   };
@@ -106,7 +106,7 @@ export default function SetupGuidePage() {
             <div className="text-xs font-bold uppercase tracking-wider text-primary mb-2">Step 3</div>
             <h3 className="text-base font-bold text-white">Install App &amp; Stream</h3>
             <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-              Enter your login on your Firestick or Smart TV app. Start enjoying 350+ live channels with 7-day catch-up.
+              Enter your login on your Firestick or Smart TV app. Start enjoying 500+ live channels with 14-day catch-up.
             </p>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function SetupGuidePage() {
                   <div>
                     <h4 className="text-sm font-bold text-white">Login with Your Credentials</h4>
                     <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                      Launch ChitramTV, enter your username and password, and instantly start watching 350+ live channels and 7-day catch-up.
+                      Launch ChitramTV, enter your username and password, and instantly start watching 500+ live channels and 14-day catch-up.
                     </p>
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export default function SetupGuidePage() {
                   <div className="h-7 w-7 rounded-full bg-primary text-white font-bold text-xs flex items-center justify-center shrink-0">3</div>
                   <div>
                     <h4 className="text-sm font-bold text-white">Input Account Details &amp; Enjoy</h4>
-                    <p className="text-xs text-zinc-400 mt-1 leading-relaxed">Login with your credentials received via WhatsApp to access the full 350+ channel guide.</p>
+                    <p className="text-xs text-zinc-400 mt-1 leading-relaxed">Login with your credentials received via WhatsApp to access the full 500+ channel guide with 14-day catch-up.</p>
                   </div>
                 </div>
               </div>
@@ -381,13 +381,13 @@ export default function SetupGuidePage() {
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
             <a
-              href="https://wa.me/31620897414"
+              href="https://wa.me/447979637777"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs h-12 px-6 rounded-lg transition-colors w-full sm:w-auto"
             >
               <MessageSquare className="h-4 w-4" />
-              <span>WhatsApp Live Help Desk</span>
+              <span>WhatsApp Live Help Desk (07979637777)</span>
             </a>
             <Button
               variant="default"

@@ -38,8 +38,8 @@ export default function PlansPage() {
       "@context": "https://schema.org",
       "@type": "Product",
       "name": "ChitramTV 12+2 Months Service Pass",
-      "image": "https://chitramtv.eu/assets/client/logo.svg",
-      "description": "14 full months of 350+ live Indian TV channels, 4K cricket, and 7-day catch-up TV for Android TV & Firestick.",
+      "image": "https://chitramtv.eu/Logo.png",
+      "description": "14 full months of 500+ live Indian TV channels, 4K cricket, and 14-day catch-up TV for Android TV & Firestick.",
       "brand": { "@type": "Brand", "name": "ChitramTV" },
       "offers": {
         "@type": "Offer",
@@ -184,7 +184,7 @@ export default function PlansPage() {
             const isBox = plan.isBoxBundle;
             const isHardware = plan.isHardwareOnly;
             const isRenewal = plan.isRenewal;
-            const currency = plan.currencySymbol || "€";
+            const currency = plan.currencySymbol || "£";
 
             return (
               <div
@@ -334,19 +334,19 @@ export default function PlansPage() {
               <tbody className="divide-y divide-zinc-800 text-zinc-300">
                 <tr>
                   <td className="p-4 sm:p-5 font-medium text-white sticky left-0 bg-card z-10">Live Indian Channels</td>
-                  <td className="p-4 sm:p-5 text-center">350+ Channels</td>
-                  <td className="p-4 sm:p-5 text-center">350+ Channels</td>
-                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-semibold text-white">350+ Channels</td>
-                  <td className="p-4 sm:p-5 text-center bg-emerald-950/10 font-semibold text-emerald-300">350+ Channels</td>
-                  <td className="p-4 sm:p-5 text-center font-semibold text-white">350+ Channels</td>
+                  <td className="p-4 sm:p-5 text-center">500+ Channels</td>
+                  <td className="p-4 sm:p-5 text-center">500+ Channels</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-semibold text-white">500+ Channels</td>
+                  <td className="p-4 sm:p-5 text-center bg-emerald-950/10 font-semibold text-emerald-300">500+ Channels</td>
+                  <td className="p-4 sm:p-5 text-center font-semibold text-white">500+ Channels</td>
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-medium text-white sticky left-0 bg-card z-10">Catch-Up TV Duration</td>
-                  <td className="p-4 sm:p-5 text-center">7 Days</td>
-                  <td className="p-4 sm:p-5 text-center">7 Days</td>
-                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-semibold text-white">7 Days</td>
-                  <td className="p-4 sm:p-5 text-center bg-emerald-950/10 font-semibold text-emerald-300">7 Days</td>
-                  <td className="p-4 sm:p-5 text-center font-semibold text-white">7 Days</td>
+                  <td className="p-4 sm:p-5 text-center">14 Days</td>
+                  <td className="p-4 sm:p-5 text-center">14 Days</td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5 font-semibold text-white">14 Days</td>
+                  <td className="p-4 sm:p-5 text-center bg-emerald-950/10 font-semibold text-emerald-300">14 Days</td>
+                  <td className="p-4 sm:p-5 text-center font-semibold text-white">14 Days</td>
                 </tr>
                 <tr>
                   <td className="p-4 sm:p-5 font-medium text-white sticky left-0 bg-card z-10">Simultaneous Devices</td>

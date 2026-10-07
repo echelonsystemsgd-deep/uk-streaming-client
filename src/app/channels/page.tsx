@@ -44,11 +44,11 @@ export default function ChannelsPage() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "BroadcastService",
-    "name": "ChitramTV UK 350+ Channels",
+    "name": "ChitramTV UK 500+ Channels",
     "broadcastDisplayName": "ChitramTV UK",
     "broadcastTimezone": "Europe/London",
     "inLanguage": ["hi", "pa", "ta", "te", "ml", "en"],
-    "description": "Stream 350+ live Indian TV channels, live cricket in 4K UHD, and automatic 7-day catch-up across the UK.",
+    "description": "Stream 500+ live Indian TV channels, live cricket in 4K UHD, and automatic 14-day catch-up across the UK.",
     "provider": {
       "@type": "Organization",
       "name": "ChitramTV UK",
@@ -77,10 +77,10 @@ export default function ChannelsPage() {
             <span>COMPLETE 2026 UK BROADCAST LINEUP</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Explore <span className="text-primary">350+ Live Channels</span> with 7-Day Catch-Up
+            Explore <span className="text-primary">500+ Live Channels</span> with 14-Day Catch-Up
           </h1>
           <p className="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Never miss Indian primetime shows due to the 5.5-hour UK time gap. Stream Hindi daily serials, Punjabi Gurbani, South Indian cinema, and 4K cricket with automatic 7-day recording.
+            Never miss Indian primetime shows due to the 5.5-hour UK time gap. Stream Hindi daily serials, Punjabi Gurbani, South Indian cinema, and 4K cricket with automatic 14-day recording.
           </p>
         </div>
       </section>
@@ -266,7 +266,7 @@ export default function ChannelsPage() {
                 <div className="pt-3 border-t border-zinc-800 flex items-center justify-between text-[11px] text-zinc-400">
                   <span className="flex items-center gap-1.5 font-medium text-zinc-300">
                     <Clock className="h-3.5 w-3.5 text-zinc-400" />
-                    7-Day Catch-up TV
+                    14-Day Catch-up TV
                   </span>
                   <span className="font-semibold text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded text-[10px]">
                     {channel.tag}
@@ -298,7 +298,7 @@ export default function ChannelsPage() {
         {/* Bottom CTA Card */}
         <div className="rounded-2xl border border-border bg-gradient-to-r from-zinc-900 via-background-elevated to-zinc-900 p-6 sm:p-10 text-center space-y-4 max-w-3xl mx-auto mt-12">
           <h2 className="text-xl sm:text-2xl font-bold text-white">
-            Get Instant Access to All 350+ Channels
+            Get Instant Access to All 500+ Channels
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">
             Activation takes under 2 minutes. Receive your credentials via WhatsApp &amp; Email immediately following secure PayPal checkout.
@@ -310,9 +310,9 @@ export default function ChannelsPage() {
               onClick={quickSubscribe}
               className="w-full sm:w-auto font-bold h-12 px-6"
             >
-              Subscribe via PayPal (€7.78/mo)
+              Subscribe via PayPal (£6.43/mo)
             </Button>
-            <Link href="/plans">
+            <Link href="/buy-now">
               <Button
                 variant="outline"
                 size="lg"

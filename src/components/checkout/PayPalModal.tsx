@@ -272,7 +272,7 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                       ? "Official ChitramTV Black Edition C1 Box (Android 14)"
                       : plan.isBoxBundle
                       ? "Black Edition C1 Box + 1 Year Subscription Pass Included"
-                      : `${plan.devices} Devices • 7-Day Catch-up • 350+ Channels`}
+                      : `${plan.devices} Devices • 14-Day Catch-up • 500+ Channels`}
                   </div>
                 </div>
                 <div className="text-right shrink-0">

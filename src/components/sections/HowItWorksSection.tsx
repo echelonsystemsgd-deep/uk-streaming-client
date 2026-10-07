@@ -24,7 +24,7 @@ export function HowItWorksSection() {
       icon: Tv,
       title: "Install App & Start Streaming",
       description:
-        "Download our lightweight player onto your Amazon Firestick, Android TV, Apple TV, or mobile device. Enter your details and immediately enjoy 350+ live Indian channels in 4K.",
+        "Download our lightweight player onto your Amazon Firestick, Android TV, Apple TV, or mobile device. Enter your details and immediately enjoy 500+ live Indian channels in 4K.",
     },
   ];
 

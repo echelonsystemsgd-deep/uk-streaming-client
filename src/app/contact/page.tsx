@@ -30,26 +30,26 @@ export default function ContactPage() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "ChitramTV UK Customer Support Desk",
-    "image": "https://chitramtv.eu/assets/client/logo.svg",
-    "telephone": "+31620897414",
-    "email": "support@chitramtv.eu",
+    "name": "ChitramTV UK Customer Support Desk - Shiva Technology Ltd",
+    "image": "/Logo.png",
+    "telephone": "07979637777",
+    "email": "support@chitramtv.uk",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "GB"
     },
     "openingHours": "Mo-Su 00:00-24:00",
-    "url": "https://chitramtv.eu/contact",
+    "url": "https://chitramtv.uk/contact",
     "contactPoint": [
       {
         "@type": "ContactPoint",
-        "telephone": "+31620897414",
+        "telephone": "07979637777",
         "contactType": "customer service",
         "availableLanguage": ["English", "Hindi", "Punjabi"]
       },
       {
         "@type": "ContactPoint",
-        "url": "https://wa.me/31620897414",
+        "url": "https://wa.me/447979637777",
         "contactType": "technical support",
         "availableLanguage": ["English", "Hindi", "Punjabi"]
       }
@@ -106,13 +106,13 @@ export default function ContactPage() {
             </div>
             <div className="pt-4 border-t border-zinc-800 mt-4">
               <a
-                href="https://wa.me/31620897414"
+                href="https://wa.me/447979637777"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs h-11 px-4 rounded-lg transition-colors select-none"
               >
                 <MessageSquare className="h-4 w-4" />
-                <span>Start WhatsApp Chat (+31 6 20897414)</span>
+                <span>Start WhatsApp Chat (07979637777)</span>
               </a>
             </div>
           </div>
@@ -128,18 +128,18 @@ export default function ContactPage() {
                   Available 24/7
                 </span>
               </div>
-              <h3 className="text-base font-bold text-white">Telephone Helpline</h3>
+              <h3 className="text-base font-bold text-white">UK Telephone Helpline</h3>
               <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                Speak directly with an advisor. We speak English, Hindi, and Punjabi to assist parents and family streaming setups.
+                Speak directly with an advisor at Shiva Technology Ltd. We speak English, Hindi, and Punjabi to assist parents and family streaming setups.
               </p>
             </div>
             <div className="pt-4 border-t border-zinc-800 mt-4">
               <a
-                href="tel:+31620897414"
+                href="tel:07979637777"
                 className="w-full inline-flex items-center justify-center gap-2 bg-card border border-zinc-700 hover:text-white text-zinc-200 font-bold text-xs h-11 px-4 rounded-lg transition-colors select-none"
               >
-                <Phone className="h-4 w-4 text-primary" />
-                <span>Call +31 6 20897414</span>
+                <Phone className="h-4 w-4 text-[#fdc22d]" />
+                <span>Call Helpline: 07979637777</span>
               </a>
             </div>
           </div>
@@ -233,7 +233,7 @@ export default function ContactPage() {
                     <label className="block text-xs font-semibold text-zinc-300 mb-1.5">WhatsApp / Phone Number</label>
                     <input
                       type="tel"
-                      placeholder="e.g. +31 6 12345678 or +44 7123 456789"
+                      placeholder="e.g. 07979637777 or +44 7979 637777"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[46px]"
@@ -316,8 +316,8 @@ export default function ContactPage() {
                 <span>Business Operations</span>
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                Operating Entity: <strong className="text-white">ChitramTV UK</strong><br />
-                Telephone: <strong className="text-white">+31 6 20897414</strong><br />
+                Operating Entity: <strong className="text-white">Shiva Technology Ltd (t/a ChitramTV UK)</strong><br />
+                Telephone: <strong className="text-white">07979637777</strong><br />
                 Email: <strong className="text-white">support@chitramtv.eu</strong>
               </p>
             </div>

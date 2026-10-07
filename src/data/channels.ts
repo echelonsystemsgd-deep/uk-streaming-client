@@ -10,7 +10,7 @@ export interface Channel {
 }
 
 export const CHANNEL_CATEGORIES = [
-  { id: "all", label: "All Channels (350+)" },
+  { id: "all", label: "All Channels (500+)" },
   { id: "entertainment", label: "Entertainment & Soaps" },
   { id: "movies", label: "Movies & Blockbusters" },
   { id: "sports", label: "Live Cricket & Sports" },

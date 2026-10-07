@@ -29,21 +29,21 @@ const TESTIMONIALS: Testimonial[] = [
     location: "Birmingham (Smethwick)",
     device: "Samsung Smart TV",
     plan: "14 Months Pass",
-    comment: "We replaced our old satellite setup. We get Sun TV, Star Maa, and all Hindi soaps for under €8 a month. Setup took 3 minutes and PayPal buyer protection gave us complete peace of mind."
+    comment: "We replaced our old satellite setup. We get Sun TV, Star Maa, and all Hindi soaps for under £6.43 a month. Setup took 3 minutes and PayPal buyer protection gave us complete peace of mind."
   },
   {
     name: "Jaswinder Dhillon",
     location: "Slough (Berkshire)",
     device: "Apple TV 4K",
     plan: "6 Months Pass",
-    comment: "Live Gurbani from Sri Harmandir Sahib (Amritsar) every morning on PTC Punjabi is flawless. Having 7-day catch-up for weekend Punjabi dramas has made this indispensable for our home."
+    comment: "Live Gurbani from Sri Harmandir Sahib (Amritsar) every morning on PTC Punjabi is flawless. Having 14-day catch-up for weekend Punjabi dramas has made this indispensable for our home."
   },
   {
     name: "Dr. Amit Sharma",
     location: "Manchester (Altrincham)",
     device: "Sony Google TV",
     plan: "12+2 Free Months Pass",
-    comment: "Working NHS hospital shifts means I can never watch live Indian news or evening shows. The 7-day cloud recording lets me catch up at midnight or on my days off without recording hardware."
+    comment: "Working NHS hospital shifts means I can never watch live Indian news or evening shows. The 14-day cloud recording lets me catch up at midnight or on my days off without recording hardware."
   },
   {
     name: "Kiran & Dev Shah",

@@ -25,12 +25,12 @@ export default function WhyUsPage() {
     "@type": "Organization",
     "name": "ChitramTV UK",
     "url": "https://chitramtv.eu",
-    "logo": "https://chitramtv.eu/assets/client/logo.svg",
-    "description": "Dedicated UK Indian television streaming provider with 350+ live channels and 7-day catch-up TV.",
-    "telephone": "+31620897414",
+    "logo": "https://chitramtv.eu/Logo.png",
+    "description": "Dedicated UK Indian television streaming provider with 500+ live channels and 14-day catch-up TV.",
+    "telephone": "07979637777",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+31620897414",
+      "telephone": "07979637777",
       "contactType": "customer service",
       "availableLanguage": ["English", "Hindi", "Punjabi"]
     }
@@ -74,13 +74,13 @@ export default function WhyUsPage() {
                 THE DIASPORA CHALLENGE SOLVED
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Why Live Indian TV Fails in the UK Without 7-Day Catch-Up
+                Why Live Indian TV Fails in the UK Without 14-Day Catch-Up
               </h2>
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
                 India is 5.5 hours ahead of GMT (and 4.5 hours ahead during British Summer Time). When Indian primetime dramas, news debates, and evening soaps air at 8:00 PM IST in Mumbai or Delhi, it is only <strong>2:30 PM in London or Birmingham</strong> while you are working or the kids are at school.
               </p>
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                By the time you sit down at 8:00 PM in the UK, live channels are broadcasting late-night infomercials and reruns. With ChitramTV UK&apos;s <strong>automatic 7-day cloud DVR</strong>, every single channel is recorded continuously. You can rewind, pause, and watch primetime on your own British schedule.
+                By the time you sit down at 8:00 PM in the UK, live channels are broadcasting late-night infomercials and reruns. With ChitramTV UK&apos;s <strong>automatic 14-day cloud DVR</strong>, every single channel is recorded continuously. You can rewind, pause, and watch primetime on your own British schedule.
               </p>
             </div>
 
@@ -94,7 +94,7 @@ export default function WhyUsPage() {
                   <div className="text-sm font-bold text-red-400">2:30 PM UK Time — Working / School</div>
                 </div>
                 <div className="p-3 rounded-lg bg-zinc-900 border border-primary/40 bg-primary/5">
-                  <div className="text-xs text-primary font-semibold">ChitramTV 7-Day Catch-up</div>
+                  <div className="text-xs text-primary font-semibold">ChitramTV 14-Day Catch-up</div>
                   <div className="text-sm font-bold text-white">Watch at 8:30 PM UK with Zero Commercials</div>
                 </div>
               </div>
@@ -133,9 +133,9 @@ export default function WhyUsPage() {
             <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
               <Clock className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">Automatic 7-Day Cloud DVR</h3>
+            <h3 className="text-base font-bold text-white">Automatic 14-Day Cloud DVR</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Every drama, serial, news broadcast, and sports match is saved for a full 168 hours. No external hard drives or expensive TV box recorders required.
+              Every drama, serial, news broadcast, and sports match is saved for a full 336 hours (14 days). No external hard drives or expensive TV box recorders required.
             </p>
           </div>
 
@@ -143,7 +143,7 @@ export default function WhyUsPage() {
             <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
               <Tv className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">350+ Live Channels</h3>
+            <h3 className="text-base font-bold text-white">500+ Live Channels</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
               Comprehensive coverage across Hindi, Punjabi, Tamil, Telugu, Malayalam, Bengali, Gujarati, and English international sports broadcasts.
             </p>
@@ -165,7 +165,7 @@ export default function WhyUsPage() {
             </div>
             <h3 className="text-base font-bold text-white">100% PayPal Buyer Protection</h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              All transactions are processed through PayPal in Euros (€ EUR). No credit card details stored on our servers. 7-day full refund policy.
+              All transactions are processed through PayPal in British Pounds (£ GBP). No credit card details stored on our servers. 7-day full refund policy.
             </p>
           </div>
 

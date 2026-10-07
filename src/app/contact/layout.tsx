@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact Customer Support & 24/7 WhatsApp Desk",
   description:
-    "Connect with ChitramTV UK support desk. Direct 24/7 WhatsApp chat (+31 6 20897414), telephone helpline, ticket support, and immediate credential dispatch assistance.",
+    "Connect with ChitramTV UK support desk. Direct UK telephone helpline & WhatsApp (07979637777), Shiva Technology Ltd support, and immediate credential dispatch assistance.",
   alternates: {
     canonical: "https://chitramtv.eu/contact",
   },
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     siteName: "ChitramTV UK",
     title: "Contact Customer Support & 24/7 WhatsApp Desk | ChitramTV UK",
     description:
-      "Connect with ChitramTV UK support desk. Direct 24/7 WhatsApp chat, telephone helpline, ticket support, and fast credential dispatch.",
+      "Connect with ChitramTV UK support desk. Direct telephone helpline & WhatsApp (07979637777), and fast credential dispatch.",
     images: [
       {
-        url: "/assets/client/logo.svg",
+        url: "/Logo.png",
         width: 280,
         height: 64,
         alt: "Contact ChitramTV UK",
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact Customer Support & 24/7 WhatsApp Desk | ChitramTV UK",
     description:
-      "24/7 WhatsApp desk, telephone helpline, and quick activation assistance.",
-    images: ["/assets/client/logo.svg"],
+      "Direct UK helpline 07979637777, WhatsApp desk, and quick activation assistance.",
+    images: ["/Logo.png"],
   },
 };
 

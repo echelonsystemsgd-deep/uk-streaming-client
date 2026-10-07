@@ -41,9 +41,9 @@ export function ValuePropositionSection() {
   const counterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Mechanical rolling number effect to 350+
-    let start = 300;
-    const target = 350;
+    // Mechanical rolling number effect to 500+
+    let start = 420;
+    const target = 500;
     const interval = setInterval(() => {
       start += 2;
       if (start >= target) {
@@ -141,7 +141,7 @@ export function ValuePropositionSection() {
             Why UK Households Choose ChitramTV
           </h2>
           <p className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-            Test, scrub, and explore how our UK dedicated low-latency network and 7-day automatic catch-up solve the 5.5-hour diaspora time lag.
+            Test, scrub, and explore how our UK dedicated low-latency network and 14-day automatic catch-up solve the 5.5-hour diaspora time lag.
           </p>
         </div>
 
@@ -151,7 +151,7 @@ export function ValuePropositionSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           
           {/* --------------------------------------------------------------------- */}
-          {/* CARD 1: 350+ CHANNELS INTERACTIVE TUMBLER (7 COLS)                   */}
+          {/* CARD 1: 500+ CHANNELS INTERACTIVE TUMBLER (7 COLS)                   */}
           {/* --------------------------------------------------------------------- */}
           <div className="lg:col-span-7 rounded-2xl border border-zinc-800 bg-card p-5 sm:p-7 flex flex-col justify-between shadow-card relative overflow-hidden group">
             {/* Subtle corner badge */}
@@ -238,7 +238,7 @@ export function ValuePropositionSection() {
                       {ch}
                     </span>
                     <span className="shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300">
-                      7D
+                      14D
                     </span>
                   </div>
                 ))}
@@ -250,14 +250,14 @@ export function ValuePropositionSection() {
                   href="/channels"
                   className="font-semibold text-primary hover:underline flex items-center gap-1"
                 >
-                  Full 350+ List <ChevronRight className="h-3 w-3" />
+                  Full 500+ List <ChevronRight className="h-3 w-3" />
                 </Link>
               </div>
             </div>
           </div>
 
           {/* --------------------------------------------------------------------- */}
-          {/* CARD 2: 7-DAY CATCH-UP & 5.5-HOUR TIME-SHIFT SCRUBBER (5 COLS)        */}
+          {/* CARD 2: 14-DAY CATCH-UP & 5.5-HOUR TIME-SHIFT SCRUBBER (5 COLS)       */}
           {/* --------------------------------------------------------------------- */}
           <div className="lg:col-span-5 rounded-2xl border border-zinc-800 bg-card p-5 sm:p-7 flex flex-col justify-between shadow-card relative overflow-hidden">
             <div>
@@ -271,7 +271,7 @@ export function ValuePropositionSection() {
                       The 5.5-Hour Time Shift Solved
                     </span>
                     <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                      7-Day Automatic Catch-up
+                      14-Day Automatic Catch-up
                     </h3>
                   </div>
                 </div>
@@ -356,7 +356,7 @@ export function ValuePropositionSection() {
             </div>
 
             <div className="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between text-[11px] text-zinc-400">
-              <span>Automatic DVR across all 350+ channels</span>
+              <span>Automatic DVR across all 500+ channels</span>
               <span className="font-semibold text-zinc-200">168-Hour Cloud Buffer</span>
             </div>
           </div>

@@ -85,7 +85,7 @@ export function ChannelShowcaseSection() {
         <div className="pt-3 border-t border-zinc-800 flex items-center justify-between text-[11px]">
           <span className="flex items-center gap-1.5 font-medium text-zinc-300">
             <Clock className="h-3 w-3 text-zinc-400" />
-            7-Day Catch-up
+            14-Day Catch-up
           </span>
           <span className="font-semibold text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded text-[10px]">
             {channel.tag}
@@ -104,7 +104,7 @@ export function ChannelShowcaseSection() {
           <div className="max-w-2xl space-y-2">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold text-primary">
               <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-              <span>350+ LIVE &amp; CATCH-UP CHANNELS</span>
+              <span>500+ LIVE &amp; CATCH-UP CHANNELS</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
               Explore Premium Indian Channels
@@ -266,14 +266,14 @@ export function ChannelShowcaseSection() {
       {/* Footer Info Line & CTA */}
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8 text-center space-y-4">
         <p className="text-xs text-muted-foreground">
-          Showing <strong>{filteredChannels.length} featured streams</strong> of 350+ live channels included in every UK subscription pass.
+          Showing <strong>{filteredChannels.length} featured streams</strong> of 500+ live channels included in every UK subscription pass.
         </p>
         <div>
           <Link
             href="/channels"
             className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-200 hover:text-white bg-zinc-900 border border-zinc-700 hover:border-zinc-600 px-5 py-2.5 rounded-lg transition-colors min-h-[44px]"
           >
-            <span>Explore All 350+ Channels &amp; 7-Day Catch-Up Guide</span>
+            <span>Explore All 500+ Channels &amp; 14-Day Catch-Up Guide</span>
             <ChevronRight className="h-4 w-4 text-primary" />
           </Link>
         </div>

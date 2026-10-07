@@ -10,14 +10,14 @@ export interface ServiceStat {
 export const SERVICE_STATS: ServiceStat[] = [
   {
     id: "channels",
-    metric: "350+",
+    metric: "500+",
     label: "Live Channels",
     sublabel: "Hindi, Punjabi, South & Regional",
     iconName: "Tv",
   },
   {
     id: "catchup",
-    metric: "7 Days",
+    metric: "14 Days",
     label: "Catch-up TV",
     sublabel: "Automatic Cloud DVR Rewind",
     iconName: "Clock",
@@ -114,7 +114,7 @@ export const TIME_SHIFT_STEPS: TimeShiftStep[] = [
     tag: "UK Evening Commute",
     headline: "Indian Live Feeds Switch to Late-Night Infomercials",
     description: "Without catch-up, tuning into Indian TV now means watching infomercials or teleshopping while missing today's major episodes.",
-    statusText: "All 350+ Channels Cached to Cloud Servers",
+    statusText: "All 500+ Channels Cached to Cloud Servers",
     statusType: "transit",
   },
   {
@@ -130,11 +130,11 @@ export const TIME_SHIFT_STEPS: TimeShiftStep[] = [
   {
     step: 3,
     ukTime: "Weekend / Any Time",
-    istTime: "7 Days Back",
-    tag: "Full 7-Day Cloud DVR",
-    headline: "Missed Last Sunday's Match? Rewind Any Time",
-    description: "Every channel is saved continuously for a full 168 hours (7 days). Never rush dinner or miss a milestone cricket century again.",
-    statusText: "100% Comprehensive 7-Day History Across All Feeds",
+    istTime: "14 Days Back",
+    tag: "Full 14-Day Cloud DVR",
+    headline: "Missed Last Week's Shows? Rewind Any Time",
+    description: "Every channel is saved continuously for a full 336 hours (14 days). Never rush dinner or miss a milestone cricket match or serial episode again.",
+    statusText: "100% Comprehensive 14-Day History Across All Feeds",
     statusType: "night",
   },
 ];

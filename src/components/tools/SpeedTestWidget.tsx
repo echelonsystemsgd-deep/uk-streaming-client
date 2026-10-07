@@ -132,7 +132,7 @@ export function SpeedTestWidget() {
                 Verified: Your UK Connection is 100% Ready for Zero-Buffer 4K Streaming
               </h4>
               <p className="text-xs text-zinc-300 mt-1 leading-relaxed">
-                Your Wi-Fi comfortably supports simultaneous 4K cricket on your living room Smart TV while other family members watch 7-day catch-up on Firesticks in the bedroom.
+                Your Wi-Fi comfortably supports simultaneous 4K cricket on your living room Smart TV while other family members watch 14-day catch-up on Firesticks in the bedroom.
               </p>
             </div>
           </div>

@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 import { StickyFooterBar } from "@/components/layout/StickyFooterBar";
 import { PayPalModal } from "@/components/checkout/PayPalModal";
 import { PRICING_PLANS, PricingPlan } from "@/data/plans";
+import { CartProvider } from "@/context/CartContext";
+import { CartDrawer } from "@/components/cart/CartDrawer";
 
 interface SiteShellContextType {
   openPlan: (plan: PricingPlan) => void;
@@ -29,7 +31,7 @@ export function SiteShell({ children }: SiteShellProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const quickSubscribe = () => {
-    const popularPlan = PRICING_PLANS.find((p) => p.isPopular) || PRICING_PLANS[2];
+    const popularPlan = PRICING_PLANS.find((p) => p.isPopular) || PRICING_PLANS[0];
     setSelectedPlan(popularPlan);
     setIsModalOpen(true);
   };
@@ -40,30 +42,31 @@ export function SiteShell({ children }: SiteShellProps) {
   };
 
   return (
-    <SiteShellContext.Provider value={{ openPlan, quickSubscribe }}>
-      <div className="min-h-screen flex flex-col bg-background text-foreground">
-        {/* Persistent Fixed Top Header — pinned across all pages */}
-        <header className="fixed top-0 left-0 right-0 z-50 w-full bg-zinc-950/95 backdrop-blur-md border-b border-border/80 shadow-md">
-          <TopBanner />
-          <Navbar onSubscribeClick={quickSubscribe} />
-        </header>
+    <CartProvider>
+      <SiteShellContext.Provider value={{ openPlan, quickSubscribe }}>
+        <div className="min-h-screen flex flex-col bg-[#f4f6f8] text-gray-900">
+          {/* Header */}
+          <div className="w-full">
+            <TopBanner />
+            <Navbar onSubscribeClick={quickSubscribe} />
+          </div>
 
-        {/* Spacer matching header height */}
-        <div className="h-[100px] sm:h-[114px]" aria-hidden="true" />
+          {/* Page Content */}
+          <main className="flex-1 pb-16">{children}</main>
 
-        {/* Page Content */}
-        <main className="flex-1 pb-20 sm:pb-24">{children}</main>
+          <Footer />
 
-        <Footer />
+          <StickyFooterBar onSubscribeClick={quickSubscribe} />
 
-        <StickyFooterBar onSubscribeClick={quickSubscribe} />
+          <CartDrawer />
 
-        <PayPalModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          plan={selectedPlan}
-        />
-      </div>
-    </SiteShellContext.Provider>
+          <PayPalModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            plan={selectedPlan}
+          />
+        </div>
+      </SiteShellContext.Provider>
+    </CartProvider>
   );
 }

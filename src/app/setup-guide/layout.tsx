@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Step-by-step setup guide for ChitramTV on Amazon Firestick, Android TV, Smart TVs (Samsung & LG), Apple TV, and PC.",
     images: [
       {
-        url: "/assets/client/logo.svg",
+        url: "/Logo.png",
         width: 280,
         height: 64,
         alt: "ChitramTV UK Setup Guide",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "3-Minute Setup & Installation Guide | ChitramTV UK",
     description:
       "Step-by-step setup guide for ChitramTV on Amazon Firestick, Android TV, Smart TVs, Apple TV, and PC.",
-    images: ["/assets/client/logo.svg"],
+    images: ["/Logo.png"],
   },
 };
 

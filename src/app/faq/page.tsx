@@ -20,8 +20,8 @@ const EXTENDED_FAQS: ExtendedFaqItem[] = [
     id: "faq-1",
     category: "catchup",
     categoryLabel: "Catch-up TV",
-    question: "How does 7-Day Catch-up TV work for the UK time difference?",
-    answer: "Because India is 5.5 hours ahead of GMT (and 4.5 hours ahead during British Summer Time), Indian primetime dramas, serials, and news debates air around 2:30 PM UK time when you are working. With ChitramTV UK's automatic 7-day cloud recording, every single channel is recorded on our secure UK edge servers. You can pause, rewind, and watch your favourite dramas (Anupamaa, Kundali Bhagya, Yeh Rishta) or cricket matches whenever you sit down in the evening with zero commercials."
+    question: "How does 14-Day Catch-up TV work for the UK time difference?",
+    answer: "Because India is 5.5 hours ahead of GMT (and 4.5 hours ahead during British Summer Time), Indian primetime dramas, serials, and news debates air around 2:30 PM UK time when you are working. With ChitramTV UK's automatic 14-day cloud recording, every single channel is recorded on our secure UK edge servers. You can pause, rewind, and watch your favourite dramas (Anupamaa, Kundali Bhagya, Yeh Rishta) or cricket matches whenever you sit down in the evening with zero commercials."
   },
   {
     id: "faq-2",
@@ -35,7 +35,7 @@ const EXTENDED_FAQS: ExtendedFaqItem[] = [
     category: "billing",
     categoryLabel: "Payments & PayPal",
     question: "How does PayPal payment and Buyer Protection work?",
-    answer: "All subscription passes and hardware orders are billed securely in Euros (€ EUR) through PayPal. You can pay using your PayPal balance, linked bank account, or any major credit/debit card (Visa, Mastercard, Amex). Every transaction is covered by PayPal's 100% Buyer Protection guarantee, meaning your funds are secure and you are never locked into automatic rolling contracts."
+    answer: "All subscription passes and hardware orders are billed securely in British Pounds (£ GBP) through PayPal. You can pay using your PayPal balance, linked bank account, or any major credit/debit card (Visa, Mastercard, Amex). Every transaction is covered by PayPal's 100% Buyer Protection guarantee, meaning your funds are secure and you are never locked into automatic rolling contracts."
   },
   {
     id: "faq-4",
@@ -157,7 +157,7 @@ export default function FaqPage() {
             Frequently Asked <span className="text-primary">Questions</span>
           </h1>
           <p className="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Everything you need to know about ChitramTV UK: 7-day catch-up, PayPal security, Amazon Firestick installation, and UK broadband compatibility.
+            Everything you need to know about ChitramTV UK: 14-day catch-up, PayPal security, Amazon Firestick installation, and UK broadband compatibility.
           </p>
         </div>
       </section>
@@ -270,7 +270,7 @@ export default function FaqPage() {
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
             <a
-              href="https://wa.me/31620897414"
+              href="https://wa.me/447979637777"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs h-11 px-5 rounded-lg transition-colors w-full sm:w-auto"
@@ -279,11 +279,11 @@ export default function FaqPage() {
               <span>WhatsApp Live Help</span>
             </a>
             <a
-              href="tel:+31620897414"
+              href="tel:07979637777"
               className="inline-flex items-center justify-center gap-2 bg-card border border-zinc-700 hover:text-white text-zinc-300 font-bold text-xs h-11 px-5 rounded-lg transition-colors w-full sm:w-auto"
             >
               <Phone className="h-4 w-4 text-primary" />
-              <span>+31 6 20897414</span>
+              <span>07979637777</span>
             </a>
           </div>
         </div>

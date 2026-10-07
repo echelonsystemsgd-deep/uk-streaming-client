@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | ChitramTV UK",
   },
   description:
-    "Stream 350+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK. 7-day catch-up with zero buffering on ChitramTV UK.",
+    "Stream 500+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK. 14-day catch-up with zero buffering on ChitramTV UK.",
   applicationName: "ChitramTV UK",
   authors: [
     { name: "ChitramTV UK", url: "https://chitramtv.eu" },
@@ -40,10 +40,10 @@ export const metadata: Metadata = {
     siteName: "ChitramTV UK",
     title: "ChitramTV UK — Premium Live Indian TV Channels & Movies in Ultra HD",
     description:
-      "Stream 350+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK. 7-day catch-up with zero buffering.",
+      "Stream 500+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies on Smart TV, Firestick, Mobile & PC across the UK. 14-day catch-up with zero buffering.",
     images: [
       {
-        url: "/assets/client/logo.svg",
+        url: "/Logo.png",
         width: 280,
         height: 64,
         alt: "ChitramTV UK Logo",
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ChitramTV UK — Premium Live Indian TV Channels & Movies in Ultra HD",
     description:
-      "Stream 350+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies across the UK with 7-day catch-up TV.",
-    images: ["/assets/client/logo.svg"],
+      "Stream 500+ live Indian TV channels, live cricket in 4K UHD, and 10,000+ movies across the UK with 14-day catch-up TV.",
+    images: ["/Logo.png"],
   },
   robots: {
     index: true,

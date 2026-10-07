@@ -21,7 +21,7 @@ export function CtaBannerSection({ onSubscribeClick }: CtaBannerSectionProps) {
                 Ready for Buffer-Free Indian Television in the UK?
               </h2>
               <p className="text-sm sm:text-base text-zinc-400 max-w-2xl leading-relaxed">
-                Get started today in less than 2 minutes. 350+ live channels, 7-day catch-up, and 4K live cricket delivered smoothly on your home broadband.
+                Get started today in less than 2 minutes. 500+ live channels, 14-day catch-up, and 4K live cricket delivered smoothly on your home broadband.
               </p>
 
               {/* Badges */}
@@ -49,7 +49,7 @@ export function CtaBannerSection({ onSubscribeClick }: CtaBannerSectionProps) {
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <a
-                href="https://wa.me/31620897414"
+                href="https://wa.me/447979637777"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-md border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs px-6 py-3 h-12 w-full sm:w-auto transition-colors"
