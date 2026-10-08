@@ -1,9 +1,9 @@
 # ChitramTV UK - Simplification, Unpacked Landing Page & Mobile Optimization Plan
 
-**Document Version:** 1.1.0  
+**Document Version:** 1.2.0  
 **Target Platform:** Next.js 14 (App Router) • React 18 • Tailwind CSS  
 **Operating Entity:** Shiva Technology Ltd (ChitramTV UK Official Reseller)  
-**Digital Architecture & Engineering Credit:** Mercian Wealth (`mercianwealth.com`)  
+**Digital Architecture & Engineering Credit:** Mercian Wealth Automation ([mercianwealth.com](https://mercianwealth.com))  
 
 ---
 
@@ -63,15 +63,17 @@ To ensure users cannot scroll or move the website in the background when interac
 
 ## 5. Sticky Navigation Header Architecture
 
-* **Root Cause Fix:** Previously, `<Navbar>` was wrapped inside a short non-sticky `<div className="w-full">` in `SiteShell.tsx`, which caused the navbar to stop sticking as soon as that container scrolled off-screen.
-* **Resolution:** Elevated the sticky dock to `sticky top-0 z-40 w-full bg-white shadow-md`. `TopBanner` scrolls away naturally on initial scroll, allowing the clean, compact 56px–60px Navbar (Logo, Cart Badge, Hamburger / Desktop links) to remain permanently accessible across all pages and mobile viewports.
+* **Solid Opacity & Zero Bleed-Through:** Configured `<header>` with 100% solid `bg-white` and `z-40` with `border-b border-gray-200` and subtle elevation (`shadow-sm`). Eliminated any partial backdrop opacity that could allow underlying scrolling content (buttons, banners, images) to shine through as visual artifacts.
+* **Ergonomic Elevation:** `TopBanner` scrolls away naturally on initial scroll, leaving a compact ~56px–60px sticky navbar (Logo, Search, Cart Badge, Menu) fixed at `top: 0` for effortless shopping cart and menu access across desktop, tablet, and mobile.
 
 ---
 
-## 6. Mercian Wealth Credibility Credit
+## 6. Mercian Wealth Automation Credibility Credit
 
-* **Footer Bottom Bar (`Footer.tsx`):** Restored the official engineering and design credibility credit in the bottom copyright row directly below the Shiva Technology Ltd entity declaration:
-  * Designed & Engineered by `mercianwealth.com` with high-contrast amber accent (`#fdc22d`).
+* **Footer Bottom Bar (`Footer.tsx`):** Restored official engineering and design credibility credit in the bottom copyright row directly below the Shiva Technology Ltd entity declaration:
+  * Designed & Engineered by [Mercian Wealth Automation](https://mercianwealth.com) with high-contrast amber accent (`#fdc22d`).
+* **Subpage Endorsements (`why-us/page.tsx`):** Explicit enterprise-grade UK infrastructure credibility attributed to [Mercian Wealth Automation](https://mercianwealth.com).
+* **Metadata (`layout.tsx`):** Authorship and engineering credits attributed to `Mercian Wealth Automation`.
 
 ---
 

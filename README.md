@@ -33,6 +33,8 @@ Following client requirements and diaspora demographics:
 ---
 
 ### 3. Mobile-First Optimization & Ergonomics
+- **Solid Sticky Header**: Clean ~56px–60px sticky header with 100% solid white opacity (`bg-white border-b border-gray-200 shadow-sm`), guaranteeing zero background element bleed-through and instant access to cart and navigation across all devices.
+- **Universal Modal Scroll Locking**: Interacting with any drawer or modal (`CartDrawer`, Quickview, `PayPalModal`, mobile menu) locks background page scrolling (`useScrollLock`) with `overscroll-behavior: contain` and `touch-action: none`.
 - **Touch-Friendly Targets**: All buttons, navigation links, and category pills strictly adhere to minimum 44px–48px touch targets.
 - **Input Zoom Prevention**: Form fields use `text-base sm:text-sm` (16px font size) to eliminate iOS Safari auto-zoom on focus.
 - **Zero Scroll Interception**: All page components allow uninterrupted vertical thumb scrolling.
@@ -90,8 +92,9 @@ npm run build
 
 ---
 
-## 📄 Operating Entity
-**Shiva Technology Ltd** (Trading as ChitramTV UK)  
-Helpline: `07979637777`  
-Support Email: `support@chitramtv.uk`  
-Official Reseller of Chitram TV in the United Kingdom
+## 📄 Operating Entity & Digital Architecture
+- **Operating Entity**: **Shiva Technology Ltd** (Trading as ChitramTV UK)  
+  Helpline: `07979637777` • Support Email: `support@chitramtv.uk`  
+  Official Reseller of Chitram TV in the United Kingdom
+- **Digital Architecture & Engineering**: [Mercian Wealth Automation](https://mercianwealth.com)  
+  High-redundancy streaming distribution, zero-log privacy architecture, and bespoke UI engineering.

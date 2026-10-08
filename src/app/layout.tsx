@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   applicationName: "ChitramTV UK",
   authors: [
     { name: "ChitramTV UK", url: "https://chitramtv.eu" },
-    { name: "Mercian Wealth", url: "https://mercianwealth.com" },
+    { name: "Mercian Wealth Automation", url: "https://mercianwealth.com" },
   ],
   creator: "ChitramTV UK",
   publisher: "ChitramTV UK",
