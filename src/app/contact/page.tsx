@@ -21,10 +21,24 @@ export default function ContactPage() {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [whatsAppRedirectUrl, setWhatsAppRedirectUrl] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const messageBody = `*New ChitramTV UK Support Enquiry*\n\n` +
+      `*Name:* ${formData.name}\n` +
+      `*Email:* ${formData.email}\n` +
+      `*Phone:* ${formData.phone || "Not provided"}\n` +
+      `*Device:* ${formData.device}\n` +
+      `*Message:* ${formData.message}`;
+
+    const url = `https://wa.me/447979637777?text=${encodeURIComponent(messageBody)}`;
+    setWhatsAppRedirectUrl(url);
     setIsSubmitted(true);
+
+    if (typeof window !== "undefined") {
+      window.open(url, "_blank");
+    }
   };
 
   const jsonLdData = {
@@ -189,26 +203,36 @@ export default function ContactPage() {
               <div className="p-6 rounded-xl border border-emerald-200 bg-emerald-50 text-center space-y-4">
                 <CheckCircle2 className="h-10 w-10 text-emerald-600 mx-auto" />
                 <div>
-                  <h3 className="text-lg font-bold text-[#2c3640]">Thank You, {formData.name || "Customer"}!</h3>
-                  <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                    Your inquiry has been received by our desk. Our UK support team will respond shortly.
+                  <h3 className="text-lg font-bold text-[#2c3640]">Enquiry Ready for WhatsApp!</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1 max-w-md mx-auto">
+                    Your details for <strong className="text-gray-900">{formData.name}</strong> have been formatted. If WhatsApp did not open automatically, tap below:
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-2 justify-center pt-2">
                   <a
-                    href={`https://wa.me/447979637777?text=${encodeURIComponent(`Hi ChitramTV Support, my name is ${formData.name}. ${formData.message}`)}`}
+                    href={whatsAppRedirectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs h-11 px-5 rounded-lg transition-colors shadow-sm min-h-[44px]"
+                    className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs h-12 px-6 rounded-lg transition-colors shadow-sm min-h-[48px]"
                   >
                     <MessageSquare className="h-4 w-4" />
-                    <span>Send via WhatsApp for Faster Reply (&lt;5 min)</span>
+                    <span>Open WhatsApp Help Desk (07979637777)</span>
                   </a>
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => setIsSubmitted(false)}
-                    className="text-xs bg-white border-gray-300 text-gray-800 hover:bg-gray-50 h-11 min-h-[44px]"
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setFormData({
+                        name: "",
+                        email: "",
+                        phone: "",
+                        device: "ChitramTV Black Edition C1 Box",
+                        subject: "New Subscription Inquiry",
+                        message: "",
+                      });
+                    }}
+                    className="text-xs bg-white border-gray-300 text-gray-800 hover:bg-gray-50 h-12 min-h-[48px]"
                   >
                     Send another inquiry
                   </Button>
@@ -287,10 +311,10 @@ export default function ContactPage() {
                   type="submit"
                   variant="default"
                   size="lg"
-                  className="w-full font-bold h-12 flex items-center justify-center gap-2 bg-[#dd0e1c] hover:bg-[#b00b16] text-white shadow-sm"
+                  className="w-full font-bold h-12 flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm min-h-[48px]"
                 >
-                  <Send className="h-4 w-4" />
-                  <span>Submit Message to Desk</span>
+                  <MessageSquare className="h-4 w-4" />
+                  <span>Send Enquiry to WhatsApp Help Desk</span>
                 </Button>
               </form>
             )}
