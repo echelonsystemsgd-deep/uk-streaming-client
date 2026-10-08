@@ -24,11 +24,11 @@ export default function TermsPage() {
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
-      <div className="bg-[#2c3640] py-2 px-4 text-xs text-gray-300 border-b border-gray-700">
+      <div className="border-b border-gray-200 bg-gray-50 py-2.5 px-4 text-xs text-gray-500">
         <div className="container mx-auto max-w-7xl flex items-center gap-2">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span className="text-gray-500">/</span>
-          <span className="text-white font-medium">Terms and Condition</span>
+          <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-gray-900 font-semibold">Terms and Condition</span>
         </div>
       </div>
 

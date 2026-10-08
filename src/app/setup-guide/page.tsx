@@ -336,9 +336,30 @@ export default function SetupGuidePage() {
         </div>
       </section>
 
-      {/* Interactive UK Speed & Buffer Test Widget */}
-      <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
-        <SpeedTestWidget />
+      {/* Optional Diagnostic Speed Test (Non-Intrusive) */}
+      <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-10">
+        <details className="group rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+          <summary className="p-4 sm:p-5 flex items-center justify-between cursor-pointer select-none hover:bg-gray-50 transition-colors">
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-8 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c] shrink-0">
+                <Wifi className="h-4 w-4" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-[#2c3640]">
+                  Experiencing Stream Issues? Test Your UK Broadband Speed
+                </h3>
+                <p className="text-xs text-gray-500">
+                  Click to run our live network diagnostic for London relay latency and buffer risk.
+                </p>
+              </div>
+            </div>
+            <span className="text-xs font-semibold text-[#dd0e1c] group-open:hidden">Show Test +</span>
+            <span className="text-xs font-semibold text-gray-500 hidden group-open:inline">Hide Test −</span>
+          </summary>
+          <div className="p-4 sm:p-6 border-t border-gray-100 bg-gray-50/50">
+            <SpeedTestWidget />
+          </div>
+        </details>
       </section>
 
       {/* UK ISP Compatibility Matrix */}

@@ -162,11 +162,11 @@ export default function ContactPage() {
             </div>
             <div className="pt-4 border-t border-gray-100 mt-4">
               <a
-                href="mailto:support@chitramtv.eu"
-                className="w-full inline-flex items-center justify-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-bold text-xs h-11 px-4 rounded-lg transition-colors select-none shadow-sm"
+                href="mailto:support@chitramtv.uk"
+                className="w-full inline-flex items-center justify-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-bold text-xs h-11 px-4 rounded-lg transition-colors select-none shadow-sm min-h-[44px]"
               >
                 <Mail className="h-4 w-4 text-[#dd0e1c]" />
-                <span>support@chitramtv.eu</span>
+                <span>support@chitramtv.uk</span>
               </a>
             </div>
           </div>
@@ -186,20 +186,33 @@ export default function ContactPage() {
             </p>
 
             {isSubmitted ? (
-              <div className="p-6 rounded-xl border border-emerald-200 bg-emerald-50 text-center space-y-3">
+              <div className="p-6 rounded-xl border border-emerald-200 bg-emerald-50 text-center space-y-4">
                 <CheckCircle2 className="h-10 w-10 text-emerald-600 mx-auto" />
-                <h3 className="text-lg font-bold text-[#2c3640]">Thank You, {formData.name || "Customer"}!</h3>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  Your inquiry has been received by our desk. We will respond to your WhatsApp/email within 15 minutes.
-                </p>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setIsSubmitted(false)}
-                  className="mt-2 text-xs bg-white border-gray-300 text-gray-800 hover:bg-gray-50"
-                >
-                  Send another inquiry
-                </Button>
+                <div>
+                  <h3 className="text-lg font-bold text-[#2c3640]">Thank You, {formData.name || "Customer"}!</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                    Your inquiry has been received by our desk. Our UK support team will respond shortly.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-2 justify-center pt-2">
+                  <a
+                    href={`https://wa.me/447979637777?text=${encodeURIComponent(`Hi ChitramTV Support, my name is ${formData.name}. ${formData.message}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs h-11 px-5 rounded-lg transition-colors shadow-sm min-h-[44px]"
+                  >
+                    <MessageSquare className="h-4 w-4" />
+                    <span>Send via WhatsApp for Faster Reply (&lt;5 min)</span>
+                  </a>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsSubmitted(false)}
+                    className="text-xs bg-white border-gray-300 text-gray-800 hover:bg-gray-50 h-11 min-h-[44px]"
+                  >
+                    Send another inquiry
+                  </Button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">

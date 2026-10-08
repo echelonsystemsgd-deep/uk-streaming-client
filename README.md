@@ -1,71 +1,63 @@
-# ChitramTV UK — Premium Live Indian TV & 4K Streaming
+# ChitramTV UK — Premium Live Indian TV & Catch-Up Streaming
 
-High-performance, multi-page Next.js 14 streaming portal engineered for British Indian households. Delivers 500+ live Indian television channels, live cricket in 4K UHD 60fps, and automatic 14-day catch-up TV tailored for the UK timezone.
+High-performance, mobile-optimized Next.js 14 streaming portal engineered for British Indian households. Delivers 500+ live Indian television channels, live cricket tournaments, and automatic 14-day catch-up TV tailored for the UK timezone.
 
-Operated by **Shiva Technology Ltd** (trading as ChitramTV UK). Official support helpline: 07979637777.
+Operated by **Shiva Technology Ltd** (trading as ChitramTV UK). Official support helpline: **07979637777** • Email: **support@chitramtv.uk**.
 
 ---
 
 ## 🚀 Key Architectural Highlights
 
-### 1. Multi-Page Architecture
-The portal features a streamlined high-converting homepage teaser backed by 6 dedicated deep-dive subpages:
-- **`/` (Homepage)**: High-impact summary hub with smart TV live cricket simulator, moving channel carousel teaser, compact pricing preview, and clear navigation pathways to full sections.
-- **`/channels`**: Complete 350+ channel directory with live search, multi-language dialect tabs (Hindi, Punjabi, Tamil, Telugu, Malayalam, English), genre filters, quality toggles (4K UHD vs 1080p HD), and 7-day EPG catch-up guide.
-- **`/plans`**: Transparent pricing matrix featuring the 6 verified SKUs matching the European live catalogue: 1 Month Service, 6 Months Subscription, 12+2 Months Service (Flagship Pass), ChitramTV Renewal (12+2 Free Months with dedicated existing customer account lookup), ChitramTV Black Edition C1 Box Only (Android 14 framework), and ChitramTV Box + 1 Year Service Bundle. Includes side-by-side feature comparison table, mobile-first category filter tabs, 1-Year Hardware Replacement Warranty, and 14-Day Return Window.
-- **`/setup-guide`**: Step-by-step 3-minute installation instructions with an interactive device switcher (Amazon Fire TV Stick, Android & Google TV, Samsung Tizen, LG webOS, Apple TV, PC/Mac) and UK ISP compatibility matrix (BT Smart Hub, Virgin Media Hub 3/4/5, Sky Broadband Shield, Vodafone, TalkTalk, EE).
-- **`/why-us`**: The British Indian diaspora story, detailing how ChitramTV bridges the 5.5-hour India-to-UK time gap, London Docklands low-latency edge CDN relays, UK geographic coverage hubs, and security audits by mercianwealth.com.
-- **`/faq`**: Comprehensive 24/7 help center with real-time search, category filters (Setup, Billing, Catch-Up, Broadband), custom accordion, and direct escalation to WhatsApp & phone.
-- **`/contact`**: UK customer support desk with direct WhatsApp 24/7 desk, UK phone helpline (020 7946 0912), live operating hours, interactive ticket form, and dispatch tracking.
+### 1. Simplified, Unpacked Landing Page & Deep Subpage Architecture
+The portal adheres to a clean, non-packed landing page design philosophy where every section serves as an executive summary of comprehensive subpages:
+- **`/` (Homepage)**: Fast, non-cluttered summary hub with official Journal 3 hero slides, a balanced 3-card value proposition (14-Day DVR, 4-Screen Multi-Room, and PayPal trust), a 6-product e-commerce tariff grid, a static 4-channel highlight preview with 1-click routing to the full catalogue, 3-step setup summary, UK diaspora proof, FAQ, and support desk.
+- **`/channels`**: Complete 500+ channel directory with live search, multi-language dialect tabs (Hindi, Punjabi, Tamil, Telugu, Malayalam, English), quality filters (4K UHD vs 1080p HD), and 14-day EPG catch-up guide.
+- **`/buy-now`**: Direct e-commerce catalogue featuring the 6 verified SKUs with "Add to Cart" and "Buy Now" workflows, returning subscriber renewal lookup (retaining account numbers & box MAC addresses), and real-time shopping cart drawer.
+- **`/plans`**: Transparent pricing matrix with side-by-side feature comparison table, mobile-first category filter tabs, 1-Year Hardware Replacement Warranty, and 14-Day Return Window.
+- **`/setup-guide`**: Step-by-step 3-minute installation instructions with an interactive device switcher (Amazon Fire TV Stick, Android & Google TV, Samsung Tizen, LG webOS, Apple TV, PC/Mac), UK ISP router tips (BT Web Protect, Virgin Media Web Safe, Sky Broadband Shield), and optional broadband speed diagnostic.
+- **`/why-us`**: The British Indian diaspora story, detailing how ChitramTV solves the 5.5-hour India-to-UK time difference for NHS workers and working families, London low-latency edge CDN relays, and UK geographic coverage hubs.
+- **`/features`**: Detailed breakdown of 14 Days Catch-Up TV, 10,000+ Movies on Demand, Timeshift Control, Parental PIN Protection, and Internet Radio.
+- **`/download`**: Official APK downloads for Android Smart TV, Android Mobile, Firestick Downloader codes, and PC/Mac emulators with direct WhatsApp dispatch.
+- **`/faq`**: Comprehensive help center with real-time search, category filters (Setup, Billing, Catch-Up, Broadband), custom accordion, and direct WhatsApp escalation.
+- **`/contact`**: UK customer support desk with direct WhatsApp (<5 min response), UK phone helpline (07979637777), operating schedule, and interactive ticket submission.
+- **`/privacy`, `/terms`, `/refund-policy`**: Complete legal documentation under the laws of England & Wales covering Shiva Technology Ltd, PayPal Buyer Protection, and 7-Day Money-Back Guarantee.
 
 ---
 
-### 2. SEO, AEO & GEO Optimization
-- **SEO (Search Engine Optimization)**:
-  - Route-specific dynamic metadata titles and descriptions localized for the UK.
-  - Native `sitemap.ts` and `robots.ts` dynamically generated via Next.js 14 App Router.
-  - Fast Core Web Vitals (LCP < 1.2s, CLS = 0) with full static prerendering (`12/12` pages).
-- **AEO (Answer Engine Optimization)**:
-  - Structured JSON-LD schemas embedded across every route for citation by AI engines (ChatGPT, Google Gemini AI Overviews, Perplexity):
-    - `BroadcastService` Schema on `/channels`
-    - `Product` & `Offer` Schema on `/plans`
-    - `HowTo` Schema on `/setup-guide`
-    - `Organization` Schema on `/why-us` and `/`
-    - `FAQPage` Schema on `/faq`
-    - `LocalBusiness` Schema on `/contact`
-- **GEO (Generative Engine Optimization & UK Diaspora Targeting)**:
-  - Targeted geographic coverage of major British Indian diaspora hubs: Greater London (Southall, Wembley, Harrow, Hounslow, Ilford), West Midlands (Birmingham, Wolverhampton, Coventry), East Midlands (Leicester), North West (Manchester), Yorkshire (Bradford, Leeds), and Home Counties (Slough, Luton).
-  - Explicit UK ISP router configuration tips (BT Web Protect, Virgin Media Web Safe, Sky Broadband Shield).
+### 2. "Keep It Simple, Not High-Fi" Conversion Philosophy
+Following client requirements and diaspora demographics:
+- **No Complex Drag Sliders**: Removed interactive split-screen comparison sliders that previously caused vertical scroll conflicts on mobile screens.
+- **No Infinite Auto-Carousels**: Replaced auto-moving marquee carousels with a clean, static 4-channel preview (Star Plus, Sony TV, PTC Punjabi, Star Sports) and a prominent button redirecting visitors to the full `/channels` catalogue.
+- **Light Theme Executive Palette**: Standardized across the entire site using high-contrast deep slate headings (`#2c3640`), brand red accents (`#dd0e1c`), and clean white card containers (`bg-white border-gray-200 shadow-sm`), eliminating all white-on-white text bugs.
 
 ---
 
-### 3. Mobile-First Optimization & Visual Polish
-- **Touch-Friendly Targets**: All buttons, navigation links, and category pills strictly adhere to minimum 44px touch targets.
-- **Input Zoom Prevention**: Form fields use `text-base sm:text-sm` to eliminate unwanted iOS Safari auto-zoom on mobile focus.
-- **Persistent Fixed Header Dock**: Pinned across all scroll depths with responsive mobile & split-screen hamburger drawer (accessible on all screens `< 1024px`).
-- **Intelligent Conversion Dock (`StickyFooterBar`)**:
-  - Highlights the **"Best Value: £6.43/mo (12+2 Free Months)"** pass.
-  - **Auto-Hide at Footer**: Automatically hides via `IntersectionObserver` when reaching the site footer, completely exposing the footer links and the `mercianwealth.com` credibility credit.
-- **Moving Channel Carousel**: Dual-row infinite marquee carousel with smooth pause-on-hover and `.scrollbar-none` horizontal swiping.
-- **Dark Zinc & Cinema Crimson Palette**: Strict 8px rem grid without gimmicky vibecoded pills or random colors.
+### 3. Mobile-First Optimization & Ergonomics
+- **Touch-Friendly Targets**: All buttons, navigation links, and category pills strictly adhere to minimum 44px–48px touch targets.
+- **Input Zoom Prevention**: Form fields use `text-base sm:text-sm` (16px font size) to eliminate iOS Safari auto-zoom on focus.
+- **Zero Scroll Interception**: All page components allow uninterrupted vertical thumb scrolling.
+- **Direct WhatsApp Escalation**: Download links and contact forms provide 1-tap WhatsApp deep links (`https://wa.me/447979637777`) with pre-filled inquiries, replacing intrusive browser `alert()` popups.
 
 ---
 
-### 4. Verified Catalogue Architecture & Hardware Rebrand
-- **6 Verified SKUs (in GBP £)**:
-  1. `1 Month Service` (£14.99) — Flexible zero-commitment pass.
-  2. `6 Months Subscription` (£59.99) — Multi-month family pass (£10.00/mo).
-  3. `12+2 Months Service (Android TV & Firestick)` (£89.99) — Flagship 14-month annual membership (£6.43/mo).
-  4. `ChitramTV Renewal (12+2 Free Months)` (£89.99) — Dedicated returning subscriber flow. Prompts for existing Account ID, Username, or Box MAC Address to extend existing lines with zero setup disruption.
-  5. `ChitramTV Black Edition C1 Box Only` (£59.99) — Standalone official set-top box.
-  6. `ChitramTV Box + 1 Year Service Bundle` (£109.99) — Turnkey pack with C1 Box + 1-year subscription pass.
-- **Hardware Rebrand (`ChitramTV Black Edition C1 Box`)**:
-  - Replaced legacy references across UI copy, metadata, and order forms.
-  - Powered by Android 14 framework (up to 2x faster).
-  - Premium Bluetooth remote control, HDR10+ visuals, and pre-installed YouTube, Netflix, Prime Video, and Chrome with Google Play Store access.
-- **Warranty & Return Terms**:
-  - 1-Year Hardware Replacement Warranty on all C1 TV boxes.
-  - 14-Day Return Window for faulty hardware assessment.
+### 4. Verified Catalogue Architecture (in GBP £)
+1. **1 Month Service** (£14.99) — Flexible zero-commitment pass (up to 2 devices).
+2. **6 Months Subscription** (£59.99) — Multi-month family pass (£10.00/mo, up to 3 devices).
+3. **12+2 Months Service (Android TV & Firestick)** (£89.99) — Flagship 14-month annual membership (£6.43/mo, up to 4 devices).
+4. **ChitramTV Renewal (12+2 Free Months)** (£89.99) — Dedicated returning subscriber flow. Prompts for existing Account ID or Box MAC Address to extend existing lines with zero setup disruption.
+5. **ChitramTV Black Edition C1 Box Only** (£59.99) — Standalone official Android 14 set-top box.
+6. **ChitramTV Box + 1 Year Service Bundle** (£109.99) — Turnkey pack with C1 Box + 1-year subscription pass.
+
+---
+
+### 5. SEO, AEO & Structured Data (JSON-LD)
+Structured JSON-LD schemas embedded across every route for citation by search engines and AI answer engines (ChatGPT, Google Gemini AI Overviews, Perplexity):
+- `BroadcastService` Schema on `/channels`
+- `Product` & `Offer` Schema on `/plans` and `/buy-now`
+- `HowTo` Schema on `/setup-guide`
+- `Organization` Schema on `/why-us` and `/`
+- `FAQPage` Schema on `/faq`
+- `LocalBusiness` Schema on `/contact`
 
 ---
 
@@ -73,81 +65,33 @@ The portal features a streamlined high-converting homepage teaser backed by 6 de
 
 - **Framework**: [Next.js 14.2](https://nextjs.org/) (App Router, Static Generation)
 - **Language**: TypeScript 5
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom 8px rem grid tokens
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Component Primitives**: [shadcn/ui](https://ui.shadcn.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **Payment Processing**: [@paypal/react-paypal-js](https://github.com/paypal/react-paypal-js)
-
----
-
-## 📁 Project Directory Structure
-
-```text
-uk-streaming-client/
-├── Public/
-│   └── assets/client/
-│       ├── logo.svg               # ChitramTV UK vector SVG brandmark
-│       └── favicon.svg            # Favicon vector
-├── src/
-│   ├── app/
-│   │   ├── channels/page.tsx      # 350+ Channel Directory & EPG (BroadcastService schema)
-│   │   ├── contact/page.tsx       # UK Support Desk & Form (LocalBusiness schema)
-│   │   ├── faq/page.tsx           # Full Help Center & Accordion (FAQPage schema)
-│   │   ├── plans/page.tsx         # Plans Matrix & Comparison (Product schema)
-│   │   ├── robots.ts              # Native App Router robots.txt
-│   │   ├── setup-guide/page.tsx   # Device & ISP Router Guide (HowTo schema)
-│   │   ├── sitemap.ts             # Native App Router sitemap.xml
-│   │   ├── why-us/page.tsx        # Diaspora Story & Infrastructure (Organization schema)
-│   │   ├── globals.css            # Dark theme HSL tokens, dark scrollbars, marquee animations
-│   │   ├── layout.tsx             # Root HTML layout & fonts
-│   │   └── page.tsx               # Homepage summary hub
-│   ├── components/
-│   │   ├── checkout/
-│   │   │   └── PayPalModal.tsx    # Hosted PayPal subscription checkout
-│   │   ├── layout/
-│   │   │   ├── Footer.tsx         # Site footer with subpage links & Mercian Wealth credit
-│   │   │   ├── Navbar.tsx         # Persistent navigation with active route indicators
-│   │   │   ├── SiteShell.tsx      # Shared layout shell with context-driven PayPal triggers
-│   │   │   ├── StickyFooterBar.tsx# Bottom conversion dock (auto-hides at footer)
-│   │   │   └── TopBanner.tsx      # UK trust & contact strip
-│   │   ├── sections/              # Homepage teaser sections (Hero, Carousel, Plans, FAQ)
-│   │   ├── seo/
-│   │   │   └── JsonLd.tsx         # Reusable JSON-LD schema renderer
-│   │   └── ui/                    # shadcn/ui components (card, button, badge, accordion)
-│   └── data/
-│       ├── channels.ts            # 350+ channel metadata, categories, quality specs
-│       ├── faqs.ts                # UK streaming FAQs
-│       └── plans.ts               # GBP pricing plans & feature matrices
-├── tailwind.config.js             # Rem grid system, marquee keyframes, dark tokens
-└── README.md
-```
+- **Payment Processing**: [@paypal/react-paypal-js](https://github.com/paypal/react-paypal-js) (PayPal Orders v2 with Pay in 3 & Buyer Protection)
 
 ---
 
 ## 🏃 Getting Started
 
-### Installation & Run
-
 ```bash
-# Clone the repository
-git clone https://github.com/echelonsystemsgd-deep/uk-streaming-client.git
-cd uk-streaming-client
-
 # Install dependencies
 npm install
 
-# Start development server
+# Run development server
 npm run dev
 
-# Run production build
+# Run TypeScript compilation check
+npx tsc --noEmit
+
+# Build production bundle
 npm run build
-npm run start
 ```
 
 ---
 
-## 🔒 Security & Credibility
-
-- Engineered and audited by [mercianwealth](https://mercianwealth.com).
-- 256-Bit TLS SSL encryption on all routes and order pipelines.
-- 100% PayPal Buyer Protection enabled across all GBP passes.
+## 📄 Operating Entity
+**Shiva Technology Ltd** (Trading as ChitramTV UK)  
+Helpline: `07979637777`  
+Support Email: `support@chitramtv.uk`  
+Official Reseller of Chitram TV in the United Kingdom

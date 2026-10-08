@@ -23,11 +23,11 @@ export default function DownloadPage() {
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
-      <div className="bg-[#2c3640] py-2 px-4 text-xs text-gray-300 border-b border-gray-700">
+      <div className="border-b border-gray-200 bg-gray-50 py-2.5 px-4 text-xs text-gray-500">
         <div className="container mx-auto max-w-7xl flex items-center gap-2">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span className="text-gray-500">/</span>
-          <span className="text-white font-medium">Download</span>
+          <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-gray-900 font-semibold">App Downloads &amp; Players</span>
         </div>
       </div>
 
@@ -66,15 +66,13 @@ export default function DownloadPage() {
 
             <div className="pt-6">
               <a
-                href="#download-apk"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Download link dispatched. Please contact 07979637777 on WhatsApp for the latest signed APK build.");
-                }}
-                className="w-full bg-[#dd0e1c] hover:bg-[#b00b16] text-white py-2.5 px-4 rounded font-bold uppercase text-xs flex items-center justify-center gap-2 transition-colors shadow"
+                href="https://wa.me/447979637777?text=Hi%2C%20please%20send%20me%20the%20latest%20ChitramTV%20Smart%20TV%20APK%20download%20link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#dd0e1c] hover:bg-[#b00b16] text-white py-2.5 px-4 rounded font-bold uppercase text-xs flex items-center justify-center gap-2 transition-colors shadow min-h-[44px]"
               >
                 <Download className="w-4 h-4" />
-                <span>Download TV APK</span>
+                <span>Get TV APK on WhatsApp</span>
               </a>
             </div>
           </div>
@@ -98,15 +96,13 @@ export default function DownloadPage() {
 
             <div className="pt-6">
               <a
-                href="#download-apk"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Download link dispatched. Please contact 07979637777 on WhatsApp for the latest signed Mobile APK.");
-                }}
-                className="w-full bg-[#2c3640] hover:bg-[#3a4754] text-white py-2.5 px-4 rounded font-bold uppercase text-xs flex items-center justify-center gap-2 transition-colors shadow"
+                href="https://wa.me/447979637777?text=Hi%2C%20please%20send%20me%20the%20latest%20ChitramTV%20Mobile%20APK%20download%20link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#2c3640] hover:bg-[#3a4754] text-white py-2.5 px-4 rounded font-bold uppercase text-xs flex items-center justify-center gap-2 transition-colors shadow min-h-[44px]"
               >
                 <Download className="w-4 h-4" />
-                <span>Download Mobile APK</span>
+                <span>Get Mobile APK on WhatsApp</span>
               </a>
             </div>
           </div>
