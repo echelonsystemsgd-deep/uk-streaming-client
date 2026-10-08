@@ -6,6 +6,7 @@ import Image from "next/image";
 import { X, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 export function CartDrawer() {
   const {
@@ -18,18 +19,21 @@ export function CartDrawer() {
     removeFromCart,
   } = useCart();
 
+  // Prevent background scrolling when CartDrawer is open
+  useScrollLock(isCartDrawerOpen);
+
   if (!isCartDrawerOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div className="fixed inset-0 z-50 overflow-hidden touch-none" style={{ overscrollBehavior: "contain" }}>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/60 transition-opacity backdrop-blur-sm"
+        className="fixed inset-0 bg-black/60 transition-opacity backdrop-blur-sm touch-none"
         onClick={() => setIsCartDrawerOpen(false)}
       />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10 pointer-events-auto">
+        <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col overscroll-contain">
           {/* Header */}
           <div className="p-4 bg-[#2c3640] text-white flex items-center justify-between">
             <div className="flex items-center gap-2">

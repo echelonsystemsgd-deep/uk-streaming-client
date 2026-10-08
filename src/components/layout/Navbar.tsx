@@ -67,7 +67,7 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
   ];
 
   return (
-    <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+    <header className="w-full bg-white/98 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40 shadow-md transition-shadow">
       {/* Middle Bar: Brand Logo + Search + Cart (Journal 3 Classic Header) */}
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
         {/* Logo */}

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { PRICING_PLANS, PricingPlan } from "@/data/plans";
 import { useCart } from "@/context/CartContext";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 interface PricingSectionProps {
   onSelectPlan: (plan: PricingPlan) => void;
@@ -28,6 +29,9 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
   const [selectedDevice, setSelectedDevice] = useState("Amazon Fire TV Stick");
   const [accountIdentifier, setAccountIdentifier] = useState("");
   const [addedToast, setAddedToast] = useState<string | null>(null);
+
+  // Lock background scrolling when Quickview modal is open
+  useScrollLock(Boolean(quickviewPlan));
 
   const handleAddToCart = (plan: PricingPlan, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -179,8 +183,15 @@ export function PricingSection({ onSelectPlan }: PricingSectionProps) {
 
       {/* Quickview Modal */}
       {quickviewPlan && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-2xl max-w-2xl w-full overflow-hidden border border-gray-300 animate-in fade-in zoom-in-95">
+        <div
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 touch-none"
+          style={{ overscrollBehavior: "contain" }}
+          onClick={() => setQuickviewPlan(null)}
+        >
+          <div
+            className="bg-white rounded-lg shadow-2xl max-w-2xl w-full overflow-hidden border border-gray-300 animate-in fade-in zoom-in-95 pointer-events-auto overscroll-contain"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Modal Header */}
             <div className="bg-[#2c3640] text-white p-4 flex items-center justify-between">
               <div className="flex items-center gap-2">

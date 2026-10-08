@@ -226,10 +226,11 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="paypal-checkout-title"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200 touch-none"
+      style={{ overscrollBehavior: "contain" }}
     >
       <div
-        className="relative w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-950 p-4 sm:p-6 shadow-2xl overflow-y-auto max-h-[90dvh] scrollbar-none overscroll-contain"
+        className="relative w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-950 p-4 sm:p-6 shadow-2xl overflow-y-auto max-h-[90dvh] scrollbar-none overscroll-contain pointer-events-auto"
         style={{ overscrollBehavior: "contain" }}
       >
         {/* Close Button with 48px touch area */}

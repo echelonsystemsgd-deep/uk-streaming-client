@@ -46,10 +46,8 @@ export function SiteShell({ children }: SiteShellProps) {
       <SiteShellContext.Provider value={{ openPlan, quickSubscribe }}>
         <div className="min-h-screen flex flex-col bg-[#f4f6f8] text-gray-900">
           {/* Header */}
-          <div className="w-full">
-            <TopBanner />
-            <Navbar onSubscribeClick={quickSubscribe} />
-          </div>
+          <TopBanner />
+          <Navbar onSubscribeClick={quickSubscribe} />
 
           {/* Page Content */}
           <main className="flex-1 pb-16">{children}</main>
