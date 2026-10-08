@@ -34,13 +34,13 @@ export function HowItWorksSection() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-primary">
+          <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-1 text-xs font-bold uppercase tracking-wider text-[#dd0e1c]">
             SIMPLE 2-MINUTE SETUP
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#2c3640] tracking-tight">
             How to Get Started in 3 Easy Steps
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
             No technicians, no satellite dishes, and no lengthy contracts. Get your entire UK household set up today.
           </p>
         </div>
@@ -52,21 +52,21 @@ export function HowItWorksSection() {
             return (
               <Card
                 key={idx}
-                className="relative flex flex-col justify-between p-6 bg-card border-border"
+                className="relative flex flex-col justify-between p-6 bg-white border-gray-200 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-3xl font-black text-primary/30 font-mono">
+                    <span className="text-3xl font-black text-[#dd0e1c]/30 font-mono">
                       {item.step}
                     </span>
-                    <div className="h-10 w-10 rounded-lg bg-zinc-800 border border-zinc-700/60 flex items-center justify-center text-zinc-200">
+                    <div className="h-10 w-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c]">
                       <Icon className="h-5 w-5" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">
+                  <h3 className="text-xl font-bold text-[#2c3640] mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed">
+                  <p className="text-sm text-gray-600 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -79,10 +79,10 @@ export function HowItWorksSection() {
         <div className="mt-12 text-center">
           <Link
             href="/setup-guide"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-200 hover:text-white bg-zinc-900 border border-zinc-700 hover:border-zinc-600 px-5 py-2.5 rounded-lg transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-gray-700 hover:text-gray-900 bg-white border border-gray-300 hover:border-gray-400 px-5 py-3 rounded-lg shadow-sm transition-colors min-h-[44px]"
           >
             <span>Read Step-by-Step Guides for Firestick, Smart TVs &amp; Virgin/BT Routers</span>
-            <ArrowRight className="h-4 w-4 text-primary" />
+            <ArrowRight className="h-4 w-4 text-[#dd0e1c]" />
           </Link>
         </div>
 

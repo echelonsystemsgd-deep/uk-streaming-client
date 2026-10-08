@@ -71,15 +71,28 @@ export function Navbar({ onSubscribeClick }: NavbarProps) {
       {/* Middle Bar: Brand Logo + Search + Cart (Journal 3 Classic Header) */}
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 select-none shrink-0">
-          <div className="relative h-12 w-44 sm:h-14 sm:w-56">
+        <Link href="/" className="flex items-center gap-2.5 select-none shrink-0 group">
+          <div className="relative h-11 w-11 sm:h-13 sm:w-13 shrink-0">
             <Image
               src="/Logo.png"
               alt="ChitramTV UK"
               fill
               priority
-              className="object-contain object-left"
+              className="object-contain"
             />
+          </div>
+          <div className="flex flex-col justify-center">
+            <div className="flex items-center gap-1.5 leading-none">
+              <span className="text-xl sm:text-2xl font-black tracking-tight text-[#dd0e1c]">
+                CHITRAM<span className="text-[#2c3640]">TV</span>
+              </span>
+              <span className="bg-[#dd0e1c] text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">
+                UK
+              </span>
+            </div>
+            <span className="text-[10px] font-semibold text-gray-500 tracking-wider uppercase mt-0.5 hidden xs:block">
+              500+ Channels &bull; 14-Day DVR
+            </span>
           </div>
         </Link>
 

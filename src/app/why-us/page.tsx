@@ -41,25 +41,25 @@ export default function WhyUsPage() {
       <JsonLd data={jsonLdData} />
 
       {/* Breadcrumb Strip */}
-      <div className="border-b border-border/60 bg-zinc-950/60 py-2.5 px-4 text-xs text-zinc-400">
+      <div className="border-b border-gray-200 bg-gray-50 py-2.5 px-4 text-xs text-gray-500">
         <div className="container mx-auto max-w-7xl flex items-center gap-2">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-white font-medium">Why ChitramTV UK</span>
+          <span className="text-gray-900 font-semibold">Why ChitramTV UK</span>
         </div>
       </div>
 
       {/* Hero Header */}
-      <section className="relative overflow-hidden pt-8 pb-12 sm:pt-14 sm:pb-16 bg-gradient-to-b from-zinc-900/40 to-background border-b border-border/60">
+      <section className="relative overflow-hidden pt-8 pb-12 sm:pt-14 sm:pb-16 bg-[#f4f6f8] border-b border-gray-200">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background-elevated px-3.5 py-1 text-xs font-semibold text-primary mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-semibold text-[#dd0e1c] mb-4">
             <Award className="h-3.5 w-3.5" />
             <span>UK #1 DEDICATED INDIAN STREAMING SERVICE</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Built Specifically for <span className="text-primary">British Indian Families</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#2c3640] tracking-tight leading-tight">
+            Built Specifically for <span className="text-[#dd0e1c]">British Indian Families</span>
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
             Generic international streaming apps fail in the UK because they ignore the 5.5-hour time difference and suffer from buffer throttling. Here is why ChitramTV is the trusted choice for thousands of UK homes.
           </p>
         </div>
@@ -67,39 +67,39 @@ export default function WhyUsPage() {
 
       {/* The 5.5-Hour Time Difference Story */}
       <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-        <div className="rounded-2xl border border-zinc-800 bg-card p-6 sm:p-10 shadow-card">
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-10 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-primary">
+              <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#dd0e1c]">
                 THE DIASPORA CHALLENGE SOLVED
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#2c3640] tracking-tight">
                 Why Live Indian TV Fails in the UK Without 14-Day Catch-Up
               </h2>
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                 India is 5.5 hours ahead of GMT (and 4.5 hours ahead during British Summer Time). When Indian primetime dramas, news debates, and evening soaps air at 8:00 PM IST in Mumbai or Delhi, it is only <strong>2:30 PM in London or Birmingham</strong> while you are working or the kids are at school.
               </p>
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                 By the time you sit down at 8:00 PM in the UK, live channels are broadcasting late-night infomercials and reruns. With ChitramTV UK&apos;s <strong>automatic 14-day cloud DVR</strong>, every single channel is recorded continuously. You can rewind, pause, and watch primetime on your own British schedule.
               </p>
             </div>
 
-            <div className="lg:col-span-5 rounded-xl border border-zinc-800 bg-zinc-950 p-6 space-y-4">
-              <div className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+            <div className="lg:col-span-5 rounded-xl border border-gray-200 bg-gray-50 p-6 space-y-4">
+              <div className="text-xs font-bold uppercase tracking-wider text-gray-500">
                 UK vs. India Time Comparison
               </div>
               <div className="space-y-3">
-                <div className="p-3 rounded-lg bg-zinc-900 border border-zinc-800">
-                  <div className="text-xs text-zinc-400">8:00 PM IST (India Primetime)</div>
-                  <div className="text-sm font-bold text-red-400">2:30 PM UK Time — Working / School</div>
+                <div className="p-3.5 rounded-lg bg-white border border-gray-200 shadow-sm">
+                  <div className="text-xs text-gray-500">8:00 PM IST (India Primetime)</div>
+                  <div className="text-sm font-bold text-[#dd0e1c] mt-0.5">2:30 PM UK Time — Working / School</div>
                 </div>
-                <div className="p-3 rounded-lg bg-zinc-900 border border-primary/40 bg-primary/5">
-                  <div className="text-xs text-primary font-semibold">ChitramTV 14-Day Catch-up</div>
-                  <div className="text-sm font-bold text-white">Watch at 8:30 PM UK with Zero Commercials</div>
+                <div className="p-3.5 rounded-lg bg-red-50/50 border border-red-200 shadow-sm">
+                  <div className="text-xs text-[#dd0e1c] font-semibold">ChitramTV 14-Day Catch-up</div>
+                  <div className="text-sm font-bold text-gray-900 mt-0.5">Watch at 8:30 PM UK with Zero Commercials</div>
                 </div>
               </div>
-              <div className="pt-2 text-xs text-zinc-400 flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+              <div className="pt-2 text-xs text-gray-600 flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
                 <span>Pause, fast-forward, and rewind with your TV remote</span>
               </div>
             </div>
@@ -110,71 +110,71 @@ export default function WhyUsPage() {
       {/* 6 Value Pillars Grid */}
       <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#2c3640] tracking-tight">
             The 6 ChitramTV UK Standards
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 mt-2">
+          <p className="text-xs sm:text-sm text-gray-600 mt-2">
             Engineered with strict zero-compromise criteria for high-resolution streaming across all UK screens.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+          <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-3 shadow-sm">
+            <div className="h-10 w-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c]">
               <Zap className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">London Low-Latency Edge Relays</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <h3 className="text-base font-bold text-[#2c3640]">London Low-Latency Edge Relays</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               Streams are served directly from London Docklands CDN infrastructure, guaranteeing fast channel switching and zero buffering even during peak IPL cricket.
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+          <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-3 shadow-sm">
+            <div className="h-10 w-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c]">
               <Clock className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">Automatic 14-Day Cloud DVR</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <h3 className="text-base font-bold text-[#2c3640]">Automatic 14-Day Cloud DVR</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               Every drama, serial, news broadcast, and sports match is saved for a full 336 hours (14 days). No external hard drives or expensive TV box recorders required.
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+          <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-3 shadow-sm">
+            <div className="h-10 w-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c]">
               <Tv className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">500+ Live Channels</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <h3 className="text-base font-bold text-[#2c3640]">500+ Live Channels</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               Comprehensive coverage across Hindi, Punjabi, Tamil, Telugu, Malayalam, Bengali, Gujarati, and English international sports broadcasts.
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+          <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-3 shadow-sm">
+            <div className="h-10 w-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c]">
               <Award className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">4K UHD 60fps Live Cricket</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <h3 className="text-base font-bold text-[#2c3640]">4K UHD 60fps Live Cricket</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               Experience the Ashes, ICC World Cups, IPL 2026, and India bilateral tours in pristine 60 frames-per-second Ultra HD on Star Sports 1 4K and Sky Cricket.
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+          <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-3 shadow-sm">
+            <div className="h-10 w-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c]">
               <ShieldCheck className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">100% PayPal Buyer Protection</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <h3 className="text-base font-bold text-[#2c3640]">100% PayPal Buyer Protection</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               All transactions are processed through PayPal in British Pounds (£ GBP). No credit card details stored on our servers. 7-day full refund policy.
             </p>
           </div>
 
-          <div className="rounded-xl border border-zinc-800 bg-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-zinc-800 flex items-center justify-center text-primary">
+          <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-3 shadow-sm">
+            <div className="h-10 w-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c]">
               <Heart className="h-5 w-5" />
             </div>
-            <h3 className="text-base font-bold text-white">24/7 WhatsApp Help Desk</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <h3 className="text-base font-bold text-[#2c3640]">24/7 WhatsApp Help Desk</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               Our ChitramTV UK support team speaks English, Hindi, and Punjabi. Direct WhatsApp support for Firestick setup, ChitramTV Black Edition C1 box advice, and renewal assistance.
             </p>
           </div>
@@ -184,23 +184,23 @@ export default function WhyUsPage() {
       {/* UK Diaspora Hubs Coverage */}
       <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#2c3640] tracking-tight">
             Serving British Indian Communities Across the UK
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 mt-2">
+          <p className="text-xs sm:text-sm text-gray-600 mt-2">
             Thousands of UK households in high-density cultural hubs trust ChitramTV for daily news, Gurbani, and primetime.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {DIASPORA_CITIES.map((c) => (
-            <div key={c.city} className="rounded-xl border border-zinc-800 bg-card p-5 space-y-2">
+            <div key={c.city} className="rounded-xl border border-gray-200 bg-white p-5 space-y-2 shadow-sm">
               <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                <h3 className="text-sm font-bold text-white">{c.city}</h3>
+                <MapPin className="h-4 w-4 text-[#dd0e1c]" />
+                <h3 className="text-sm font-bold text-[#2c3640]">{c.city}</h3>
               </div>
-              <div className="text-xs text-zinc-300 font-medium">{c.areas}</div>
-              <p className="text-xs text-zinc-400 leading-relaxed pt-1 border-t border-zinc-800">
+              <div className="text-xs text-gray-700 font-medium">{c.areas}</div>
+              <p className="text-xs text-gray-600 leading-relaxed pt-1 border-t border-gray-100">
                 {c.desc}
               </p>
             </div>
@@ -213,23 +213,23 @@ export default function WhyUsPage() {
 
       {/* Engineering Credibility by Mercian Wealth */}
       <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14 sm:pb-20">
-        <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 sm:p-10 text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-xs font-semibold text-zinc-300">
-            <Lock className="h-3.5 w-3.5 text-zinc-400" />
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-10 text-center max-w-3xl mx-auto space-y-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3.5 py-1 text-xs font-semibold text-gray-700">
+            <Lock className="h-3.5 w-3.5 text-gray-500" />
             <span>ENTERPRISE-GRADE UK INFRASTRUCTURE</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-white">
-            Engineered &amp; Maintained by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">mercianwealth</a>
+          <h3 className="text-xl sm:text-2xl font-bold text-[#2c3640]">
+            Engineered &amp; Maintained by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-[#dd0e1c] hover:underline">mercianwealth</a>
           </h3>
-          <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            Our streaming distribution backbone and payment infrastructure are engineered with high-redundancy failovers, zero-log data privacy, and 256-bit TLS encryption by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-semibold">mercianwealth</a>.
+          <p className="text-xs sm:text-sm text-gray-600 max-w-xl mx-auto leading-relaxed">
+            Our streaming distribution backbone and payment infrastructure are engineered with high-redundancy failovers, zero-log data privacy, and 256-bit TLS encryption by <a href="https://mercianwealth.com" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:underline font-semibold">mercianwealth</a>.
           </p>
           <div className="pt-2">
             <Button
               variant="default"
               size="lg"
               onClick={quickSubscribe}
-              className="font-bold text-xs h-12 px-6"
+              className="font-bold text-xs h-12 px-6 bg-[#dd0e1c] hover:bg-[#b00b16] text-white shadow-sm"
             >
               Get Started via PayPal (£6.43/mo)
             </Button>

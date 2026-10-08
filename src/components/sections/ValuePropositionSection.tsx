@@ -133,14 +133,14 @@ export function ValuePropositionSection() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3 sm:space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1 text-xs font-semibold text-primary">
-            <Sparkles className="h-3.5 w-3.5 text-primary" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-1 text-xs font-bold text-[#dd0e1c]">
+            <Sparkles className="h-3.5 w-3.5 text-[#dd0e1c]" />
             <span>ENGINEERED FOR THE UK INDIAN COMMUNITY</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#2c3640] tracking-tight">
             Why UK Households Choose ChitramTV
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
             Test, scrub, and explore how our UK dedicated low-latency network and 14-day automatic catch-up solve the 5.5-hour diaspora time lag.
           </p>
         </div>
@@ -153,19 +153,19 @@ export function ValuePropositionSection() {
           {/* --------------------------------------------------------------------- */}
           {/* CARD 1: 500+ CHANNELS INTERACTIVE TUMBLER (7 COLS)                   */}
           {/* --------------------------------------------------------------------- */}
-          <div className="lg:col-span-7 rounded-2xl border border-zinc-800 bg-card p-5 sm:p-7 flex flex-col justify-between shadow-card relative overflow-hidden group">
+          <div className="lg:col-span-7 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden group">
             {/* Subtle corner badge */}
             <div className="flex items-center justify-between gap-2 mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="h-9 w-9 rounded-lg bg-zinc-800/90 border border-zinc-700/80 flex items-center justify-center text-primary shrink-0">
+                <div className="h-9 w-9 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c] shrink-0">
                   <Tv className="h-4 w-4" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">
+                  <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">
                     Multilingual Broadcasts
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
-                    <span ref={counterRef} className="tabular-nums text-white">
+                  <h3 className="text-xl sm:text-2xl font-black text-[#2c3640] tracking-tight flex items-center gap-2">
+                    <span ref={counterRef} className="tabular-nums text-[#dd0e1c]">
                       {channelCount}+
                     </span>
                     <span>Live Channels</span>
@@ -173,13 +173,13 @@ export function ValuePropositionSection() {
                 </div>
               </div>
 
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-[11px] font-semibold text-red-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-50 border border-red-200 text-[11px] font-bold text-[#dd0e1c]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#dd0e1c] animate-pulse" />
                 Live UK Feed
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-5">
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
               Instant access to India&apos;s leading national networks and regional feeds, plus 24/7 uninterrupted spiritual channels direct from Amritsar.
             </p>
 
@@ -197,14 +197,14 @@ export function ValuePropositionSection() {
                       }}
                       className={`px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 min-h-[40px] select-none ${
                         isActive
-                          ? "bg-primary text-white shadow-sm"
-                          : "bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 active:scale-95"
+                          ? "bg-[#dd0e1c] text-white shadow-sm"
+                          : "bg-gray-100 border border-gray-200 text-gray-700 hover:text-gray-900 hover:bg-gray-200 active:scale-95"
                       }`}
                     >
                       <span>{cat.name}</span>
                       <span
                         className={`text-[10px] px-1.5 py-0.2 rounded font-normal ${
-                          isActive ? "bg-white/20 text-white" : "bg-zinc-800 text-zinc-400"
+                          isActive ? "bg-white/20 text-white" : "bg-gray-200 text-gray-600"
                         }`}
                       >
                         {cat.sampleCount}
@@ -259,18 +259,18 @@ export function ValuePropositionSection() {
           {/* --------------------------------------------------------------------- */}
           {/* CARD 2: 14-DAY CATCH-UP & 5.5-HOUR TIME-SHIFT SCRUBBER (5 COLS)       */}
           {/* --------------------------------------------------------------------- */}
-          <div className="lg:col-span-5 rounded-2xl border border-zinc-800 bg-card p-5 sm:p-7 flex flex-col justify-between shadow-card relative overflow-hidden">
+          <div className="lg:col-span-5 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden">
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="h-9 w-9 rounded-lg bg-zinc-800/90 border border-zinc-700/80 flex items-center justify-center text-primary shrink-0">
+                  <div className="h-9 w-9 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c] shrink-0">
                     <Clock className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">
+                    <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">
                       The 5.5-Hour Time Shift Solved
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-black text-[#2c3640] tracking-tight">
                       14-Day Automatic Catch-up
                     </h3>
                   </div>
@@ -279,11 +279,11 @@ export function ValuePropositionSection() {
                 <button
                   onClick={handleRewindSimulation}
                   disabled={isRewinding}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-xs font-semibold text-zinc-200 transition-colors select-none active:scale-95"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 border border-gray-200 text-xs font-semibold text-gray-700 transition-colors select-none active:scale-95"
                   title="Simulate 1-Click Rewind"
                 >
                   <RotateCcw
-                    className={`h-3.5 w-3.5 text-primary ${
+                    className={`h-3.5 w-3.5 text-[#dd0e1c] ${
                       isRewinding ? "animate-spin" : ""
                     }`}
                   />
@@ -291,7 +291,7 @@ export function ValuePropositionSection() {
                 </button>
               </div>
 
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
                 India is 5.5 hours ahead of the UK. When primetime airs in Delhi or Mumbai, it is 2:30 PM in London. Our automatic cloud DVR captures every single second.
               </p>
 
@@ -308,8 +308,8 @@ export function ValuePropositionSection() {
                       }}
                       className={`p-2 rounded-lg text-center transition-all select-none min-h-[48px] flex flex-col justify-center ${
                         isActive
-                          ? "bg-primary text-white border border-primary shadow-sm"
-                          : "bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700"
+                          ? "bg-[#dd0e1c] text-white border border-[#dd0e1c] shadow-sm"
+                          : "bg-gray-50 border border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-100 hover:border-gray-300"
                       }`}
                     >
                       <span className="text-[10px] font-bold block truncate">
@@ -317,7 +317,7 @@ export function ValuePropositionSection() {
                       </span>
                       <span
                         className={`text-[9px] block truncate ${
-                          isActive ? "text-white/80" : "text-zinc-500"
+                          isActive ? "text-white/80" : "text-gray-500"
                         }`}
                       >
                         {step.tag.split(" ")[0]}
@@ -327,7 +327,7 @@ export function ValuePropositionSection() {
                 })}
               </div>
 
-              {/* Dynamic Time Step Display Card */}
+              {/* Dynamic Time Step Display Card (Simulated Player Frame) */}
               <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-4 space-y-3">
                 <div className="flex items-center justify-between text-xs pb-2 border-b border-zinc-800">
                   <div className="flex items-center gap-1.5 font-bold text-white">
@@ -355,33 +355,33 @@ export function ValuePropositionSection() {
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between text-[11px] text-zinc-400">
+            <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
               <span>Automatic DVR across all 500+ channels</span>
-              <span className="font-semibold text-zinc-200">168-Hour Cloud Buffer</span>
+              <span className="font-semibold text-gray-800">168-Hour Cloud Buffer</span>
             </div>
           </div>
 
           {/* --------------------------------------------------------------------- */}
           {/* CARD 3: 4K UHD & 60FPS LIVE CRICKET CLARITY SLIDER (6 COLS)          */}
           {/* --------------------------------------------------------------------- */}
-          <div className="lg:col-span-6 rounded-2xl border border-zinc-800 bg-card p-5 sm:p-7 flex flex-col justify-between shadow-card relative overflow-hidden">
+          <div className="lg:col-span-6 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden">
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="h-9 w-9 rounded-lg bg-zinc-800/90 border border-zinc-700/80 flex items-center justify-center text-primary shrink-0">
+                  <div className="h-9 w-9 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c] shrink-0">
                     <Zap className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">
+                    <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">
                       High Bitrate Broadcasts
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-black text-[#2c3640] tracking-tight">
                       4K UHD &amp; 60fps Live Cricket
                     </h3>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 p-1 rounded-lg">
+                <div className="flex items-center gap-1.5 bg-gray-100 border border-gray-200 p-1 rounded-lg">
                   <button
                     onClick={() => {
                       triggerHaptic();
@@ -389,8 +389,8 @@ export function ValuePropositionSection() {
                     }}
                     className={`px-2 py-1 rounded text-[10px] font-bold transition-colors ${
                       sliderPos < 35
-                        ? "bg-zinc-800 text-white"
-                        : "text-zinc-400 hover:text-white"
+                        ? "bg-gray-800 text-white"
+                        : "text-gray-600 hover:text-gray-900"
                     }`}
                   >
                     720p
@@ -402,8 +402,8 @@ export function ValuePropositionSection() {
                     }}
                     className={`px-2 py-1 rounded text-[10px] font-bold transition-colors ${
                       sliderPos > 65
-                        ? "bg-primary text-white"
-                        : "text-zinc-400 hover:text-white"
+                        ? "bg-[#dd0e1c] text-white"
+                        : "text-gray-600 hover:text-gray-900"
                     }`}
                   >
                     4K 60fps
@@ -411,7 +411,7 @@ export function ValuePropositionSection() {
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
                 Experience stadium-grade smoothness on Star Sports &amp; Sony Sports. Drag the interactive lens to compare standard reseller compression vs. ChitramTV 60fps clarity.
               </p>
 
@@ -484,50 +484,50 @@ export function ValuePropositionSection() {
                   className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)] pointer-events-none"
                   style={{ left: `${sliderPos}%` }}
                 >
-                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-8 w-8 rounded-full bg-primary border-2 border-white flex items-center justify-center text-white shadow-lg pointer-events-auto">
+                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-8 w-8 rounded-full bg-[#dd0e1c] border-2 border-white flex items-center justify-center text-white shadow-lg pointer-events-auto">
                     <SlidersHorizontal className="h-3.5 w-3.5" />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between text-[11px] text-zinc-400">
+            <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
               <span>Drag slider or tap 720p/4K above to compare</span>
-              <span className="text-zinc-200 font-semibold">Native 60fps Refresh</span>
+              <span className="text-gray-800 font-semibold">Native 60fps Refresh</span>
             </div>
           </div>
 
           {/* --------------------------------------------------------------------- */}
           {/* CARD 4: 4-ROOM MULTI-SCREEN HOUSEHOLD SIMULATOR (6 COLS)              */}
           {/* --------------------------------------------------------------------- */}
-          <div className="lg:col-span-6 rounded-2xl border border-zinc-800 bg-card p-5 sm:p-7 flex flex-col justify-between shadow-card relative overflow-hidden">
+          <div className="lg:col-span-6 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7 flex flex-col justify-between shadow-sm relative overflow-hidden">
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="h-9 w-9 rounded-lg bg-zinc-800/90 border border-zinc-700/80 flex items-center justify-center text-primary shrink-0">
+                  <div className="h-9 w-9 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c] shrink-0">
                     <Smartphone className="h-4 w-4" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">
+                    <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">
                       Multi-Room Streaming
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-black text-[#2c3640] tracking-tight">
                       4 Simultaneous Screens
                     </h3>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <span className="text-xs font-bold text-white block">
+                  <span className="text-xs font-bold text-gray-900 block">
                     {activeDeviceCount} of 4 Active
                   </span>
-                  <span className="text-[10px] text-emerald-400 font-semibold">
+                  <span className="text-[10px] text-emerald-600 font-semibold">
                     100% Buffer-Free
                   </span>
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4">
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
                 Every member of your UK household can watch their favorite show simultaneously without kicking each other off or causing buffer lag. Tap to toggle screens:
               </p>
 
@@ -549,33 +549,33 @@ export function ValuePropositionSection() {
                       onClick={() => toggleDevice(device.id)}
                       className={`p-3 rounded-xl border text-left transition-all select-none min-h-[72px] flex flex-col justify-between ${
                         device.active
-                          ? "bg-zinc-900 border-primary/60 shadow-sm"
-                          : "bg-zinc-950/60 border-zinc-800 opacity-60 hover:opacity-100 hover:border-zinc-700"
+                          ? "bg-red-50/50 border-[#dd0e1c]/40 shadow-sm"
+                          : "bg-gray-50 border-gray-200 opacity-70 hover:opacity-100 hover:border-gray-300"
                       }`}
                     >
                       <div className="flex items-center justify-between gap-1 mb-1">
                         <div className="flex items-center gap-1.5">
                           <DeviceIcon
                             className={`h-3.5 w-3.5 ${
-                              device.active ? "text-primary" : "text-zinc-500"
+                              device.active ? "text-[#dd0e1c]" : "text-gray-500"
                             }`}
                           />
-                          <span className="text-xs font-bold text-white truncate max-w-[100px] sm:max-w-[120px]">
+                          <span className="text-xs font-bold text-gray-900 truncate max-w-[100px] sm:max-w-[120px]">
                             {device.room}
                           </span>
                         </div>
                         <span
                           className={`h-2 w-2 rounded-full ${
-                            device.active ? "bg-emerald-400 animate-pulse" : "bg-zinc-600"
+                            device.active ? "bg-emerald-500 animate-pulse" : "bg-gray-400"
                           }`}
                         />
                       </div>
 
                       <div>
-                        <div className="text-[10px] font-medium text-zinc-300 truncate">
+                        <div className="text-[10px] font-medium text-gray-700 truncate">
                           {device.currentFeed}
                         </div>
-                        <div className="text-[9px] text-zinc-500 font-mono mt-0.5">
+                        <div className="text-[9px] text-gray-500 font-mono mt-0.5">
                           {device.active ? device.quality : "Paused"}
                         </div>
                       </div>
@@ -585,43 +585,43 @@ export function ValuePropositionSection() {
               </div>
 
               {/* Bandwidth / CDN Allocation Indicator */}
-              <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-3.5 flex items-center justify-between gap-3 text-xs">
+              <div className="rounded-xl border border-gray-200 bg-gray-50 p-3.5 flex items-center justify-between gap-3 text-xs">
                 <div className="flex items-center gap-2.5">
-                  <Wifi className="h-4 w-4 text-emerald-400 shrink-0" />
+                  <Wifi className="h-4 w-4 text-emerald-600 shrink-0" />
                   <div>
-                    <div className="font-bold text-white">UK Dedicated Edge Delivery</div>
-                    <div className="text-[11px] text-zinc-400">
+                    <div className="font-bold text-gray-900">UK Dedicated Edge Delivery</div>
+                    <div className="text-[11px] text-gray-600">
                       Direct London peering with BT, Virgin Media &amp; Sky UK
                     </div>
                   </div>
                 </div>
-                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-emerald-400 border border-emerald-500/30 rounded px-2 py-0.5 bg-emerald-500/10">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-emerald-700 border border-emerald-600/30 rounded px-2 py-0.5 bg-emerald-50">
                   Ultra Fast
                 </span>
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between text-[11px] text-zinc-400">
+            <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
               <span>Tap any room tile above to simulate concurrency</span>
-              <span className="text-zinc-200 font-semibold">Firestick &amp; Smart TV Ready</span>
+              <span className="text-gray-800 font-semibold">Firestick &amp; Smart TV Ready</span>
             </div>
           </div>
 
           {/* --------------------------------------------------------------------- */}
           {/* CARD 5: 100% PAYPAL PROTECTION & TRUST VERIFICATION (FULL WIDTH)       */}
           {/* --------------------------------------------------------------------- */}
-          <div className="lg:col-span-12 rounded-2xl border border-zinc-800 bg-card p-6 sm:p-8 shadow-card relative overflow-hidden">
+          <div className="lg:col-span-12 rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
               
               <div className="lg:col-span-4 space-y-2">
-                <div className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-xs font-semibold text-zinc-300">
-                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
                   <span>100% VERIFIED UK COMMERCE</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-black text-[#2c3640] tracking-tight">
                   PayPal Protected &amp; 7-Day Money-Back
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Never risk your payment on dodgy reseller forms. Every transaction is covered by PayPal Buyer Protection and a no-questions-asked refund policy.
                 </p>
               </div>
@@ -639,26 +639,26 @@ export function ValuePropositionSection() {
                       }}
                       className={`p-4 rounded-xl border transition-all cursor-pointer select-none ${
                         isSelected
-                          ? "bg-zinc-900 border-primary/60 shadow-sm"
-                          : "bg-zinc-950/60 border-zinc-800 hover:border-zinc-700"
+                          ? "bg-red-50/30 border-[#dd0e1c]/40 shadow-sm"
+                          : "bg-gray-50 border-gray-200 hover:border-gray-300"
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2 mb-1.5">
                         <div className="flex items-center gap-2">
                           <CheckCircle2
                             className={`h-4 w-4 ${
-                              isSelected ? "text-primary" : "text-emerald-400"
+                              isSelected ? "text-[#dd0e1c]" : "text-emerald-600"
                             }`}
                           />
-                          <h4 className="text-sm font-bold text-white">
+                          <h4 className="text-sm font-bold text-gray-900">
                             {pillar.title}
                           </h4>
                         </div>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-200 text-gray-700">
                           {pillar.badge}
                         </span>
                       </div>
-                      <p className="text-xs text-zinc-400 leading-relaxed">
+                      <p className="text-xs text-gray-600 leading-relaxed">
                         {pillar.description}
                       </p>
                     </div>
@@ -675,14 +675,14 @@ export function ValuePropositionSection() {
         <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
           <Link
             href="/why-us"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 hover:border-zinc-700 px-5 py-3 rounded-lg transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-gray-700 hover:text-gray-900 bg-white border border-gray-300 hover:border-gray-400 px-5 py-3 rounded-lg shadow-sm transition-colors min-h-[44px]"
           >
             <span>Read Our Full UK Low-Latency Network &amp; Diaspora Story</span>
-            <ChevronRight className="h-4 w-4 text-primary" />
+            <ChevronRight className="h-4 w-4 text-[#dd0e1c]" />
           </Link>
           <Link
             href="/plans"
-            className="inline-flex items-center gap-2 text-xs font-bold text-white bg-primary hover:bg-primary-hover px-6 py-3 rounded-lg transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 text-xs font-bold text-white bg-primary hover:bg-primary-hover px-6 py-3 rounded-lg shadow-sm transition-colors min-h-[44px]"
           >
             <span>View Subscription Passes from £6.43/mo</span>
             <ChevronRight className="h-4 w-4" />

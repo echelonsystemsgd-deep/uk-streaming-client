@@ -53,41 +53,41 @@ export function ChannelShowcaseSection() {
       key={uniqueKey}
       className="w-[280px] sm:w-[320px] shrink-0 select-none group"
     >
-      <div className="h-full rounded-xl border border-zinc-800 bg-card p-5 transition-all duration-300 hover:border-zinc-700 hover:bg-background-elevated shadow-card flex flex-col justify-between">
+      <div className="h-full rounded-xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:border-gray-300 hover:shadow-md shadow-sm flex flex-col justify-between">
         <div>
           {/* Header Row */}
           <div className="flex items-start justify-between gap-2 mb-2.5">
             <div className="flex items-center gap-2">
-              <div className="h-7 w-7 rounded-md bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 shrink-0">
-                <Tv className="h-3.5 w-3.5 text-primary" />
+              <div className="h-7 w-7 rounded-md bg-red-50 border border-red-200 flex items-center justify-center text-[#dd0e1c] shrink-0">
+                <Tv className="h-3.5 w-3.5" />
               </div>
               <div>
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
+                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">
                   {channel.language}
                 </span>
-                <h4 className="text-sm font-bold text-white leading-tight truncate max-w-[170px]">
+                <h4 className="text-sm font-bold text-gray-900 leading-tight truncate max-w-[170px]">
                   {channel.name}
                 </h4>
               </div>
             </div>
-            <span className="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-zinc-300">
+            <span className="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded bg-gray-100 border border-gray-200 text-gray-700">
               {channel.quality}
             </span>
           </div>
 
           {/* Description */}
-          <p className="text-xs text-zinc-400 leading-relaxed line-clamp-2 mb-4">
+          <p className="text-xs text-gray-600 leading-relaxed line-clamp-2 mb-4">
             {channel.description}
           </p>
         </div>
 
         {/* Footer Info Tags */}
-        <div className="pt-3 border-t border-zinc-800 flex items-center justify-between text-[11px]">
-          <span className="flex items-center gap-1.5 font-medium text-zinc-300">
-            <Clock className="h-3 w-3 text-zinc-400" />
+        <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-[11px]">
+          <span className="flex items-center gap-1.5 font-medium text-gray-700">
+            <Clock className="h-3 w-3 text-gray-400" />
             14-Day Catch-up
           </span>
-          <span className="font-semibold text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded text-[10px]">
+          <span className="font-semibold text-gray-600 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded text-[10px]">
             {channel.tag}
           </span>
         </div>
@@ -102,14 +102,14 @@ export function ChannelShowcaseSection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl space-y-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold text-primary">
-              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3 py-1 text-xs font-semibold text-[#dd0e1c]">
+              <span className="h-2 w-2 rounded-full bg-[#dd0e1c] animate-pulse" />
               <span>500+ LIVE &amp; CATCH-UP CHANNELS</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#2c3640] tracking-tight">
               Explore Premium Indian Channels
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
               Continuous live broadcasting across Hindi, Punjabi, Tamil, Telugu, and sports. Hover over any channel to pause the carousel.
             </p>
           </div>
@@ -118,22 +118,22 @@ export function ChannelShowcaseSection() {
           <div className="flex items-center gap-2.5 shrink-0">
             <button
               onClick={() => setIsPaused(!isPaused)}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border bg-card text-xs font-medium text-zinc-300 hover:text-white hover:bg-background-subtle transition-colors min-h-[40px]"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 bg-white text-xs font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 shadow-sm transition-colors min-h-[40px]"
               title={isPaused ? "Resume auto-scroll" : "Pause auto-scroll"}
             >
-              {isPaused ? <Play className="h-3.5 w-3.5 text-primary" /> : <Pause className="h-3.5 w-3.5 text-zinc-400" />}
+              {isPaused ? <Play className="h-3.5 w-3.5 text-[#dd0e1c]" /> : <Pause className="h-3.5 w-3.5 text-gray-400" />}
               <span>{isPaused ? "Resume" : "Pause"}</span>
             </button>
             <button
               onClick={() => handleScrollManual("left")}
-              className="p-2.5 rounded-lg border border-border bg-card text-zinc-300 hover:text-white hover:bg-background-subtle transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
+              className="p-2.5 rounded-lg border border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 shadow-sm transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
               aria-label="Scroll left"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <button
               onClick={() => handleScrollManual("right")}
-              className="p-2.5 rounded-lg border border-border bg-card text-zinc-300 hover:text-white hover:bg-background-subtle transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
+              className="p-2.5 rounded-lg border border-gray-200 bg-white text-gray-700 hover:text-gray-900 hover:bg-gray-50 shadow-sm transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-4 w-4" />
@@ -145,19 +145,19 @@ export function ChannelShowcaseSection() {
         <div className="mt-8 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           {/* Search Box */}
           <div className="relative w-full md:max-w-xs">
-            <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+            <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-gray-400 pointer-events-none" />
             <input
               type="text"
               aria-label="Search live Indian TV channels, cricket, and movies"
               placeholder="Search Star, Zee, Cricket..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-lg border border-border bg-background pl-10 pr-10 py-2.5 text-base sm:text-sm text-white placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[48px]"
+              className="w-full rounded-lg border border-gray-300 bg-white pl-10 pr-10 py-2.5 text-base sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#dd0e1c] focus:outline-none focus:ring-1 focus:ring-[#dd0e1c] min-h-[48px] shadow-sm"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2 top-2 p-1.5 text-muted-foreground hover:text-white rounded-md min-h-[30px] min-w-[30px] flex items-center justify-center"
+                className="absolute right-2 top-2 p-1.5 text-gray-400 hover:text-gray-700 rounded-md min-h-[30px] min-w-[30px] flex items-center justify-center"
                 aria-label="Clear search"
               >
                 <X className="h-4 w-4" />
@@ -176,8 +176,8 @@ export function ChannelShowcaseSection() {
                     onClick={() => setSelectedCategory(cat.id)}
                     className={`rounded-lg px-3.5 py-2 text-xs font-semibold whitespace-nowrap min-h-[40px] flex items-center shrink-0 transition-colors select-none ${
                       isSelected
-                        ? "bg-primary text-white"
-                        : "bg-card border border-border/80 text-muted-foreground hover:bg-background-subtle hover:text-white"
+                        ? "bg-[#dd0e1c] text-white shadow-sm"
+                        : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-gray-900 shadow-sm"
                     }`}
                   >
                     {cat.label}
@@ -196,14 +196,14 @@ export function ChannelShowcaseSection() {
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Cinematic Edge Fade Gradients */}
+        {/* Edge Fade Gradients */}
         <div 
           aria-hidden="true" 
-          className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-background via-background/60 to-transparent z-10" 
+          className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#f4f6f8] via-[#f4f6f8]/60 to-transparent z-10" 
         />
         <div 
           aria-hidden="true" 
-          className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-background via-background/60 to-transparent z-10" 
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#f4f6f8] via-[#f4f6f8]/60 to-transparent z-10" 
         />
 
         {filteredChannels.length > 0 ? (
@@ -247,15 +247,15 @@ export function ChannelShowcaseSection() {
             </div>
           </div>
         ) : (
-          <div className="container mx-auto max-w-md py-12 text-center text-muted-foreground bg-card rounded-xl border border-border p-8">
-            <p className="text-base font-semibold text-white">No channels found for &ldquo;{searchQuery}&rdquo;</p>
-            <p className="text-xs text-zinc-400 mt-1">Try searching for &ldquo;Star&rdquo;, &ldquo;Zee&rdquo;, &ldquo;Sports&rdquo; or reset filter.</p>
+          <div className="container mx-auto max-w-md py-12 text-center text-gray-600 bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
+            <p className="text-base font-semibold text-gray-900">No channels found for &ldquo;{searchQuery}&rdquo;</p>
+            <p className="text-xs text-gray-500 mt-1">Try searching for &ldquo;Star&rdquo;, &ldquo;Zee&rdquo;, &ldquo;Sports&rdquo; or reset filter.</p>
             <button
               onClick={() => {
                 setSearchQuery("");
                 setSelectedCategory("all");
               }}
-              className="mt-4 inline-flex items-center justify-center rounded-md bg-background border border-border px-4 py-2 text-xs font-semibold text-white hover:bg-background-subtle min-h-[40px]"
+              className="mt-4 inline-flex items-center justify-center rounded-md bg-white border border-gray-300 px-4 py-2 text-xs font-semibold text-gray-800 hover:bg-gray-50 min-h-[40px] shadow-sm"
             >
               Reset Filters
             </button>
@@ -265,16 +265,16 @@ export function ChannelShowcaseSection() {
 
       {/* Footer Info Line & CTA */}
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8 text-center space-y-4">
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-gray-600">
           Showing <strong>{filteredChannels.length} featured streams</strong> of 500+ live channels included in every UK subscription pass.
         </p>
         <div>
           <Link
             href="/channels"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-200 hover:text-white bg-zinc-900 border border-zinc-700 hover:border-zinc-600 px-5 py-2.5 rounded-lg transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-gray-700 hover:text-gray-900 bg-white border border-gray-300 hover:border-gray-400 px-5 py-2.5 rounded-lg shadow-sm transition-colors min-h-[44px]"
           >
             <span>Explore All 500+ Channels &amp; 14-Day Catch-Up Guide</span>
-            <ChevronRight className="h-4 w-4 text-primary" />
+            <ChevronRight className="h-4 w-4 text-[#dd0e1c]" />
           </Link>
         </div>
       </div>

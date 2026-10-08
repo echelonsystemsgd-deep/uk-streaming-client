@@ -61,21 +61,21 @@ export function TestimonialsSection() {
         
         {/* Section Header with Trust Rating */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14 space-y-3">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-zinc-700 bg-zinc-900 px-3.5 py-1 text-xs font-semibold text-zinc-300">
-            <div className="flex text-amber-400">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3.5 py-1 text-xs font-semibold text-gray-700 shadow-sm">
+            <div className="flex text-amber-500">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-3 w-3 fill-current" />
               ))}
             </div>
-            <span className="font-bold text-white">4.9 / 5</span>
-            <span className="text-zinc-500">•</span>
+            <span className="font-bold text-gray-900">4.9 / 5</span>
+            <span className="text-gray-300">•</span>
             <span>Based on 1,840+ UK Subscriber Reviews</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#2c3640] tracking-tight">
             Trusted by British Indian Families Across the UK
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-2xl mx-auto">
             From London and Leicester to Birmingham and Manchester, discover why UK households choose ChitramTV for daily family streaming.
           </p>
         </div>
@@ -85,40 +85,40 @@ export function TestimonialsSection() {
           {TESTIMONIALS.map((t, idx) => (
             <div
               key={idx}
-              className="rounded-xl border border-zinc-800 bg-card p-6 flex flex-col justify-between hover:border-zinc-700 transition-colors shadow-card space-y-4"
+              className="rounded-xl border border-gray-200 bg-white p-6 flex flex-col justify-between hover:border-gray-300 hover:shadow-md transition-all shadow-sm space-y-4"
             >
               <div className="space-y-3">
                 {/* 5-star rating */}
                 <div className="flex items-center justify-between">
-                  <div className="flex text-amber-400">
+                  <div className="flex text-amber-500">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-3.5 w-3.5 fill-current" />
                     ))}
                   </div>
-                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded flex items-center gap-1">
+                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded flex items-center gap-1">
                     <CheckCircle2 className="h-3 w-3" />
                     Verified UK Subscriber
                   </span>
                 </div>
 
                 {/* Comment quote */}
-                <p className="text-xs text-zinc-300 leading-relaxed italic">
+                <p className="text-xs text-gray-700 leading-relaxed italic">
                   &ldquo;{t.comment}&rdquo;
                 </p>
               </div>
 
               {/* Author footer */}
-              <div className="pt-3 border-t border-zinc-800 flex items-center justify-between text-xs">
+              <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
                 <div>
-                  <h3 className="font-bold text-white text-xs">{t.name}</h3>
-                  <div className="flex items-center gap-1 text-[11px] text-zinc-400 mt-0.5">
-                    <MapPin className="h-3 w-3 text-primary shrink-0" />
+                  <h3 className="font-bold text-gray-900 text-xs">{t.name}</h3>
+                  <div className="flex items-center gap-1 text-[11px] text-gray-500 mt-0.5">
+                    <MapPin className="h-3 w-3 text-[#dd0e1c] shrink-0" />
                     <span>{t.location}</span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] font-medium text-zinc-400 block">{t.device}</span>
-                  <span className="text-[10px] text-primary font-semibold">{t.plan}</span>
+                  <span className="text-[10px] font-medium text-gray-500 block">{t.device}</span>
+                  <span className="text-[10px] text-[#dd0e1c] font-semibold">{t.plan}</span>
                 </div>
               </div>
             </div>
