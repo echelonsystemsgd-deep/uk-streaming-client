@@ -193,3 +193,24 @@ export interface CheckoutClientRequest {
   };
   isSubscription?: boolean;
 }
+
+export interface RefundPaymentPayload {
+  amount?: PayPalMoney;
+  invoice_id?: string;
+  note_to_payer?: string;
+}
+
+export interface PayPalRefundResponse {
+  id: string;
+  status: "COMPLETED" | "PENDING" | "FAILED" | "CANCELLED";
+  amount: PayPalMoney;
+  note_to_payer?: string;
+  seller_payable_breakdown?: {
+    gross_amount: PayPalMoney;
+    paypal_fee?: PayPalMoney;
+    net_amount?: PayPalMoney;
+  };
+  create_time: string;
+  update_time?: string;
+  links?: Array<{ href: string; rel: string; method: string }>;
+}

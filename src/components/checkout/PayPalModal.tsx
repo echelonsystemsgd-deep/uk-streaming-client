@@ -156,8 +156,12 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
         throw new Error(errData.error || "Failed to create sandbox order");
       }
 
-      const { orderId } = await res.json();
-      // Prompt user to simulate approval
+      const { orderId, approvalUrl } = await res.json();
+      if (approvalUrl) {
+        window.location.href = approvalUrl;
+        return;
+      }
+      // Prompt user to simulate approval when in offline sandbox emulation
       setEmulatedApprovalOrderId(orderId);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Sandbox initiation failed";
@@ -332,21 +336,33 @@ export function PayPalModal({ isOpen, onClose, plan }: PayPalModalProps) {
                   <div>Buyer: <span className="text-white">{email}</span></div>
                   <div>Amount: <span className="text-emerald-400">{currency}{plan.price.toFixed(2)}</span></div>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleConfirmEmulatedApproval}
-                  disabled={isProcessing}
-                  className="w-full min-h-[48px] rounded-xl bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-extrabold text-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.98] cursor-pointer"
-                >
-                  {isProcessing ? (
-                    <span className="flex items-center gap-2">
-                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-950 border-t-transparent" />
-                      <span>{processingStep}</span>
-                    </span>
-                  ) : (
-                    <span>Authorize &amp; Complete Capture</span>
-                  )}
-                </button>
+                <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={handleConfirmEmulatedApproval}
+                    disabled={isProcessing}
+                    className="w-full sm:flex-1 min-h-[48px] rounded-xl bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.98] cursor-pointer"
+                  >
+                    {isProcessing ? (
+                      <span className="flex items-center gap-2">
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-950 border-t-transparent" />
+                        <span>{processingStep}</span>
+                      </span>
+                    ) : (
+                      <span>Complete in Modal</span>
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.location.href = `/checkout/success?token=${emulatedApprovalOrderId}&mock=true`;
+                    }}
+                    className="w-full sm:flex-1 min-h-[48px] rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer border border-zinc-700"
+                  >
+                    <span>Test Full Redirect Page</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
+                  </button>
+                </div>
               </div>
             ) : (
               /* Mobile Form */

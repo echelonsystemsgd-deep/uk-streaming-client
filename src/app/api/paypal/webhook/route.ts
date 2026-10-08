@@ -59,6 +59,13 @@ export async function POST(request: Request) {
         break;
       }
 
+      case "PAYMENT.CAPTURE.REFUNDED": {
+        // Payment refunded: Revoke/update stream line or log refund record
+        const refund = event.resource as { id: string; amount?: { value: string; currency_code: string } };
+        console.log(`[Refund Event]: Payment refunded ${refund?.id}. Amount: ${refund?.amount?.value} ${refund?.amount?.currency_code}.`);
+        break;
+      }
+
       case "BILLING.SUBSCRIPTION.ACTIVATED": {
         // Recurring subscription activated
         const sub = event.resource as { id: string };

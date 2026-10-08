@@ -4,6 +4,8 @@ import {
   PayPalCaptureResponse,
   CreateSubscriptionPayload,
   PayPalSubscriptionResponse,
+  RefundPaymentPayload,
+  PayPalRefundResponse,
 } from "./types";
 import { CATALOG_CURRENCY } from "@/data/plans";
 
@@ -321,4 +323,69 @@ export async function verifyPayPalWebhookSignature(params: {
 
   const data = await response.json();
   return data.verification_status === "SUCCESS";
+}
+
+/**
+ * Refunds a captured payment via PayPal Payments v2 API.
+ * Spec: payments_refund_v2.json
+ */
+export async function refundPayPalPayment(
+  captureId: string,
+  payload?: RefundPaymentPayload,
+  requestId?: string
+): Promise<PayPalRefundResponse> {
+  if (!captureId) {
+    throw new Error("captureId is required to process a refund");
+  }
+
+  if (!isPayPalConfigured()) {
+    const mockRefundId = `REF-SANDBOX-${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
+    return {
+      id: mockRefundId,
+      status: "COMPLETED",
+      amount: payload?.amount || {
+        currency_code: CATALOG_CURRENCY.code,
+        value: "89.99",
+      },
+      note_to_payer: payload?.note_to_payer || "Refund processed by Shiva Technology Ltd",
+      create_time: new Date().toISOString(),
+      links: [
+        {
+          href: `${PAYPAL_API_BASE}/v2/payments/refunds/${mockRefundId}`,
+          rel: "self",
+          method: "GET",
+        },
+      ],
+    };
+  }
+
+  const accessToken = await getPayPalAccessToken();
+  const idempotencyId = requestId || crypto.randomUUID();
+
+  const response = await fetch(`${PAYPAL_API_BASE}/v2/payments/captures/${captureId}/refund`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+      Prefer: "return=representation",
+      "PayPal-Request-Id": idempotencyId,
+    },
+    body: payload ? JSON.stringify(payload) : "{}",
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    let debugId = "";
+    try {
+      const parsed = JSON.parse(errorBody);
+      debugId = parsed.debug_id || "";
+    } catch {
+      // Non-JSON response
+    }
+    throw new Error(
+      `PayPal Refund error (${response.status}) [DebugId: ${debugId}]: ${errorBody}`
+    );
+  }
+
+  return response.json();
 }
